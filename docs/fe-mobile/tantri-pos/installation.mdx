@@ -1,0 +1,75 @@
+---
+title: Installation
+description: "Installation of Tantri POS"
+---
+
+## Development
+
+<Info>
+  **Prerequisite**: Please install <b>Yarn</b>
+  before proceeding with the installation.
+</Info>
+
+Follow these steps to run this project locally.
+
+<b>Step 1:</b> Clone the repository
+
+```bash
+git clone git@github.com:tantri-id/tantri-app-react-native.git
+```
+
+<b>Step 2:</b> Navigate to the project directory
+
+```bash
+cd tantri-app-react-native
+```
+
+<b>Step 3:</b> Install dependencies
+
+```bash
+yarn install
+```
+
+<b>Step 4:</b> Start the Metro bundler
+
+```bash
+yarn start
+```
+
+<b>Step 5:</b> Open your Android Emulator or iOS Simulator
+
+<b>Step 6:</b> Start on Android Emulator or iOS Simulator
+
+```bash
+yarn android    # for android
+yarn ios        # for ios
+```
+
+<b>Step 7:</b> Open your IDE and Start Development!
+
+---
+
+## Production
+
+Building app apk or aab for android
+
+### Cleaning Gradle Build
+
+```bash
+cd android/
+./gradlew clean
+```
+
+### Building APK Files
+
+```bash
+cd android/
+./gradlew assembleRelease
+```
+
+### Building AAB File
+
+```bash
+cd android/
+./gradlew bundleRelease
+```

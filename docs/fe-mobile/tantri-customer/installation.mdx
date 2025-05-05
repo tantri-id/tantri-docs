@@ -1,0 +1,67 @@
+---
+title: Installation
+description: "Installation of Tantri Customer"
+---
+
+## Development
+
+Follow these steps to run this project locally.
+
+<b>Step 1:</b> Clone the repository
+
+```bash
+git clone git@github.com:tantri-id/tantri-customer-app-flutter.git
+```
+
+<b>Step 2:</b> Navigate to the project directory
+
+```bash
+cd tantri-customer-app-flutter
+```
+
+<b>Step 3:</b> Install dependencies
+
+```bash
+dart pub get
+```
+
+<b>Step 4:</b> Open your Android Emulator or iOS Simulator
+
+<b>Step 5:</b> Start on Android Emulator or iOS Simulator
+
+```bash
+flutter run
+```
+
+<b>Step 6:</b> Open your IDE and Start Development!
+
+---
+
+### Use FlutterGen for assets
+
+```bash
+fluttergen
+```
+
+### Generate localization files
+
+```bash
+dart pub run easy_localization:generate -S assets/translations -f keys -O lib/core/l10n -o locale_keys.g.dart
+Generate keystore
+```
+
+---
+
+## Production
+
+### Building APK Files
+
+```bash
+flutter build apk --split-per-abi
+```
+
+### Building AAB File
+
+```bash
+flutter build appbundle
+```
