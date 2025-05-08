@@ -2,6 +2,6 @@
   "title": "FE Mobile",
   "root": true,
   "icon": "Smartphone",
-  "pages": ["tantri-pos", "tantri-customer", "tantri-scanner"],
+  "pages": ["index", "tantri-pos", "tantri-customer", "tantri-scanner"],
   "defaultOpen": true
 }

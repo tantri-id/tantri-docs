@@ -2,6 +2,6 @@
   "title": "Figma Files",
   "icon": "Figma",
   "root": true,
-  "pages": ["tantri-pos", "tantri-customer"],
+  "pages": ["index", "tantri-pos", "tantri-customer"],
   "defaultOpen": true
 }
