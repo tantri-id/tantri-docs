@@ -1,20 +1,26 @@
-# Tantri Documentation - Using Mintlify
+# Tantri Docs
 
-### Development
+This is a Next.js application generated with
+[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+Run development server:
 
+```bash
+npm run dev
+# or
+pnpm dev
+# or
+yarn dev
 ```
-npm i -g mintlify
-```
 
-Run the following command at the root of your documentation (where docs.json is)
+Open http://localhost:3000 with your browser to see the result.
 
-```
-mintlify dev
-```
+## Learn More
 
-#### Troubleshooting
+To learn more about Next.js and Fumadocs, take a look at the following
+resources:
 
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `docs.json`
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
+  features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Fumadocs](https://fumadocs.vercel.app) - learn about Fumadocs

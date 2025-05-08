@@ -1,0 +1,6 @@
+{
+  "title": "Docs",
+  "root": true,
+  "pages": ["fe-mobile", "fe-web", "be", "ui-design"],
+  "defaultOpen": true
+}
