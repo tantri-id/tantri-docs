@@ -1,6 +1,7 @@
 {
   "title": "Docs",
   "root": true,
+  "icon": "Layers",
   "pages": ["fe-mobile", "fe-web", "be", "ui-design"],
   "defaultOpen": true
 }

@@ -1,6 +1,7 @@
 {
-  "title": "UI Design",
-  "root": true,
+  "title": "Figma Files",
   "icon": "Figma",
+  "root": true,
+  "pages": ["tantri-pos", "tantri-customer"],
   "defaultOpen": true
 }
