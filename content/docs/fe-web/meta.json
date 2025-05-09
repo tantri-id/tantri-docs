@@ -2,5 +2,6 @@
   "title": "FE Web",
   "root": true,
   "icon": "Globe",
+  "pages": ["index", "tantri-kitchen-display", "tantri-cashier"],
   "defaultOpen": true
 }
