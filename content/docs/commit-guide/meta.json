@@ -1,0 +1,7 @@
+{
+  "title": "Commit Guide",
+  "root": true,
+  "icon": "Github ",
+  "pages": ["index"],
+  "defaultOpen": true
+}

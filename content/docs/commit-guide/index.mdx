@@ -1,0 +1,89 @@
+---
+title: Get Started
+description: "This is the guide that use for commit changes in tantri project."
+---
+
+## Commit & Branching Guide
+
+Welcome to our guide on clean commits and branching! This documentation will
+help standardize how we commit changes and manage branches, ensuring a clear,
+consistent, and maintainable version control workflow.
+
+## Why Do We Need This?
+
+- <b>Readability</b> : Clear commit messages make it easier to track changes.
+- <b>Collaboration</b> : A consistent style helps team members understand changes
+  quickly.
+- <b>Maintenance</b> : Well-structured branches and commits simplify debugging and
+  rollbacks.
+
+## Branching Strategy
+
+We follow GitFlow-inspired branching:
+
+- **main** Production-ready
+  code(protected)
+
+- **develop** Integration branch for features (latest devstate)
+
+- <b>feat/</b> Feature branches (e.g., feat/user-profile)
+
+- <b>fix/</b> Hotfix/bugfix branches (e.g., fix/login-error)
+
+### Branch Naming
+
+- Use lowercase and hyphens (-).
+
+- Prefix with feat/, fix/, docs/, etc.
+
+- Example: feat/dark-mode, fix/api-timeout
+
+## Commit changes
+
+<b>Step 1: </b> before you do commit please pay attention where your current branch
+you're
+<b> Step 2: </b> Please check update change on the current branch.
+
+```bash
+git pull
+```
+
+<b>Step 3: </b> If you Developing new feature or updated please create new branch
+from the current branch.
+
+New feature :
+
+```bash
+git checkout -b feat/[name feature]
+```
+
+Update feature :
+
+```bash
+git checkout -b update/[name feature or else being updated]
+```
+
+Fix Bug or error:
+
+```bash
+git checkout -b fix/[name feature bug or error]
+```
+
+<b>Step 4: </b> Add your change to stagging.{" "}
+
+```bash
+git add . || git add [name file or directory has change]
+```
+
+<b>Step 5: </b> Commit message need to be clear what change you do in development.
+if you're commit new feature use "Feat : what you do".
+
+```bash
+git commit -m "Feat : message" || git commit -m "Update : message" || git commit -m "Fix bug : message"
+```
+
+<b>Step 6: </b> Push your changes
+
+```bash
+git push -u origin [your branch]
+```
