@@ -2,6 +2,12 @@
   "title": "FE Web",
   "root": true,
   "icon": "Globe",
-  "pages": ["index", "tantri-kitchen-display", "tantri-cashier"],
+  "pages": [
+    "index",
+    "tantri-kitchen-display",
+    "tantri-cashier",
+    "tantri-menu",
+    "tantri-backoffice"
+  ],
   "defaultOpen": true
 }
