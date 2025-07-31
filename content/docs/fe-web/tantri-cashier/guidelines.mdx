@@ -1,0 +1,166 @@
+---
+title: Guidelines
+description: This document provides a comprehensive structure for developing tantri cashier with VITE ReactJS. Here is a tidied-up version based on each context
+---
+
+import { File, Folder, Files } from "fumadocs-ui/components/files";
+
+## 🧩 Liblary
+
+- Use `react-query` for data fetching via `useQuery` and `useMutation`.
+- Use `shadcn/ui` as the primary UI component library.
+- Use `react-hook-form` for form handling.
+- Use `tailwindcss` for styling.
+- Use `zustand` for state management.
+- Use `react-router-dom` for routing.
+- Use `react-geocode` for geocoding.
+- Use `react-thermal-printer` for thermal printing.
+
+## 📝 Naming Convention
+
+- Use kebab-case for file naming and context-aware hooks (e.g., use-users-query.ts).
+
+## ⚙️ Engineering Principle
+
+1. Start Simple
+
+   Begin with simple, minimal implementations. Avoid breaking components apart unless necessary.
+
+2. Component Simplicity
+
+   Keep components focused and minimal. Prioritize readability and maintainability.
+
+3. Coupling and Cohesion
+
+   - Low Coupling:
+
+     Avoid tangled connections between unrelated modules. <br />❌ Example of bad
+     practice: importing functions from the login page into the users page.
+
+   - High Cohesion:
+
+   Group code logically based on its functionality. <br />
+   ❌ Poor example: inconsistent or unclear folder structures.
+
+   ✅ Good example: if a type, enum, or utility is only used within a single
+   component, colocate it with that component. <br />- Example:
+
+   - `src/app/_components/menu`
+   - `index.tsx`
+   - `type.tsx`
+   - `util.tsx`
+
+   - ref: [Coupling and Cohesion.](https://betterprogramming.pub/coupling-cohesion-552b022492b2)
+
+4. One Hook, One Purpose
+   - Avoid overloading hooks. Each custom hook should serve a single, clear purpose.
+     Keep it clean, readable, and easy to maintain.
+
+## Structure Folder
+
+- `build/:` Docker build artifacts.
+
+- `dev-build/:` Development build artifacts, such as webpack bundles and service worker files.
+
+- `public/:` Static assets, such as images, fonts, and favicon.
+
+- `src/:` Application logic, including components, pages, and API routes.
+
+- `src/components/`: Shared components.
+
+- `src/context`: Shared context.
+
+- `src/hooks`: Shared hooks or declare custom hooks.
+
+- `src/pages/_components/`:Components within the module.
+
+- `src/pages/_hooks`: Hooks within the module.
+
+- `src/routes/private/`: Components and pages requiring authentication. See Modules Structure for more details.
+
+- `src/services/api/`: API and its type definitions.
+
+- `src/common/`: Common utilities, global type, enum, constant e.g `src/common/types/response.ts`
+
+- `src/libs/`: Libraries and utilities.
+
+- `src/types/`: Declared type e.g: `src/types/react-slider.d.ts`
+
+- `src/validations-schema/`: Declared validation schema e.g: `src/validations-schema/index.validation.ts`
+
+<Files>
+  <Folder name="build">
+    <File name="docker-compose.yml" />
+  </Folder>
+  <Folder name="dev-build">
+    <File name="workbox-sw.js" />
+  </Folder>
+  <Folder name="public">
+    <File name="favicon.ico" />
+  </Folder>
+  <Folder name="src" defaultOpen>
+    <Folder name="components" defaultOpen>
+      <Folder name="ui">
+        <File name="button.tsx" />
+        <File name="tabs.tsx" />
+        <File name="dialog.tsx" />
+      </Folder>
+    </Folder>
+    <Folder name="context" defaultOpen>
+      <File name="auth-context.tsx" />
+    </Folder>
+    <Folder name="hooks" defaultOpen>
+      <Folder name="custom-hooks" defaultOpen>
+        <File name="use-auth.ts" />
+        <File name="use-alert-message.ts" />
+      </Folder>
+    </Folder>
+    <Folder name="lib" defaultOpen>
+      <Folder name="api"></Folder>
+      <Folder name="constants"></Folder>
+      <Folder name="utils"></Folder>
+    </Folder>
+    <Folder name="pages" defaultOpen>
+      <Folder name="cashier" defaultOpen>
+        <Folder name="auth" defaultOpen>
+          <Folder name="_components" defaultOpen>
+            <File name="index.tsx" />
+          </Folder>
+          <Folder name="_hooks">
+            <File name="use-auth-mutation.tsx" />
+            <File name="use-user-query.tsx" />
+          </Folder>
+          <File name="page.tsx" />
+        </Folder>
+      </Folder>
+      <Folder name="general"></Folder>
+    </Folder>
+    <Folder name="redux" defaultOpen>
+      <Folder name="slices">
+        <File name="payment-slice.ts" />
+      </Folder>
+      <File name="store.ts" />
+      <File name="hooks.ts" />
+    </Folder>
+    <Folder name="routes" defaultOpen>
+      <File name="index.tsx" />
+      <File name="public.tsx" />
+      <File name="private.tsx" />
+    </Folder>
+    <Folder name="services" defaultOpen>
+      <Folder name="api" defaultOpen>
+        <Folder name="setting-cafe" defaultOpen>
+          <File name="auth.ts" />
+          <File name="type.ts" />
+        </Folder>
+      </Folder>
+    </Folder>
+    <Folder name="types">
+      <File name="index.ts" />
+    </Folder>
+    <Folder name="validations-schema">
+      <File name="index.validation.ts" />
+    </Folder>
+  </Folder>
+  <File name="package.json" />
+</Files>

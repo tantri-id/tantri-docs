@@ -1,0 +1,131 @@
+---
+title: Backend Guidelines – Tantri Cashier (NestJS)
+description: This document defines folder structure, naming convention, and architectural patterns for developing Tantri Cashier backend using NestJS + Prisma.
+---
+
+import { File, Folder, Files } from "fumadocs-ui/components/files";
+
+## 🧩 Tech Stack
+
+- ✅ NestJS (Modular Backend Framework)
+- ✅ Prisma ORM for PostgreSQL
+- ✅ PostgreSQL as the main database
+- ✅ Docker for containerization
+- ✅ Redis for caching
+- ✅ WebSocket (or socket.io) for real-time
+- ✅ Kafka (if needed) for message broker
+
+---
+
+## 📝 Naming Convention
+
+| Element       | Convention                 | Example                                   |
+| ------------- | -------------------------- | ----------------------------------------- |
+| Files         | kebab-case                 | `currency.repository.ts`                  |
+| Classes       | PascalCase                 | `CurrencyRepository`                      |
+| DTOs          | kebab-case, with `.dto.ts` | `update-setting-language-currency.dto.ts` |
+| Modules       | feature-based folder       | `cafe/`, `auth/`, `article/`              |
+| Helpers/utils | grouped under `helper/`    | `getCurrMonthAndYearByTimeZone`           |
+
+---
+
+## ⚙️ Engineering Principles
+
+1. **Feature-First Modularization**
+
+   - Setiap folder (auth, cafe, article, etc) adalah satu fitur independen.
+   - Gunakan `*.module.ts` untuk register dependensi.
+
+2. **Repository Pattern + Prisma**
+
+   - Gunakan repository terpisah (`*.repository.ts`) untuk logic akses database.
+   - Jangan campur logic query dan business logic di service.
+
+3. **Business Logic di Service**
+
+   - `*.service.ts` berfungsi untuk mengelola aturan bisnis (validasi, kalkulasi, dsb).
+
+4. **Transactional-safe via Prisma**
+
+   - Gunakan `prisma.$transaction()` untuk keperluan `tx` seperti pada `txForceUpdateCurrencyCafewithDeleteOrder`.
+
+5. **Dependency Injection**
+
+   - Semua service, repo, dan helper harus injek via constructor.
+   - Gunakan `@Inject(forwardRef(...))` jika dependensi melingkar.
+
+6. **Custom Error Handling**
+   - Gunakan `CustomError` dengan status code untuk response lebih jelas.
+
+---
+
+## 🧱 Folder Structure Reference (based on your screenshot)
+
+<Files>
+  <Folder name="build" />
+  <Folder name="prisma">
+    <Folder name="datas" />
+    <Folder name="interfaces" />
+    <Folder name="migrations" />
+    <Folder name="paginator" />
+    <File name="schema.prisma" />
+    <File name="seed.ts" />
+  </Folder>
+  <Folder name="src" defaultOpen>
+    <Folder name="article">
+      <Folder name="dto" />
+      <File name="article.controller.ts" />
+      <File name="article.module.ts" />
+      <File name="article.repository.ts" />
+      <File name="article.service.ts" />
+    </Folder>
+    <Folder name="auth">
+      <Folder name="decorator" />
+      <Folder name="dto">
+        <File name="signin.dto.ts" />
+        <File name="signup.dto.ts" />
+        <File name="verify-otp.dto.ts" />
+        ...
+      </Folder>
+      <Folder name="guard" />
+      <Folder name="interfaces" />
+      <Folder name="repositories" />
+      <Folder name="strategy" />
+      <Folder name="type" />
+      <File name="auth.controller.ts" />
+      <File name="auth.module.ts" />
+      <File name="auth.service.ts" />
+    </Folder>
+    <Folder name="cafe">
+      <Folder name="repositories" />
+    </Folder>
+    <Folder name="utils">
+      <Folder name="dto">
+        <File name="pagination.dto.ts" />
+      </Folder>
+      <Folder name="enum">
+        <File name="auth.enum.ts" />
+      </Folder>
+    </Folder>
+    <Folder name="helper">
+      <File name="helper.ts" />
+      <File name="validation.ts" />
+    </Folder>
+    <Folder name="setting">
+      <Folder name="dto">
+        <File name="setting.dto.ts" />
+      </Folder>
+      <File name="setting.repository.ts" />
+    </Folder>
+  </Folder>
+</Files>
+
+---
+
+## 🧪 Additional Best Practices
+
+- ✅ Gunakan file `prisma.service.ts` sebagai singleton provider untuk Prisma Client.
+- ✅ Gunakan `Validation` helper atau `class-validator` untuk validasi non-decorator.
+- ✅ Hindari `any` dan selalu pakai typing dari `@prisma/client` atau DTO.
+
+---
