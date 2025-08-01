@@ -1,0 +1,73 @@
+---
+title: Pengaturan Tim (Karyawan)
+description: "Atur dan kelola daftar karyawan di toko Anda menggunakan Tantri Cashier"
+---
+
+# 👨‍🍳 Pengaturan Tim (Karyawan)
+
+Modul **Pengaturan Tim** di Tantri Cashier memungkinkan Anda untuk menambahkan, mengedit, dan menghapus daftar karyawan yang bekerja di outlet Anda, serta menentukan peran (role) masing-masing seperti kasir, waiter, atau supervisor.
+
+Fitur ini sangat penting untuk mengelola **akses**, **otoritas**, dan **aktivitas** masing-masing pegawai secara aman dan efisien.
+
+---
+
+## 📋 1. Melihat Daftar Karyawan
+
+Pada halaman **Pengaturan Tim**, Anda akan melihat daftar seluruh karyawan yang sudah terdaftar, termasuk:
+
+- **Nama Lengkap**
+- **Nomor Telepon**
+- **Peran / Role** (contoh: Super Admin, Cashier, Waiter, Kepala Supervisor)
+
+Setiap karyawan ditampilkan dalam bentuk kartu, dilengkapi tombol untuk **edit** ✏️ dan **hapus** 🗑️ (kecuali Super Admin).
+
+---
+
+## ➕ 2. Menambahkan Karyawan Baru
+
+1. Klik tombol **Tambah Karyawan** (jika tersedia di UI).
+2. Masukkan:
+   - Nama karyawan
+   - Nomor telepon
+   - Peran / role (pilih dari daftar)
+3. Klik **Simpan** untuk menambahkan ke daftar tim.
+
+---
+
+## ✏️ 3. Mengedit Data Karyawan
+
+- Klik ikon ✏️ di samping nama karyawan.
+- Lakukan perubahan pada nama, nomor telepon, atau role.
+- Klik **Simpan** untuk menerapkan perubahan.
+
+---
+
+## 🗑️ 4. Menghapus Karyawan
+
+- Klik ikon 🗑️ di samping nama karyawan.
+- Konfirmasi penghapusan.
+- Data karyawan akan dihapus dari sistem.
+
+> ⚠️ **Catatan:** Karyawan dengan role `Super Admin` tidak bisa dihapus demi alasan keamanan sistem.
+
+---
+
+## 🛡️ 5. Hak Akses Berdasarkan Role
+
+Setiap role memiliki hak akses yang berbeda:
+
+| Role                  | Hak Akses                                                                |
+| --------------------- | ------------------------------------------------------------------------ |
+| **Super Admin**       | Akses penuh ke seluruh sistem, tidak dapat dihapus                       |
+| **Kepala Supervisor** | Dapat melihat laporan dan mengelola pegawai bawahannya                   |
+| **Cashier**           | Mengelola transaksi dan pesanan, akses terbatas ke pengaturan            |
+| **Waiter**            | Fokus pada pengambilan dan pengantaran pesanan, tidak bisa akses laporan |
+
+---
+
+## 🔐 6. Integrasi dengan PIN dan Shift
+
+- Karyawan bisa diatur untuk **menggunakan PIN otorisasi** pada tindakan sensitif.
+- Dapat dihubungkan dengan **sistem shift** untuk pencatatan jam kerja dan laporan shift harian.
+
+---

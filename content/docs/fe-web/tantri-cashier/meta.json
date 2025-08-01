@@ -1,4 +1,22 @@
 {
   "title": "Tantri Cashier",
-  "pages": ["index", "installation", "guidelines"]
+  "pages": [
+    "index",
+    "installation",
+    "guidelines",
+    "table-management",
+    "pin",
+    "payment",
+    "tax-and-service",
+    "shifting",
+    "employee",
+    "delivery-type",
+    "order-type",
+    "catalog",
+    "multi-price",
+    "discount",
+    "wallet",
+    "order-list",
+    "reservation"
+  ]
 }
