@@ -17,6 +17,7 @@
     "discount",
     "wallet",
     "order-list",
-    "reservation"
+    "reservation",
+    "printer"
   ]
 }

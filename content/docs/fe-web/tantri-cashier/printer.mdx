@@ -1,0 +1,171 @@
+---
+title: Pengaturan Printer
+description: "Atur koneksi dan konfigurasi printer untuk mencetak struk, pesanan, laporan, dan label di sistem Tantri Cashier."
+---
+
+Halaman **Pengaturan Printer** digunakan untuk menghubungkan dan mengatur berbagai jenis printer yang digunakan dalam operasional kasir dan dapur. Anda dapat mengatur printer struk pelanggan, printer dapur, serta menyimpan konfigurasi secara cloud untuk backup.
+
+---
+
+## Dokumentasi liblary printer yang digunakan
+
+Baca disini `https://github.com/seokju-na/react-thermal-printer`
+
+## 🌐 1. Pengaturan Network Printer
+
+Masukkan alamat IP printer Anda ke kolom **Pengaturan Network Printer**. Pastikan printer Anda terhubung dalam jaringan LAN yang sama dengan sistem.
+
+> Ketika running di localhost, Harap harus menjalankan project tantri backend printer terlebih dahulu untuk mendapatkan alamat IP printer.
+> 🧠 Contoh alamat: `http://temperatures-s-owner-fabric.trycloudflare.com`
+
+## 🖼️ 2. Upload Logo Struk
+
+Anda dapat mengunggah logo toko Anda yang akan muncul di bagian atas struk.
+
+- Format: PNG
+- Ukuran: Maksimal 160 x 90 px
+- Disarankan menggunakan background transparan
+
+> ✅ Logo yang diunggah akan langsung tampil di preview.
+
+---
+
+## ✏️ 3. Custom Header & Footer Struk
+
+Gunakan tombol **Custom Text Struk** untuk menambahkan atau mengubah teks header dan footer pada struk. Anda dapat menyisipkan informasi seperti:
+
+- Nama toko
+- Alamat
+- No. telepon
+- Catatan khusus (seperti: “Terima kasih telah berbelanja”)
+
+---
+
+## 🖨️ 4. Pengaturan Jenis Printer
+
+### 📄 Printer Struk Pelanggan
+
+Printer utama untuk mencetak struk transaksi pelanggan.
+
+- Contoh: Xprinter - 192.168.0.101
+
+### ✔️ Printer Checker Pesanan
+
+Printer tambahan yang digunakan untuk mencetak daftar item untuk validasi.
+
+### 🍽️ Printer Dapur (Makanan)
+
+Printer khusus dapur makanan yang mencetak hanya menu makanan.
+
+### 🥤 Printer Dapur (Minuman)
+
+Printer khusus dapur minuman yang mencetak hanya menu minuman.
+
+### 🧾 Printer Dapur (Custom)
+
+Bisa disesuaikan secara manual untuk kebutuhan dapur lain (misal: makanan cepat saji, makanan berat, dll).
+
+- Contoh: USB Printer Port - `q36BtmvWqDtjQpzZ`
+
+### 📊 Printer Laporan
+
+Printer untuk mencetak laporan harian/mingguan.
+
+> 🚫 _Belum ada printer yang terhubung._
+
+### 🏷️ Printer Label Pesanan
+
+Printer untuk mencetak label nama pelanggan atau kode pesanan.
+
+> 🚫 _Belum ada printer yang terhubung._
+
+> ➕ Tekan tombol `+` untuk menambahkan printer baru pada setiap kategori.
+
+## 🖨️ 1. Pilihan Tipe Printer
+
+Pada modal **Tambah Printer**, terdapat tiga pilihan utama:
+
+1. **Printer Bluetooth**
+
+   - Pilih opsi ini untuk menghubungkan printer yang mendukung koneksi **Bluetooth**.
+   - Sistem akan memindai perangkat Bluetooth yang tersedia, kemudian Anda dapat memilih printer yang sesuai.
+
+2. **Printer NET**
+
+   - Digunakan untuk menghubungkan printer yang terhubung dalam **jaringan LAN/WiFi** dengan memasukkan alamat IP printer.
+   - Contoh alamat IP: `192.168.0.101`.
+
+3. **Printer USB**
+   - Digunakan jika printer terhubung langsung ke perangkat kasir melalui **kabel USB**.
+   - Sistem akan mendeteksi port USB yang terhubung.
+
+---
+
+## 📶 2. Panduan Menghubungkan Printer Bluetooth
+
+Jika memilih **Printer Bluetooth**, pastikan:
+
+1. **Bluetooth pada perangkat Anda aktif.**
+2. **Browser (Chrome) memiliki izin untuk mengakses perangkat Bluetooth.**
+   - Buka `chrome://settings/content/bluetoothDevices`.
+   - Aktifkan opsi **“Sites can ask to connect to Bluetooth devices.”**
+3. **Klik Printer Bluetooth** di modal, lalu pilih perangkat dari daftar yang muncul.
+4. Pastikan printer sudah **di-pairing** sebelumnya dengan perangkat komputer/tablet.
+
+> ⚠️ Jika tidak ada perangkat yang muncul, pastikan printer dalam kondisi **discoverable** dan dekat dengan perangkat Anda.
+
+---
+
+## 📝 3. Konfirmasi & Pengaturan Tambahan
+
+- Setelah memilih tipe printer, Anda akan diarahkan ke form konfigurasi (contoh: nama printer atau IP).
+- Klik **Simpan** untuk menambahkan printer ke daftar.
+
+---
+
+## 💡 Tips Tambahan
+
+- Gunakan **Printer NET** jika Anda memiliki banyak printer dalam satu jaringan.
+- Printer **Bluetooth** cocok untuk perangkat kasir portabel.
+- **USB** direkomendasikan untuk stabilitas jika perangkat kasir selalu berada di satu lokasi.
+
+---
+
+🔧 Langkah-langkah Mengaktifkan Bluetooth di Chrome:
+Buka Chrome Settings
+
+1. Kunjungi: chrome://settings/content/bluetoothDevices
+
+2. Berikan Izin untuk Perangkat Bluetooth
+   Di halaman tersebut, pastikan izin akses “Sites can ask to connect to Bluetooth devices” sudah aktif.
+
+3. Tambahkan Situs
+   Jika Anda menggunakan POS dari domain tertentu (contoh: https://kasir.tantri.id || http://localhost:3000 || http://kasir-staging.tantri.id/), tambahkan situs tersebut secara manual:
+
+4. Klik tombol Add
+
+5. Masukkan alamat situs lengkap
+
+6. Klik Add
+
+7. Aktifkan Bluetooth di Perangkat Anda
+   Pastikan Bluetooth di perangkat komputer atau tablet Anda dalam kondisi aktif.
+
+8. Hubungkan Printer via Bluetooth
+   Saat menambahkan printer, pilih opsi Bluetooth. Browser akan memunculkan daftar perangkat terdekat. Pilih printer yang diinginkan.
+
+---
+
+## ☁️ 5. Backup & Restore Pengaturan Printer
+
+Untuk menjaga konfigurasi printer tetap aman, gunakan fitur berikut:
+
+- **Backup Data**  
+  Menyimpan pengaturan printer ke cloud agar dapat dipulihkan saat reset perangkat atau pindah perangkat.
+
+- **Restore Data**  
+  Memulihkan pengaturan printer dari backup sebelumnya.
+
+> 🔒 Hanya backup terakhir yang disimpan di sistem.
+
+---
