@@ -1,0 +1,51 @@
+---
+title: Pengaturan Pajak dan Service
+description: "Atur besaran pajak dan service fee pada setiap pembelian produk di Tantri Cashier"
+---
+
+Fitur **Pajak dan Service** di Tantri Cashier memungkinkan kamu menetapkan tarif **pajak** dan/atau **biaya layanan (service fee)** secara otomatis pada setiap transaksi pembelian produk.
+
+Pengaturan ini sangat berguna untuk usaha F&B, restoran, atau bisnis lain yang membutuhkan penerapan tambahan biaya resmi di luar harga produk.
+
+---
+
+## 🧾 1. Pajak (Tax)
+
+- **Kolom Pajak:** Masukkan nilai pajak (misalnya: `10` untuk 10%).
+- **Tipe Pajak:**
+  - **Persen:** Biaya pajak akan dihitung berdasarkan persentase dari total nilai transaksi.
+  - _(Opsi "Nominal" jika tersedia akan menetapkan nilai tetap per transaksi.)_
+
+### Contoh:
+
+Jika total pembelian adalah Rp100.000 dan pajak 10%, maka:
+`Rp100.000 + (10% x Rp100.000) = Rp110.000`
+
+## 💼 2. Biaya Layanan (Service Fee)
+
+- **Kolom Service Fee:** Masukkan besaran biaya layanan (contoh: `5` untuk 5%).
+- **Tipe Service Fee:**
+  - **Persen:** Biaya layanan dihitung dari total transaksi.
+  - _(Jika tersedia: Nominal → Biaya tetap yang ditambahkan ke transaksi.)_
+
+### Contoh:
+
+Jika total sebelum service fee adalah Rp100.000 dan fee 5%:
+`Rp100.000 + (5% x Rp100.000) = Rp105.000`
+
+## ✅ Cara Mengatur Pajak & Service
+
+1. Masuk ke menu **Pengaturan → Pajak dan Service**.
+2. Masukkan nilai pada kolom **Pajak** dan/atau **Service Fee**.
+3. Pilih **tipe** masing-masing (Persen atau Nominal).
+4. Perubahan akan otomatis diterapkan, tidak perlu klik "Simpan".
+
+---
+
+## 📌 Catatan Penting
+
+- Field **Pajak** dan **Service Fee** bersifat opsional. Kamu bisa mengisi salah satu atau keduanya, atau dikosongkan jika tidak digunakan.
+- Jumlah pajak dan service fee akan ditambahkan ke total transaksi dan tampil di struk (jika cetak struk diaktifkan).
+- Sistem ini mendukung pembulatan otomatis bila diaktifkan di pengaturan pembayaran.
+
+---

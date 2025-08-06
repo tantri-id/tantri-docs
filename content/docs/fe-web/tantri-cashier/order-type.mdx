@@ -1,0 +1,72 @@
+---
+title: Tipe Order
+description: "Atur skema tipe order untuk transaksi merchant dan customer di Tantri Cashier"
+---
+
+# 🧾 Tipe Order
+
+Modul **Tipe Order** di Tantri Cashier digunakan untuk mengatur skema pemrosesan pesanan di toko, baik untuk kasir (merchant) maupun pelanggan (customer online). Tipe order ini menentukan apakah pesanan menggunakan sistem **Close Bill** atau **Open Bill**.
+
+---
+
+## 🏪 1. Tipe Order Merchant
+
+Digunakan untuk menentukan skema order yang digunakan oleh kasir saat membuat transaksi di outlet.
+
+### Pilihan Tipe:
+
+| Tipe Order     | Deskripsi                                                                                                                       |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Close Bill** | Pesanan langsung dibayar dan diselesaikan saat itu juga. Biasanya digunakan untuk sistem kasir cepat.                           |
+| **Open Bill**  | Pesanan dapat dibuka terlebih dahulu, kemudian dibayar belakangan. Cocok untuk dine-in, reservasi, atau sistem pencatatan meja. |
+
+### Cara Mengatur:
+
+1. Buka menu **Pengaturan → Tipe Order**.
+2. Klik **Tipe Order Merchant**.
+3. Pilih salah satu tipe: **Close Bill** atau **Open Bill**.
+4. Centang sebagai **Set as Default** jika ingin dijadikan default saat transaksi dimulai.
+5. Klik **Simpan**.
+
+---
+
+## 🛒 2. Tipe Order Customer
+
+Digunakan untuk mengatur tipe order yang tersedia bagi pelanggan yang melakukan **order online** (misal via Tantri Ordering).
+
+### Pilihan Konfigurasi:
+
+| Opsi                 | Deskripsi                                                                       |
+| -------------------- | ------------------------------------------------------------------------------- |
+| **Semua Tipe Order** | Pelanggan dapat memilih antara open bill atau close bill.                       |
+| **Hanya Close Bill** | Semua pesanan online pelanggan wajib langsung diselesaikan (dibayar).           |
+| **Hanya Open Bill**  | Pesanan online bisa dicatat dulu dan dibayar belakangan (jika didukung outlet). |
+
+### Cara Mengatur:
+
+1. Masuk ke menu **Pengaturan → Tipe Order → Tipe Order Customer**.
+2. Pilih salah satu opsi dari dropdown:
+   - Semua Tipe Order
+   - Hanya Close Bill
+   - Hanya Open Bill
+3. Klik **Simpan**.
+
+---
+
+## ⚙️ Perbandingan Open Bill vs Close Bill
+
+| Fitur                       | Open Bill | Close Bill |
+| --------------------------- | --------- | ---------- |
+| Pesanan dibuka dulu         | ✅        | ❌         |
+| Pembayaran langsung         | ❌        | ✅         |
+| Cocok untuk dine-in         | ✅        | ❌         |
+| Cocok untuk takeaway/online | ❌        | ✅         |
+
+---
+
+## 🔒 Catatan Penting
+
+- Hanya pengguna dengan role tertentu (misalnya Super Admin atau Supervisor) yang dapat mengubah pengaturan ini.
+- Perubahan akan langsung berdampak pada alur kerja kasir atau pelanggan setelah tombol **Simpan** ditekan.
+
+---
