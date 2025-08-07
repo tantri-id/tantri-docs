@@ -18,6 +18,8 @@
     "wallet",
     "order-list",
     "reservation",
-    "printer"
+    "printer",
+    "setting-store",
+    "create-order"
   ]
 }
