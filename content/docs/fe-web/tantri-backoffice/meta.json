@@ -1,4 +1,13 @@
 {
   "title": "Tantri Backoffice",
-  "pages": ["index", "installation", "guidelines"]
+  "pages": [
+    "index",
+    "installation",
+    "guidelines",
+    "dashboard-main",
+    "branch",
+    "employee",
+    "order-stock",
+    "list-suplier"
+  ]
 }

@@ -1,0 +1,84 @@
+---
+title: Modul Karyawan
+description: Dokumentasi modul manajemen karyawan di sistem Backoffice Tantri.
+---
+
+# 👥 Modul Karyawan - Backoffice Tantri
+
+Modul **Karyawan** digunakan untuk mengelola data seluruh pegawai yang bekerja di satu atau lebih cabang restoran. Admin dapat menambahkan, mengedit, menetapkan cabang, mengatur PIN, dan menghapus akun karyawan.
+
+---
+
+## 1. 📋 Tampilan Daftar Karyawan
+
+Tabel daftar karyawan terdiri dari kolom:
+
+- **Nama Karyawan**
+- **No. Telepon**
+- **Email**
+- **Cabang**: daftar cabang tempat karyawan ditempatkan
+- **Role**: posisi karyawan (Super Admin, Waiter, Supervisor, Cashier, dll.)
+- **Pin**: status PIN (sudah diatur atau belum)
+- **Status**: Aktif / Tidak Aktif
+- **Aksi**: tombol menu (`⋮`) untuk tindakan lebih lanjut
+
+Fitur tambahan:
+
+- 🔍 Pencarian nama karyawan
+- 📥 Tombol `Download dokumentasi Hak Akses Role User`
+- ➕ Tombol `Tambah Karyawan`
+
+---
+
+## 2. ➕ Tambah Karyawan
+
+Tombol `Tambah Karyawan` membuka form input data pegawai baru yang terdiri dari:
+
+- Nama
+- Email
+- No. Telepon
+- Role / Jabatan
+- PIN (opsional tergantung role)
+- Cabang yang ditugaskan (dipilih melalui modal penempatan)
+
+---
+
+## 3. 🏢 Penempatan Cabang
+
+Tombol `Tempatkan Karyawan` akan membuka modal untuk memilih cabang:
+
+- Dapat memilih satu atau beberapa cabang
+- Ada fitur pencarian lokasi cabang
+- Setelah memilih, klik `Simpan` untuk menetapkan
+
+---
+
+## 4. 🔐 Pengaturan PIN
+
+Tersedia beberapa opsi di tombol aksi (`⋮`):
+
+- `Atur PIN`: jika PIN belum pernah diatur
+- `Reset PIN`: jika ingin mengganti PIN yang sudah ada
+
+> ⚠️ PIN digunakan untuk login kasir atau aplikasi internal pegawai.
+
+---
+
+## 5. ✏️ Aksi Lainnya
+
+Menu aksi pada setiap baris karyawan menyediakan:
+
+- 🖊️ **Edit Karyawan**: membuka form untuk ubah data
+- 🔄 **Atur/Reset PIN**
+- 🗑️ **Hapus Karyawan**: akan menampilkan modal konfirmasi
+
+---
+
+## ✅ Fitur Pendukung
+
+- Menyaring berdasarkan cabang atau role (jika fitur filter ditambahkan)
+- Validasi status aktif dan kepemilikan PIN
+- Tanda status hijau “Aktif” dan “Pin sudah diatur” untuk kontrol cepat
+- Role-based access diatur melalui dokumentasi role (dapat diunduh)
+
+---

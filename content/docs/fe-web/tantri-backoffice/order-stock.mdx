@@ -1,0 +1,101 @@
+---
+title: Pemesanan Stok
+description: Dokumentasi halaman pemesanan dan manajemen stok pembelian dari pemasok dalam sistem Backoffice Tantri.
+---
+
+# 📥 Modul Pemesanan Stok
+
+Halaman **Pemesanan Stok** digunakan untuk mencatat, mengelola, dan memantau pembelian bahan dari pemasok secara sistematis. Fitur ini mendukung input data, perhitungan otomatis harga, pembayaran, dan cetak invoice.
+
+---
+
+## 1. 📄 Daftar Pemesanan Stok
+
+Tabel utama menampilkan daftar semua pemesanan stok yang pernah dibuat.
+
+### Kolom yang tersedia:
+
+- **Tanggal Pembuatan**: Tanggal dokumen dibuat
+- **Tanggal PO**: Tanggal Purchase Order diterbitkan
+- **Invoice**: Nomor invoice unik (ex: PCG-20250723031457760)
+- **Jenis Pembayaran**: Bayar Sekarang / Bayar Nanti
+- **Status Pembayaran**: Belum Dibayar / Lunas
+- **Status**: Status pemesanan (Diterima, Dibatalkan, Dikirim)
+- **Status Penerimaan**: Status barang diterima atau belum
+- **Aksi**:
+  - ✏️ Selesaikan Pembayaran
+  - 👁️ Lihat Detail
+  - 🧾 Cetak Invoice
+
+---
+
+## 2. ➕ Tambah Pemesanan Stok
+
+### Form terdiri dari beberapa bagian:
+
+#### A. Informasi Utama
+
+- **Tanggal Pemesanan Stok**
+- **Pemasok** (opsional, dipilih dari daftar pemasok terdaftar)
+
+#### B. Rincian Bahan
+
+- Tambahkan bahan satu per satu: Nama Bahan, Total Bahan, Satuan, Harga Satuan
+- Total Harga akan dihitung otomatis per baris
+
+#### C. Catatan (Opsional)
+
+- Penjelasan tambahan untuk internal atau pemasok
+
+#### D. Informasi Tambahan
+
+- **Jenis Pembayaran**: Bayar Sekarang / Bayar Nanti
+- **Status Pembayaran**: Belum Dibayar / Lunas
+- **Informasi Pembayaran**: Rekening atau metode pembayaran
+- **Nominal Diskon**: Jika ada diskon pembelian
+- **Pajak**: Dengan Pajak / Tanpa Pajak
+- **Nominal Pajak**
+
+#### E. Rincian Harga Otomatis
+
+- Subtotal
+- Diskon
+- Pajak
+- **Total Harga**
+
+Tombol aksi:
+🟥 `Submit` untuk menyimpan pesanan stok
+
+---
+
+## 3. 🧾 Invoice & Detail Pemesanan
+
+Halaman detail pemesanan menampilkan:
+
+- Info invoice: Nomor, tanggal, metode pembayaran, nama pemasok
+- Daftar bahan
+- Total pembelian, diskon, pajak, total akhir
+- Tombol `Cetak QR Code` dan `Simpan PDF` untuk arsip manual
+
+---
+
+## 4. 💳 Selesaikan Pembayaran
+
+Jika status masih “Belum Dibayar”, admin dapat menyelesaikan pembayaran:
+
+- Pilih **Informasi Pembayaran**
+- Upload **Bukti Pembayaran** (format JPG/JPEG/PNG, max 1MB)
+- Klik `Selesaikan Pembayaran` untuk mengupdate status
+
+> ⚠️ Sistem akan mengubah status pembayaran menjadi “Lunas” setelah proses ini disimpan.
+
+---
+
+## ✅ Validasi & Fitur Lain
+
+- Nomor invoice otomatis terbuat
+- Perhitungan total otomatis disesuaikan berdasarkan jumlah bahan
+- Mendukung upload bukti pembayaran
+- Tersedia filter pencarian invoice
+
+---

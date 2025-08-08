@@ -1,0 +1,100 @@
+---
+title: Membuat Order
+description: Dokumentasi penggunaan dan alur dari Modul Menu untuk sistem pemesanan restoran .
+---
+
+# 🦐 Modul Menu
+
+Modul **Menu** berfungsi sebagai antarmuka utama bagi pelanggan untuk melihat daftar makanan, melakukan pemesanan, dan melanjutkan ke proses checkout dan pembayaran.
+
+---
+
+## 1. 📋 Halaman Utama Menu
+
+Menampilkan:
+
+- Tanggal dan jam operasional restoran
+- Banner promosi atau gambar utama
+- Tombol reservasi
+- Akses cepat ke **menu lengkap**, **kategori Udang**, dan **Tanpa Kategori**
+- Kotak pencarian makanan
+
+Setiap produk menampilkan:
+
+- Gambar
+- Nama makanan
+- Deskripsi singkat
+- Harga (termasuk diskon bila ada)
+- Informasi kalori
+- Ketersediaan stok
+- Tombol **Tambah** untuk memesan
+
+---
+
+## 2. 🍽️ Formulir Penambahan Menu
+
+Setelah menekan tombol `Tambah`, pengguna diarahkan ke form pemesanan:
+
+- **Nama Menu** dan **harga**
+- **Pilih Variant**
+- **Kolom Catatan (Opsional)** untuk permintaan khusus
+- Selector jumlah pesanan (`+`, `–`)
+- Tombol konfirmasi **Tambah Pesanan**
+
+---
+
+## 3. 🧾 Halaman Checkout
+
+Menampilkan:
+
+### A. **Informasi Pembelian**
+
+- Nama Lengkap
+- Nomor Telepon (digunakan untuk invoice via WhatsApp)
+
+### B. **Tipe Pengantaran**
+
+- Makan Di Tempat
+- Take Away
+- Pesan Antar _(Bisa Dengan Minimum order)_
+
+Pilihan metode pengantaran dapat diubah melalui tombol `Ganti`.
+
+### C. **Jika Makan di Tempat**
+
+Tambahan kolom:
+
+- Grup Meja
+- Nomor Meja (dropdown)
+- Jumlah Orang
+
+---
+
+## 4. ✅ Konfirmasi Pesanan
+
+Ringkasan transaksi yang ditampilkan:
+
+- Detail resto, pengantaran, tanggal, nama, dan nomor telepon
+- Daftar menu, tingkat kepedasan, dan jumlah
+- Tombol `Tambah` untuk menambahkan lebih banyak menu
+- Opsi **voucher diskon**
+- Ringkasan pembayaran:
+  - Subtotal
+  - Service fee
+  - Pajak 10%
+  - Total Bayar
+- Metode Pembayaran (default: **Tunai**)
+
+---
+
+## 5. 💳 Halaman Pembayaran
+
+Tampilan ini mengingatkan pengguna untuk segera menyelesaikan pembayaran:
+
+- Jumlah total
+- Ilustrasi metode pembayaran
+- Tombol aksi `Mengerti`
+
+Status “Menunggu Pembayaran” ditampilkan sampai transaksi dikonfirmasi.
+
+---

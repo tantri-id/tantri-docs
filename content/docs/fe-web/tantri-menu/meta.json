@@ -1,4 +1,10 @@
 {
   "title": "Tantri Menu",
-  "pages": ["index", "installation", "guidelines"]
+  "pages": [
+    "index",
+    "installation",
+    "guidelines",
+    "create-order",
+    "create-reservation"
+  ]
 }
