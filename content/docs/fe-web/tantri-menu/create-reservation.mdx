@@ -1,0 +1,64 @@
+---
+title: Modul Reservasi
+description: Dokumentasi modul reservasi meja atau tempat untuk pelanggan di restoran.
+---
+
+# 📅 Modul Reservasi Meja
+
+Modul **Reservasi Meja** memungkinkan pelanggan untuk memesan tempat sebelum datang ke restoran, serta memilih sendiri meja yang tersedia sesuai kebutuhan.
+
+---
+
+## 1. 📝 Formulir Reservasi Awal
+
+Pelanggan diminta untuk mengisi informasi berikut:
+
+- **Nama Lengkap**: Nama pelanggan
+- **Nomor Telepon**: Digunakan untuk pengiriman notifikasi via WhatsApp
+- **Tanggal Reservasi**: Tanggal kedatangan
+- **Jam Reservasi**: Waktu kedatangan yang diinginkan
+- **Catatan (Opsional)**: Permintaan khusus (misal: dekat jendela)
+
+> 🔔 Validasi dilakukan agar nomor telepon dan nama wajib diisi.
+
+---
+
+## 2. 🪑 Pemilihan Meja
+
+Pelanggan dapat memilih:
+
+- **Grup Meja**: Terdapat beberapa grup (misalnya Grup 1, Grup 2) berdasarkan lokasi atau zona.
+- **Tipe Meja**: Diilustrasikan dalam grid, menunjukkan jumlah kursi dan nomor meja.
+
+Setiap ikon meja menyertakan:
+
+- Nomor meja (contoh: 10, 6, 9)
+- Kapasitas kursi (contoh: 6 Orang, 4 Orang)
+- Status ketersediaan:
+  - 🟢 Hijau: Tersedia
+  - ⚪ Abu-abu: Tidak Tersedia
+
+---
+
+## 3. 👥 Input Jumlah Orang & Konfirmasi
+
+Setelah memilih meja, muncul popup:
+
+- **Jumlah Orang** yang akan menggunakan meja tersebut
+- **Validasi kapasitas** (misalnya: 1/6 Orang)
+
+Tombol aksi:  
+🟥 `Buat Reservasi`
+
+> Sistem akan menolak reservasi jika jumlah orang melebihi kapasitas meja.
+
+---
+
+## ✅ Ringkasan Fitur
+
+- Real-time **visualisasi meja**
+- Sistem **grouping** meja untuk pengelompokan tempat
+- Batasan **kapasitas sesuai jumlah kursi**
+- Kolom catatan fleksibel untuk permintaan khusus
+
+---

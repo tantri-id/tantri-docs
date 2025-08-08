@@ -1,0 +1,111 @@
+---
+title: Modul Backoffice
+description: Dokumentasi halaman dashboard backoffice untuk pemantauan operasional cabang restoran.
+---
+
+# 🏢 Modul Backoffice - Tantri
+
+Modul **Backoffice** merupakan pusat kontrol manajemen data penjualan, performa, dan operasional harian setiap cabang restoran.
+
+---
+
+## 1. 🧭 Navigasi & Pemilihan Cabang
+
+Sidebar kiri menampilkan beberapa modul:
+
+- Dashboard (beranda)
+- Cabang (dropdown):
+
+  - Main Office
+  - Cabang
+
+- Karyawan
+- Inventori
+- Hapus Office
+
+Setiap pilihan cabang akan memperbarui seluruh data dan grafik pada dashboard utama.
+
+---
+
+## 2. 📊 Ringkasan Statistik Penjualan
+
+### A. Total Pesanan
+
+- Jumlah transaksi hari ini
+- Dikelompokkan per kategori:
+  - Makan Di Tempat
+  - Take Away
+  - Pesan Antar
+  - Online Food
+  - Complimentary
+
+### B. Total Penjualan Kotor
+
+- Akumulasi nilai penjualan sebelum dikurangi fee dan biaya lain
+- Breakdown: diskon, platform fee, service fee, pajak, dll
+
+### C. Total Penjualan Kotor Online Food
+
+- Data khusus untuk penjualan dari aplikasi pihak ketiga (GoFood, GrabFood, ShopeeFood)
+
+### D. Total Penjualan Kotor Complimentary
+
+- Produk gratis untuk promosi / hadiah pelanggan
+
+### E. Estimasi Pendapatan
+
+- Total penjualan setelah dikurangi berbagai biaya
+
+### F. Pemasukan & Pengeluaran Dompet
+
+- Breakdown metode pembayaran:
+  - Tunai
+  - Non-Tunai (debit, QR, transfer, dll)
+- Estimasi kerugian/laba bersih
+
+---
+
+## 3. 💰 Platform Fee
+
+### A. Platform Fee Dibayarkan
+
+- Total biaya ke aplikasi pihak ketiga:
+  - Online Food
+  - Complimentary
+  - Penjualan Reguler
+
+---
+
+## 4. 📈 Statistik Performa Menu
+
+### A. Total Kuantitas Per Menu
+
+- Statistik berdasarkan jumlah unit terjual
+- Dapat difilter berdasarkan:
+  - Harian
+  - Mingguan
+  - Bulanan
+
+### B. Menu Ranking
+
+- Daftar menu berdasarkan:
+  - Jumlah Terjual (Qty)
+  - Nominal Penjualan
+
+### C. Rata-Rata Nilai Penjualan / Bill
+
+- Nilai rata-rata per transaksi
+- Berguna untuk analisis peningkatan upselling / bundling
+
+> ⚠️ Jika belum ada data, sistem akan menampilkan indikator `Belum Ada Data`.
+
+---
+
+## ✅ Fitur Tambahan yang Didukung
+
+- 📅 Pemilihan tanggal (Today, Yesterday, Custom Range)
+- 🔄 Real-time update berdasarkan perubahan cabang
+- 🔍 Tooltips interaktif untuk penjelasan setiap statistik
+- 📥 Integrasi otomatis dengan sistem POS / aplikasi order
+
+---

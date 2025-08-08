@@ -1,0 +1,101 @@
+---
+title: Modul Cabang
+description: Dokumentasi modul manajemen cabang di sistem Backoffice Tantri.
+---
+
+# 🏬 Modul Manajemen Cabang
+
+Modul **Cabang** digunakan untuk mengelola daftar outlet/restoran yang tergabung di bawah sistem Tantri. Admin dapat menambah, mengedit, menghapus, dan mengatur aktivasi sistem e-payment Xendit.
+
+---
+
+## 1. 📋 Daftar Cabang
+
+Menampilkan semua cabang yang terdaftar dalam bentuk tabel dengan kolom:
+
+- **Nama Cabang**
+- **Alamat**
+- **Nomor Telepon**
+- **Status Aktivasi Xendit**
+- **Aksi**:
+  - Login Kasir
+  - Edit Cabang
+  - Hapus Cabang
+
+Fitur tambahan:
+
+- 🔍 Kolom pencarian cabang/alamat
+- ➕ Tombol `Tambah Cabang`
+- 📄 Pagination jika jumlah cabang lebih dari satu halaman
+
+---
+
+## 2. ➕ Tambah Cabang
+
+### Formulir input mencakup:
+
+- **Nama Cabang** (required)
+- **Link Toko** (default: `menu.tantri.id/…`)
+- **Email Toko**
+- **Nomor Telepon Cabang**
+- **Hari Operasional**: checklist harian + jam buka tutup per hari
+- **Bahasa**
+- **Alamat Cabang**: menggunakan pemilih lokasi peta
+- **Penempatan Karyawan**: pilih dari daftar admin/superadmin yang tersedia
+
+✅ Setelah semua data lengkap, klik tombol `Tambah Cabang`.
+
+---
+
+## 3. ✏️ Edit & Hapus Cabang
+
+Melalui tombol `⋮` (aksi), admin dapat:
+
+- 🔧 **Edit Cabang**: membuka form yang sama seperti Tambah Cabang, dengan data sebelumnya terisi
+- 🗑️ **Hapus Cabang**: akan muncul konfirmasi sebelum penghapusan dilakukan
+
+> ⚠️ Hapus cabang bersifat permanen dan akan menghapus semua data terkait cabang tersebut.
+
+---
+
+## 4. 💳 Aktivasi Xendit (E-Payment)
+
+Jika Xendit belum aktif, maka status akan menunjukkan:
+
+- `Menunggu Aktivasi` (kuning)
+- `Aktivasi Xendit` (merah)
+
+### Modal Aktivasi akan muncul dengan dua pilihan:
+
+- **Sudah** memiliki akun Xendit di Tantri
+- **Belum** memiliki akun → mengisi form aktivasi
+
+---
+
+## 5. 🧾 Form Aktivasi E-Wallet
+
+Form terdiri dari 3 tab:
+
+### A. **Detail Usaha**
+
+- Jenis Perusahaan: Individu / Entitas Bisnis
+- Nama Legal Usaha
+- Logo Usaha
+- Deskripsi Usaha
+- Rekening Bank
+- Alamat Usaha (provinsi, kabupaten, kecamatan, kelurahan, alamat lengkap)
+- Link Sosial Media / Website
+
+### B. **Authorized Person**
+
+- Data perwakilan resmi (nama, NIK, nomor telepon, email)
+
+### C. **Dokumen Pendukung**
+
+- Upload KTP
+- NPWP
+- Akta Usaha (jika PT)
+
+Tombol **Selanjutnya** digunakan untuk berpindah antar tab dan menyimpan progres.
+
+---
