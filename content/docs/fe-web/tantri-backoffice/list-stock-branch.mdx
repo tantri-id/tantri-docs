@@ -1,0 +1,130 @@
+---
+title: "📦 Modul Daftar Stok"
+description: "Panduan penggunaan modul Daftar Stok pada menu Inventory → Kelola Stok di sistem Tantri."
+---
+
+# 📦 Modul Daftar Stok
+
+## 📝 Deskripsi
+
+Modul **Daftar Stok** digunakan untuk memantau, mengelola, dan memperbarui informasi stok barang yang tersedia di setiap cabang. Fitur ini memungkinkan pengguna untuk melihat jumlah stok terkini, detail produk, serta melakukan pencarian dan filter sesuai kebutuhan.
+
+---
+
+## 🎯 Tujuan
+
+- Memudahkan pemantauan stok barang secara real-time.
+- Menyediakan informasi lengkap terkait produk, kategori, dan jumlah stok.
+- Memungkinkan pencarian cepat berdasarkan nama atau kode produk.
+- Memberikan opsi untuk memperbarui stok dan melihat detail pergerakan barang.
+
+---
+
+## 📍 Akses Menu
+
+1. Masuk ke **Dashboard Backoffice**.
+2. Pilih menu **Inventory** di sidebar.
+3. Klik **Kelola Stok** → **Daftar Stok**.
+
+---
+
+## 🖥 Tampilan Halaman
+
+Halaman ini menampilkan tabel daftar stok dengan kolom berikut:
+
+| Kolom             | Deskripsi                                                              |
+| ----------------- | ---------------------------------------------------------------------- |
+| **Nama Produk**   | Nama lengkap produk yang terdaftar.                                    |
+| **Kategori**      | Kategori atau grup dari produk tersebut.                               |
+| **SKU/Kode**      | Nomor unik untuk identifikasi produk.                                  |
+| **Stok Tersedia** | Jumlah unit barang yang saat ini tersedia di gudang/cabang.            |
+| **Satuan**        | Satuan pengukuran (pcs, box, pack, dll).                               |
+| **Cabang**        | Lokasi cabang tempat stok berada.                                      |
+| **Aksi**          | Tombol untuk melihat detail, riwayat, atau melakukan penyesuaian stok. |
+
+---
+
+## 🔍 Fitur Pencarian & Filter
+
+- **Pencarian Cepat**: Gunakan kolom pencarian di atas tabel untuk menemukan produk berdasarkan **nama** atau **kode**.
+- **Filter Cabang**: Pilih cabang tertentu untuk melihat stok khusus di lokasi tersebut.
+- **Filter Kategori**: Menyaring produk berdasarkan kategori yang diinginkan.
+
+---
+
+## 📊 Aksi yang Tersedia
+
+- **👁 Lihat Detail**: Menampilkan informasi detail stok termasuk riwayat pergerakan.
+- **✏️ Edit Pengingat Stok**: Mengubah jumlah stok dengan alasan penyesuaian (misalnya koreksi atau barang rusak).
+
+---
+
+## 🔎 Halaman Detail Stok
+
+Saat klik tombol **Lihat Detail** pada daftar stok, pengguna akan diarahkan ke halaman **Detail Stok**.  
+Pada halaman ini, informasi yang ditampilkan antara lain:
+
+| Kolom                     | Deskripsi                                                               |
+| ------------------------- | ----------------------------------------------------------------------- |
+| **Tanggal Masuk**         | Tanggal stok barang masuk ke gudang/cabang.                             |
+| **Tanggal Kedaluwarsa**   | Tanggal batas pemakaian atau penjualan barang.                          |
+| **Nama Pemasok**          | Pihak pemasok barang (jika ada).                                        |
+| **Stok**                  | Jumlah stok yang tersedia.                                              |
+| **Satuan Bahan**          | Satuan pengukuran barang.                                               |
+| **Harga Satuan per Gram** | Harga satuan yang dihitung berdasarkan gram.                            |
+| **Aksi**                  | Tombol untuk mengatur kedaluwarsa, mengurangi stok, atau membuang stok. |
+
+### Fitur pada Halaman Detail
+
+- **Buang Stok**: Menghapus stok yang sudah tidak layak digunakan/dijual.
+- **Atur Kedaluwarsa**: Mengubah atau menambahkan tanggal kedaluwarsa.
+- **Kurangi Stok**: Mengurangi jumlah stok dengan alasan tertentu (misalnya barang rusak atau hilang).
+
+### Buang Stok
+
+Modal **Buang Stok** digunakan untuk menghapus stok yang sudah tidak layak pakai.  
+Tindakan ini akan otomatis tercatat di **Stok Terbuang**.
+
+#### Cara Menggunakan:
+
+1. Klik tombol **Buang Stok** pada baris stok yang ingin dihapus.
+2. Isi **Jumlah Bahan yang Dibuang**.
+3. Pilih **Alasan** pembuangan (misalnya _Kadaluwarsa_).
+4. Isi **Keterangan** tambahan (wajib diisi).
+5. Upload **Foto Bukti Pengurangan Stok** (maks. 1MB, format JPG/PNG).
+6. Klik **Submit** untuk menyimpan.
+
+> ⚠️ **Catatan:** Setelah stok dibuang, data tidak dapat dipulihkan.
+
+---
+
+#### 📅 Atur Kedaluwarsa
+
+Modal **Atur Kedaluwarsa** digunakan untuk menetapkan tanggal kedaluwarsa stok dan menentukan kapan sistem akan mengirimkan pengingat.
+
+#### Cara Menggunakan:
+
+1. Klik ikon **Pengaturan Kedaluwarsa** pada stok yang diinginkan.
+2. Pilih **Tanggal Kedaluwarsa**.
+3. Tentukan **Pengingat** (berapa hari sebelum kadaluwarsa akan diingatkan).
+4. Klik **Simpan** untuk menyimpan pengaturan.
+
+> 💡 **Tips:** Gunakan pengingat minimal 1 hari sebelum kadaluwarsa agar ada waktu untuk memproses stok.
+
+---
+
+#### ✂️ Kurangi Stok
+
+Modal **Kurangi Stok** digunakan untuk mengurangi jumlah stok secara manual tanpa membuangnya sepenuhnya.  
+Misalnya, untuk penyesuaian hasil stok opname.
+
+#### Cara Menggunakan:
+
+1. Klik tombol **Kurangi Stok** pada baris stok yang ingin disesuaikan.
+2. Masukkan **Jumlah Bahan yang Dikurangi**.
+3. Pilih **Alasan** pengurangan.
+4. Isi **Keterangan** tambahan (wajib diisi).
+5. Upload **Foto Bukti Pengurangan Stok** (maks. 1MB, format JPG/PNG).
+6. Klik **Submit** untuk menyimpan.
+
+---
