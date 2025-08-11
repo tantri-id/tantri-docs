@@ -8,6 +8,12 @@
     "branch",
     "employee",
     "order-stock",
-    "list-suplier"
+    "list-suplier",
+    "assesment-order",
+    "log-pin",
+    "list-stock-branch",
+    "group-table-management",
+    "map-table",
+    "group-shifting"
   ]
 }

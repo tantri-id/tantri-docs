@@ -1,0 +1,60 @@
+---
+title: Assessment Pembelian
+description: Dokumentasi halaman Assessment Pembelian untuk memantau, menyaring, dan mengelola status persetujuan pembelian stok dalam Backoffice Tantri.
+---
+
+# 📊 Modul Assessment Pembelian
+
+Halaman **Assessment Pembelian** digunakan untuk memantau dan mengelola daftar pemesanan stok yang memerlukan proses penilaian dan persetujuan sebelum diproses lebih lanjut.
+
+---
+
+## 1. 📄 Daftar Assessment Pembelian
+
+Tabel utama menampilkan semua data pemesanan stok yang masuk tahap penilaian.
+
+### Kolom yang tersedia:
+
+- **Tanggal Pembuatan**: Waktu data assessment dibuat di sistem.
+- **Tanggal PO**: Tanggal Purchase Order terkait pemesanan.
+- **Invoice**: Nomor invoice unik yang dihasilkan otomatis (format: `PCG-YYYYMMDDHHMMSS`).
+- **Pemasok**: Nama pemasok yang menyediakan stok.
+- **Status**:
+  - 🟡 _Menunggu Persetujuan_
+  - 🟢 _Telah Disetujui_
+- **Aksi**:
+  - 👁️ Lihat detail assessment.
+
+---
+
+## 2. 🔍 Fitur Pencarian & Filter
+
+- **Pencarian Invoice**  
+  Gunakan kolom pencarian di bagian atas tabel untuk mencari berdasarkan nomor invoice.
+- **Filter Status**  
+  Klik ikon filter pada kolom **Status** untuk menyaring data berdasarkan:
+  - Menunggu Persetujuan
+  - Telah Disetujui  
+    Setelah memilih filter, klik tombol **OK** untuk menerapkan, atau **Reset** untuk menghapus filter.
+
+---
+
+## 3. 👁️ Lihat Detail Assessment
+
+Klik ikon **👁️** pada kolom **Aksi** untuk membuka detail pemesanan yang sedang di-assessment.  
+Detail mencakup:
+
+- Informasi umum PO dan invoice.
+- Daftar bahan/barang yang diajukan pembelian.
+- Rincian harga dan jumlah.
+- Catatan atau komentar penilaian.
+
+---
+
+## 4. ✅ Proses Persetujuan
+
+Admin atau pihak yang berwenang dapat mengubah status menjadi **Telah Disetujui** setelah melakukan evaluasi terhadap data pembelian.
+
+> ⚠️ Pastikan semua data, jumlah, dan harga telah diverifikasi sebelum menyetujui pembelian.
+
+---
