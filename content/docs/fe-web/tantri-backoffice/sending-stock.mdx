@@ -1,0 +1,140 @@
+---
+
+title: "Distribusi Stok — Kirim Stok"
+description: "Dokumentasi modul pengiriman stok antar-cabang: daftar pengiriman, pembuatan dokumen distribusi, rincian bahan, status & aksi, hingga pencetakan invoice/QR untuk proses penerimaan."
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Distribusi Stok — **Kirim Stok**
+
+Modul ini digunakan untuk **membuat dan mengelola dokumen pengiriman stok** dari cabang asal ke cabang tujuan. Dokumen berfungsi sebagai referensi operasional sekaligus bukti serah-terima saat proses **Terima Stok** di cabang tujuan.
+
+> ⚠️ **Akurasi data**: Item & satuan pada dokumen kirim stok bersumber dari **Daftar Stok**. Pastikan master stok dan satuan sudah benar sebelum membuat distribusi.
+
+---
+
+## 1) Daftar Pengiriman Stok 📋
+
+**Lokasi:** `Inventori → Distribusi Stok → Kirim Stok`
+
+Elemen utama halaman daftar:
+
+- **Banner Download Scanner** (opsional): tautan untuk mengunduh aplikasi _scanner_ yang mempermudah proses scan QR saat penerimaan.
+- **Cari**: kolom **Cari invoice distribusi stok** untuk menelusuri berdasarkan **nomor invoice**.
+- **Tabel** dengan kolom:
+
+  - **Tanggal Pembuatan** — kapan dokumen dibuat.
+  - **Tanggal Distribusi** — tanggal rencana pengiriman.
+  - **Invoice** — nomor dokumen, format contoh: `DBO-YYYYMMDDHHmmss`.
+  - **Status** — _Menunggu Persetujuan_ atau _Approved_.
+  - **Aksi** — menu tiga-titik.
+
+- **Sortir & Pagination**: dukungan pengurutan kolom dan navigasi halaman.
+- **Tombol** `+ Tambah Distribusi` untuk membuat dokumen baru.
+
+**Menu Aksi per-baris**
+
+- **Lihat Detail** — membuka detail dokumen distribusi.
+- **Edit Data Distribusi** — hanya muncul jika status **Menunggu Persetujuan**.
+- **Lihat Invoice** — membuka tampilan invoice (dengan QR) untuk cetak/ekspor.
+
+**Status**
+
+- **Menunggu Persetujuan** — dokumen dibuat dan menunggu persetujuan/validasi internal.
+- **Approved** — dokumen sah untuk proses pengiriman & penerimaan (non‑editable).
+
+> ℹ️ **Workflow singkat**: _Buat_ → _Menunggu Persetujuan_ → _(disetujui)_ → **Approved** → digunakan pada proses **Terima Stok** di cabang tujuan.
+
+---
+
+## 2) Membuat Dokumen Distribusi ➕
+
+Klik `+ Tambah Distribusi` untuk membuka formulir **Informasi Distribusi Stok**.
+
+**Bagian Formulir**
+
+1. **Tanggal Distribusi Stok** _(wajib)_ — tanggal rencana kirim.
+2. **Cabang** _(wajib)_ — **cabang tujuan** pengiriman.
+3. **Rincian Bahan** — daftar item yang dikirim:
+
+   - **Kategori Bahan** — contoh: _Bahan Mentah_.
+   - **Bahan** — nama item, misal: _Udang_.
+   - **Total Bahan** — kuantitas, hanya angka positif (contoh: `60`).
+   - **Satuan** — mengikuti satuan pada master stok (contoh: _kilogram_).
+   - Dukungan **paging** jika item banyak.
+
+4. **Catatan** _(wajib)_ — informasi tambahan (mis. kondisi paket, kode tray, dll.).
+5. **Foto Paket Bahan** _(opsional)_ — unggah dokumentasi foto paket sebelum dikirim.
+
+**Validasi & Penyimpanan**
+
+- Field bertanda bintang **harus diisi**.
+- Kuantitas tidak boleh 0/negatif.
+- Setelah disimpan, sistem membuat **nomor invoice** otomatis dan status awal menjadi **Menunggu Persetujuan**.
+
+> ✅ **Tips**: Sertakan foto paket untuk memudahkan verifikasi saat penerimaan apabila ada selisih/kerusakan.
+
+---
+
+## 3) Detail Dokumen 🔎
+
+Halaman detail menampilkan kembali **informasi distribusi** beserta tabel **Rincian Bahan**. Dari sini Anda dapat:
+
+- **Edit Data** (jika status **Menunggu Persetujuan**).
+- **Lihat Invoice** untuk mencetak/unduh.
+- Memantau **status** hingga berubah menjadi **Approved**.
+
+> 🔐 Saat status **Approved**, dokumen menjadi **read‑only** (tidak bisa diubah) dan siap digunakan pada proses **Terima Stok** cabang tujuan.
+
+---
+
+## 4) Invoice Distribusi 🧾
+
+Tampilan invoice memuat:
+
+- **Header**: nama cabang asal & alamat, **Cabang Tujuan**, dan **nomor & tanggal invoice**.
+- **Keterangan** (catatan dokumen).
+- **Tabel Item**: `No • Nama Bahan • Jumlah Total Stok • Satuan`.
+- **QR Code**: dipakai untuk proses scan pada **Terima Stok**.
+
+**Aksi di Invoice**
+
+- **Cetak QR Code** — mencetak halaman dengan QR untuk ditempel di paket.
+- **Simpan PDF** — mengunduh invoice sebagai PDF.
+
+> 📦 **Alur di lapangan**: tempelkan QR pada paket. Saat barang tiba, petugas cabang tujuan **scan QR** untuk membuka dokumen dan memproses **Terima Stok** lebih cepat & akurat.
+
+---
+
+## 5) Hak Akses & Persetujuan 🔑
+
+- **Edit Data Distribusi** hanya tersedia ketika status **Menunggu Persetujuan** dan untuk pengguna dengan hak yang sesuai (mis. gudang/manager).
+- Proses **persetujuan** dilakukan oleh pihak berwenang (lihat modul **Persetujuan Distribusi**). Setelah disetujui, status berubah menjadi **Approved**.
+
+> 🧮 Pergerakan stok (pengurangan cabang asal & penambahan cabang tujuan) dilakukan sesuai konfigurasi sistem dan biasanya melibatkan proses **Terima Stok** di cabang tujuan sebagai penyelesaian akhir.
+
+---
+
+## 6) Praktik Terbaik ✅
+
+- **Standarisasi Satuan**: pastikan satuan antar cabang konsisten (kg, pack, dus) untuk menghindari selisih.
+- **Dokumentasi Foto**: unggah foto kondisi paket sebelum berangkat.
+- **Catatan Jelas**: tulis nomor segel, suhu, atau catatan khusus handling.
+- **Gunakan QR**: percepat penerimaan & kurangi input manual saat **Terima Stok**.
+
+---
+
+## 7) FAQ Singkat ❓
+
+**Q: Kenapa tombol _Edit Data Distribusi_ tidak muncul?**
+A: Dokumen sudah **Approved** atau Anda tidak memiliki hak akses edit.
+
+**Q: Bisa mengubah item setelah _Approved_?**
+A: Tidak. Buat dokumen koreksi baru atau proses retur sesuai SOP.
+
+**Q: Nomor invoice bisa diubah?**
+A: Tidak. Nomor dibuat otomatis oleh sistem untuk menjaga pelacakan.
+
+**Q: Apa semua item wajib punya foto?**
+A: Tidak wajib, namun **direkomendasikan** untuk paket bernilai tinggi/berisiko.
+
+---
