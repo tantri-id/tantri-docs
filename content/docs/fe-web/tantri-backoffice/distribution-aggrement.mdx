@@ -1,0 +1,116 @@
+---
+
+title: "Distribusi Stok — Persetujuan Distribusi"
+description: "Dokumentasi modul approval dokumen kirim stok: daftar persetujuan, alur pengecekan & konfirmasi, tampilan invoice, hak akses, praktik terbaik, dan FAQ."
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Distribusi Stok — **Persetujuan Distribusi**
+
+Modul ini digunakan oleh pihak berwenang (gudang/manager) untuk **meninjau dan menyetujui** dokumen **Kirim Stok** sebelum barang diberangkatkan dan diproses pada **Terima Stok**.
+
+> 🔗 **Terkait:** Dokumen dibuat di **Kirim Stok** → ditinjau di **Persetujuan Distribusi** → setelah **Approved**, dipakai pada **Terima Stok** di cabang tujuan.
+
+---
+
+## 1) Daftar Persetujuan 📋
+
+**Lokasi:** `Inventori → Distribusi Stok → Persetujuan Distribusi`
+
+Elemen pada daftar:
+
+- **Banner Download Scanner** (opsional): unduh aplikasi _scanner_ untuk mempercepat proses penerimaan (scan QR invoice).
+- **Cari**: kolom **Cari invoice distribusi stok** (pencarian berdasarkan **nomor invoice**).
+- **Tabel** dengan kolom:
+
+  - **Tanggal Pembuatan** — tanggal pembuatan dokumen kirim.
+  - **Tanggal Distribusi** — tanggal rencana pengiriman.
+  - **Invoice** — nomor dokumen, contoh: `DBO-20250422064716231`.
+  - **Cabang Tujuan** — cabang penerima barang.
+  - **Status** — _Menunggu Persetujuan_ / _Approved_.
+  - **Status Persetujuan** — tombol **Approve** (bila masih menunggu) atau label status.
+
+- **Sortir & Pagination**: dukungan pengurutan kolom dan navigasi halaman.
+
+> ℹ️ Hanya dokumen dengan status **Menunggu Persetujuan** yang dapat diproses.
+
+---
+
+## 2) Proses Approval ✅
+
+**Langkah-langkah:**
+
+1. Pada daftar, klik **Approve** atau **Lihat Detail/Invoice** untuk membuka dokumen.
+2. Tinjau **Invoice Distribusi** (lihat detail di bagian berikut).
+3. Bila sesuai, klik tombol **Approve**.
+4. Muncul **modal konfirmasi**: _"Anda yakin bahan yang akan dikirim sudah sesuai?"_
+
+   - Pilih **Ya, Sudah** untuk menyetujui.
+   - **Tidak, Kembali** untuk membatalkan aksi.
+
+5. Dokumen berubah menjadi **Approved** dan siap dipakai pada **Terima Stok**.
+
+> 🔐 Setelah **Approved**, dokumen menjadi **read‑only** (tidak bisa diedit). Perubahan hanya dapat dilakukan melalui dokumen koreksi (SOP internal) atau proses retur.
+
+---
+
+## 3) Tampilan Invoice 🧾
+
+Di halaman invoice Anda akan melihat:
+
+- **Header**: nama & alamat cabang asal, **Cabang Tujuan**, informasi **Number/Inv Date/Due Date**.
+- **Keterangan** (catatan pengiriman).
+- **Tabel Item**: `No • Nama Bahan • Jumlah Total Stok • Satuan`.
+- **QR Code**: dipakai untuk scan pada **Terima Stok**.
+- **Aksi**: tombol **Approve** dan (opsional) **Dibatalkan** sesuai hak akses & status.
+
+**Rekomendasi pengecekan sebelum approve:**
+
+- Kesesuaian **jumlah & satuan** dengan dokumen kirim dan stok fisik.
+- **Cabang tujuan** dan **tanggal distribusi**.
+- Catatan khusus (mis. nomor segel, suhu, kemasan).
+
+---
+
+## 4) Hak Akses & Audit Trail 🔑
+
+- Tombol **Approve** hanya tampil untuk role yang berwenang (mis. kepala gudang/manager).
+- Setiap approval mencatat **waktu, user, dan status** sebagai jejak audit.
+- Dokumen **Approved** tidak dapat diedit; menu **Edit Data Distribusi** dinonaktifkan di modul **Kirim Stok**.
+
+---
+
+## 5) Edge Case & Validasi 🧩
+
+1. **Ganda/duplikat**: jika ditemukan dokumen ganda, batalkan salah satunya sebelum approve.
+2. **Jumlah 0/negatif**: tidak dapat disetujui; perbaiki di **Kirim Stok**.
+3. **Perubahan setelah dibuat**: hanya diperbolehkan selama status **Menunggu Persetujuan**.
+4. **Lewat tanggal distribusi**: sistem tetap mengizinkan approve, namun cantumkan catatan pada dokumen penerimaan.
+5. **QR tidak terbaca**: buka **Lihat Invoice** dari daftar, cetak ulang QR, lalu tempel pada paket.
+6. **Cabang tujuan salah**: batalkan dokumen dan buat ulang; **Approved** tidak dapat diubah.
+
+---
+
+## 6) Praktik Terbaik ✅
+
+- **Dua pasang mata**: minimal 2 orang meninjau (checker & approver) untuk mengurangi kesalahan.
+- **Standar pencatatan**: tulis catatan pengiriman (kondisi, suhu, nomor segel) secara konsisten.
+- **Lampiran foto**: pastikan foto paket diunggah saat pembuatan dokumen kirim—membantu saat audit penerimaan.
+- **Gunakan QR**: percepat proses **Terima Stok** dan kurangi input manual.
+
+---
+
+## 7) FAQ ❓
+
+**Q: Saya tidak melihat tombol Approve.**
+A: Periksa role Anda dan pastikan status dokumen **Menunggu Persetujuan**.
+
+**Q: Bisa mengubah item setelah Approved?**
+A: Tidak. Buat dokumen koreksi atau proses retur sesuai SOP.
+
+**Q: Apakah approval mengurangi stok cabang asal?**
+A: Pengurangan/penambahan stok mengikuti konfigurasi sistem; umumnya stok **berkurang** saat pengiriman tercatat dan **bertambah** ketika **Terima Stok** selesai.
+
+**Q: Bagaimana jika ada selisih saat barang datang?**
+A: Catat pada modul **Terima Stok** sebagai selisih penerimaan; lampirkan foto dan alasan.
+
+---

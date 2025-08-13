@@ -14,6 +14,12 @@
     "list-stock-branch",
     "group-table-management",
     "map-table",
-    "group-shifting"
+    "distribution-aggrement",
+    "sending-stock",
+    "summary-all",
+    "summary-shift",
+    "group-shifting",
+    "shifting-employee",
+    "report-attendance"
   ]
 }

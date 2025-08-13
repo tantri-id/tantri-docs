@@ -1,0 +1,192 @@
+---
+
+title: "Shift Report — Laporan Per-Shift"
+description: "Dokumentasi halaman ringkasan kinerja per shift: filter tanggal & shift, penjualan, statistik, online food, compliment, pendapatan, platform fee, pelunasan, dompet, hingga ekspor Excel."
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Shift Report — **Laporan Per-Shift**
+
+Halaman ini menampilkan ringkasan **per sesi shift** dalam tanggal yang dipilih. Setiap panel shift merangkum transaksi yang terjadi **di dalam rentang waktu shift**, sehingga cocok untuk rekonsiliasi kasir, audit per jam kerja, dan evaluasi performa regu.
+
+> ⚠️ **Akurasi data**: Angka mengikuti status transaksi aktual di dalam waktu shift. Transaksi **void/refund/cancel** tidak dihitung sebagai penjualan aktif. Perubahan harga/biaya setelah transaksi tersimpan **tidak** merevisi histori.
+
+---
+
+## 1) Filter & Panel Shift 📅🕒
+
+- **Picker Tanggal**: pilih tanggal (harian) yang ingin dianalisis.
+- **Daftar Shift**: setiap shift muncul sebagai **panel/accordion** berjudul `Nama Shift • Jam Mulai–Selesai • Tanggal`.
+- **Perilaku**:
+
+  - Membuka panel akan menampilkan ringkasan komplit untuk shift tersebut.
+  - Bila outlet punya beberapa shift di hari yang sama, **semua** akan ditampilkan sebagai panel terpisah.
+
+> ℹ️ **Penentuan waktu transaksi** mengikuti konfigurasi outlet. Secara umum memakai waktu _bill closed/paid_ atau _order time_ (default: sesuai pencatatan final di sistem).
+
+---
+
+## 2) Penjualan 🛒
+
+Rekap nilai penjualan kotor pada **shift terpilih** (tidak lintas shift).
+
+**Bidang**
+
+- **Jumlah Produk Terjual** — total qty item terjual pada shift.
+- **Total Pesanan** — jumlah bill/order.
+- **Total Produk Terjual** (_Rp_) — subtotal item.
+- **Diskon** (_Rp_) — akumulasi diskon item/bill (ditampilkan negatif).
+- **Multiprice Fee** (_Rp_) — biaya tambahan dari skema harga ganda (bila ada).
+- **Service Fee** (_Rp_) — biaya layanan.
+- **Pajak** (_Rp_) — pajak yang diterapkan.
+- **Pembulatan** (_Rp_) — koreksi pembulatan.
+- **Total Penjualan Kotor** (_Rp_) — total kotor di shift tersebut.
+
+**Aksi**: **Lihat Selengkapnya** untuk drill‑down (produk/kategori).
+
+> 📐 **Formula ringkas** > `Total Penjualan Kotor ≈ (Total Produk Terjual – Diskon) + Multiprice Fee + Service Fee + Pajak + Pembulatan`
+
+---
+
+## 3) Statistik 📊
+
+Gambaran efektivitas shift.
+
+- **Total Penjualan Kotor** (_Rp_)
+- **Total Bill/Order/Transaksi** (nota)
+- **Pengunjung/Pembeli** (orang; jika fitur pengunjung aktif)
+- **Rata-rata Nilai Penjualan/Orang** (_Rp/orang_)
+- **Rata-rata Nilai Penjualan/Bill/Orderan** (_Rp/bill_)
+
+> ✅ Bermanfaat untuk memantau **AOV** di tiap shift dan mengukur beban kerja.
+
+---
+
+## 4) Online Food 🍱
+
+Ringkasan khusus transaksi **marketplace/delivery** di shift.
+
+- **Jumlah Produk Terjual** (qty)
+- **Total Pesanan** (order online)
+- **Total Produk Terjual** (_Rp_)
+- **Diskon**, **Multiprice Fee**, **Pembulatan** (_Rp_)
+- **Total Penjualan Kotor** (_Rp_)
+
+> 🔍 Memisahkan kontribusi kanal online vs offline **per shift**.
+
+---
+
+## 5) Compliment 🎁
+
+Pencatatan item/nota **gratis (complimentary)** pada shift.
+
+- **Jumlah Produk Terjual** (qty)
+- **Total Pesanan** (order complimen)
+- **Total Produk Terjual** (_Rp_) — biasanya 0
+- **Nominal Compliment** (_Rp_) — nilai akuntansi barang yang digratiskan
+
+> 🧾 Compliment tidak menambah kas, namun memengaruhi analisis biaya.
+
+---
+
+## 6) Pendapatan 💵
+
+Agregasi pendapatan pada shift sebelum HPP & biaya pembayaran.
+
+- **Total Penjualan Kotor** (_Rp_) — (offline)
+- **Total Penjualan Online Food** (_Rp_)
+- **Total Penjualan Compliment** (_Rp_)
+- **Multiprice Fee** (_Rp_)
+- **Xendit Fee** (_Rp_) — bila pembayaran non‑tunai via Xendit digunakan
+- **Total Pendapatan Kotor** (_Rp_)
+
+> 📐 **Garis besar** > `Total Pendapatan Kotor ≈ (Offline + Online + Compliment) − (Multiprice Fee + Xendit Fee)`
+
+---
+
+## 7) Platform Fee yang Harus Dibayarkan 🧾
+
+Biaya platform pihak ketiga pada shift.
+
+- **Platform Fee Penjualan** (_Rp_)
+- **Platform Fee Online Food** (_Rp_)
+- **Platform Fee Compliment** (_Rp_)
+- **Total Platform Fee** (_Rp_)
+
+---
+
+## 8) **Pelunasan** (Settlement) 🧾💳
+
+Daftar **pelunasan/close cash** pada shift, termasuk kasir dan nominal setoran.
+
+- Setiap baris berisi **Tanggal • Nama Kasir • Keterangan** dan **Nominal**.
+- Dipakai untuk mencocokkan **pemasukan dompet vs setoran kasir** pada shift yang sama.
+
+> ✅ Lakukan pencocokan harian: angka pelunasan ≈ pemasukan kas (tunai + non‑tunai) setelah memperhitungkan pengeluaran dompet.
+
+---
+
+## 9) Pemasukan Dompet (Wallet Inflow) 👛
+
+Rekap pemasukan kas **per metode pembayaran** di shift.
+
+- **Tunai**, **Non‑Tunai**, **Debit**, **QRIS Static**, **Transfer Manual**, **Online Food**
+  Masing‑masing menampilkan **jumlah transaksi** dan **nominal**.
+  Aksi: **Lihat Selengkapnya** untuk detail transaksi per kanal.
+
+---
+
+## 10) Pengeluaran Dompet (Wallet Outflow) 🧾
+
+Rekap pengeluaran kas pada shift per metode pembayaran (tunai, non‑tunai, debit, QRIS static, transfer manual, online food). Gunakan untuk melacak biaya operasional dalam jam shift.
+
+---
+
+## 11) Ekspor Data Excel ⬇️
+
+- **Tombol**: `Export Data Excel` (bagian bawah).
+- **Hasil**: file `.xlsx` berisi ringkasan seluruh blok **pada shift yang terbuka/terpilih**.
+
+> ✅ Pastikan panel shift yang ingin diekspor sudah dipilih/terbuka dan tanggal sesuai.
+
+---
+
+## 12) Perbedaan dengan **Laporan Keseluruhan** 🔍
+
+- **Unit analisis**: _Per‑Shift_ membatasi data pada **rentang jam shift**, sedangkan _Keseluruhan_ menjumlahkan **semua shift** dalam tanggal/rentang tanggal.
+- **Pelunasan**: ditampilkan spesifik pada panel shift untuk rekonsiliasi kasir.
+- **Rekonsiliasi**: jumlah **semua shift pada 1 hari** ≈ angka di **Laporan Keseluruhan (harian)**.
+
+---
+
+## 13) Catatan Implementasi & Edge Case 🧩
+
+1. **Batas Pergantian Hari**: shift yang melewati tengah malam dihitung berdasarkan aturan outlet (default: mengikuti timestamp transaksi tercatat).
+2. **Transaksi di Batas Shift**: transaksi yang dibuat sebelum shift tetapi dibayar saat shift berjalan dapat masuk ke shift berjalan (tergantung konfigurasi _billing close_).
+3. **Refund Parsial**: hanya nilai bersih yang tersisa dihitung dalam penjualan.
+4. **Pembulatan**: dapat positif/negatif; memengaruhi total kotor.
+5. **Xendit/Platform Fee**: hanya muncul jika kanal terkait digunakan pada shift tersebut.
+6. **Online vs Offline**: kanal online yang diproses di luar jam shift **tidak** ikut dihitung di shift.
+
+---
+
+## 14) Praktik Terbaik ✅
+
+- **Close Cash Disiplin**: selesaikan pelunasan per akhir shift agar dompet dan setoran harian tidak tercampur antar shift.
+- **Audit Cepat**: cocokkan **Pemasukan Dompet** vs **Pelunasan** vs **Total Penjualan Kotor** setiap selesai shift.
+- **Pantau AOV**: gunakan bagian **Statistik** untuk memonitor produktivitas kasir/tim.
+- **Kontrol Biaya**: tinjau **Platform Fee** dan **Xendit Fee** per shift untuk menjaga margin.
+
+---
+
+## 15) FAQ Singkat ❓
+
+**Q: Pesanan dibuat sebelum shift tapi dibayar saat shift saya. Masuk ke mana?**
+A: Mengikuti konfigurasi outlet; default‑nya masuk ke **shift saat transaksi dibayar/closed**.
+
+**Q: Jumlah per‑shift tidak sama dengan laporan harian?**
+A: Periksa ada/tidaknya shift yang melewati tengah malam, refund, atau pelunasan yang tercatat pada tanggal berbeda.
+
+**Q: Bisa mengekspor semua shift sekaligus?**
+A: Gunakan **Laporan Keseluruhan** untuk agregasi harian. **Per‑Shift** berfokus pada panel shift yang dibuka.
+
+---

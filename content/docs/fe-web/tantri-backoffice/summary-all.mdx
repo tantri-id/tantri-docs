@@ -1,0 +1,215 @@
+---
+
+title: "Summary Report — Laporan Keseluruhan"
+description: "Dokumentasi halaman ringkasan performa operasional & keuangan harian/tanggal-tertentu: penjualan, statistik, online food, compliment, pendapatan, pemasukan, platform fee, dompet, hingga ekspor Excel."
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Summary Report — **Laporan Keseluruhan**
+
+Halaman ini menyajikan *ringkasan menyeluruh* kinerja outlet dalam rentang tanggal yang dipilih. Seluruh angka diringkas dari transaksi yang **sudah tersimpan** di sistem (termasuk POS, Online Food, dan pencatatan dompet), sehingga memudahkan evaluasi harian maupun periodik.
+
+> ⚠️ **Akurasi data**: Angka pada laporan mengikuti status transaksi aktual. Void/Refund/Cancel tidak dihitung sebagai penjualan aktif. Perubahan harga atau biaya layanan setelah transaksi tersimpan **tidak** mengubah histori transaksi tersebut.
+
+---
+
+## 1) Navigasi & Filter Tanggal 📅
+
+- **Lokasi**: Bagian atas halaman.
+- **Komponen**:
+
+  - **Picker Tanggal**: pilih _tanggal tunggal_ atau _rentang tanggal_.
+  - **Tombol Refresh**: muat ulang data sesuai filter terbaru.
+
+- **Perilaku**:
+
+  - Mengganti tanggal akan menghitung ulang **semua** bagian di halaman.
+  - Format mata uang mengikuti pengaturan outlet.
+
+Tip: Untuk laporan harian, pilih tanggal yang sama sebagai _start_ dan _end_.
+
+---
+
+## 2) Penjualan 🛒
+
+Ringkasan nilai penjualan kotor sebelum perhitungan biaya platform dan HPP.
+
+**Bidang yang ditampilkan**
+
+- **Jumlah Produk Terjual**: total item (qty) terjual.
+- **Total Pesanan**: jumlah bill/order/transaksi.
+- **Total Produk Terjual** (_Rp_): nilai rupiah subtotal seluruh item.
+- **Diskon** (_Rp_): total diskon item maupun bill (ditampilkan negatif).
+- **Multiprice Fee** (_Rp_): biaya tambahan akibat skema harga ganda (bila ada).
+- **Service Fee** (_Rp_): biaya layanan (bila diaktifkan).
+- **Pajak** (_Rp_): pajak yang diterapkan pada transaksi.
+- **Pembulatan** (_Rp_): koreksi pembulatan ke atas/bawah.
+- **Total Penjualan Kotor** (_Rp_): total kotor dari seluruh pesanan.
+
+**Aksi**
+
+- **Lihat Selengkapnya** → membuka halaman detail penjualan per-produk/per-kategori (drill-down).
+
+> ℹ️ **Formula umum**
+>
+> `Total Penjualan Kotor ≈ (Total Produk Terjual – Diskon) + Multiprice Fee + Service Fee + Pajak + Pembulatan`
+>
+> Catatan: Tanda ± Pembulatan mengikuti konfigurasi (bisa menambah atau mengurangi total).
+
+---
+
+## 3) Statistik 📊
+
+Meringkas performa kunjungan dan efektivitas transaksi.
+
+- **Total Penjualan Kotor** (_Rp_)
+- **Total Bill/Order/Transaksi** (jumlah nota)
+- **Pengunjung/Pembeli** (jumlah orang; jika sistem pelanggan diaktifkan)
+- **Rata-rata Nilai Penjualan/Orang** (_Rp/orang_)
+- **Rata-rata Nilai Penjualan/Bill/Orderan** (_Rp/bill_)
+
+> ✅ Gunakan bagian ini untuk melihat **AOV** (Average Order Value) dan produktivitas per bill.
+
+---
+
+## 4) Online Food 🍱
+
+Ringkasan khusus transaksi **pesan-antar/platform online**.
+
+- **Jumlah Produk Terjual** (qty)
+- **Total Pesanan** (order online)
+- **Total Produk Terjual** (_Rp_)
+- **Diskon**, **Multiprice Fee**, **Pembulatan** (_Rp_)
+- **Total Penjualan Kotor** (_Rp_)
+
+> 🔍 Angka di sini **tidak** termasuk penjualan offline. Gunakan untuk membandingkan kontribusi kanal online vs offline.
+
+---
+
+## 5) Compliment 🎁
+
+Pencatatan item/nota yang diberikan **gratis (complimentary)**.
+
+- **Jumlah Produk Terjual** (qty complimen)
+- **Total Pesanan** (orderan complimen)
+- **Total Produk Terjual** (_Rp_) — umumnya 0
+- **Nominal Compliment** (_Rp_) — nilai barang yang di-compliment secara akuntansi
+
+> 🧾 Compliment **tidak menambah pendapatan kas**, namun tetap dapat memengaruhi COGS/HPP pada bagian _Pemasukan_.
+
+---
+
+## 6) Pendapatan 💵
+
+Menggabungkan kontribusi penjualan dari berbagai kanal sebelum HPP dan biaya lain.
+
+- **Total Penjualan Kotor** (_Rp_) — dari bagian Penjualan (offline)
+- **Total Penjualan Online Food** (_Rp_)
+- **Total Penjualan Compliment** (_Rp_) — biasanya 0
+- **Multiprice Fee** (_Rp_) — koreksi/penyesuaian harga
+- **Xendit Fee** (_Rp_) — biaya pembayaran (jika memakai Xendit)
+- **Total Pendapatan Kotor** (_Rp_)
+
+> 📐 **Garis besar perhitungan**
+>
+> `Total Pendapatan Kotor ≈ (Penjualan Kotor Offline + Penjualan Kotor Online + Penjualan Compliment) − (Multiprice Fee + Xendit Fee)`
+>
+> Penyesuaian bisa berbeda tergantung konfigurasi outlet.
+
+---
+
+## 7) Pemasukan (Laba/Rugi) 📈
+
+Menurunkan laba kotor hingga laba bersih.
+
+- **Total Pendapatan Kotor** (_Rp_)
+- **Harga Pokok Penjualan (HPP/COGS)** (_Rp_)
+- **Pendapatan Penjualan** (_Rp_) — pendapatan setelah HPP (≈ _gross profit_)
+- **Pembulatan** (_Rp_)
+- **Total Pendapatan Penjualan** (_Rp_) — setelah koreksi pembulatan
+- **Rugi** (_Rp_) — pencatatan rugi lain-lain (jika ada)
+- **Total Pendapatan Bersih** (_Rp_) — **laba/rugi akhir** periode
+
+> 📘 **Kaidah umum**
+>
+> `Pendapatan Penjualan ≈ Total Pendapatan Kotor − HPP`
+>
+> `Total Pendapatan Bersih ≈ Total Pendapatan Penjualan − Rugi`
+
+---
+
+## 8) Platform Fee yang Harus Dibayarkan 🧾
+
+Akumulasi biaya platform pihak ketiga.
+
+- **Platform Fee Penjualan** (_Rp_)
+- **Platform Fee Online Food** (_Rp_)
+- **Platform Fee Compliment** (_Rp_)
+- **Total Platform Fee** (_Rp_)
+
+> 💡 Gunakan bagian ini untuk rekonsiliasi biaya ke mitra platform (marketplace/aggregator/dll.).
+
+---
+
+## 9) Pemasukan Dompet (Wallet Inflow) 👛
+
+Rekap pemasukan kas per **metode pembayaran**.
+
+- **Tunai** — jumlah transaksi & nominal
+- **Non-Tunai** — kartu/transfer dll. (non-tunai umum)
+- **Debit** — pembayaran kartu debit
+- **QRIS Static** — pembayaran via QR statis
+- **Transfer Manual** — transfer bank manual
+- **Online Food** — setoran dari platform online
+
+Aksi: **Lihat Selengkapnya** untuk masuk ke daftar transaksi per kanal.
+
+---
+
+## 10) Pengeluaran Dompet (Wallet Outflow) 🧾
+
+Rekap **pengeluaran** kas per metode pembayaran (tunai, non-tunai, debit, QRIS static, transfer manual, online food). Gunakan untuk melacak biaya operasional harian yang dikeluarkan dari kas outlet.
+
+---
+
+## 11) Ekspor Data Excel ⬇️
+
+- **Tombol**: `Export Data Excel` (di bagian bawah halaman).
+- **Hasil**: file `.xlsx` berisi ringkasan semua blok laporan sesuai rentang tanggal aktif.
+- **Rekomendasi**: gunakan untuk arsip, analisis lebih lanjut, atau pelaporan keuangan.
+
+> ✅ Pastikan filter tanggal sudah benar sebelum mengekspor agar angka di Excel sesuai dengan yang tampil di layar.
+
+---
+
+## 12) Catatan Implementasi & Edge Case 🧩
+
+1. **Diskon bertumpuk**: bila outlet mengaktifkan diskon item + diskon bill, laporan akan menjumlahkan keduanya di kolom **Diskon**.
+2. **Pembulatan**: dapat bernilai positif atau negatif; memengaruhi total.
+3. **Compliment**: kuantitas naik, namun nominal penjualan biasanya 0. Nilai akuntansi _Nominal Compliment_ dapat digunakan untuk analisis biaya.
+4. **Void/Refund**: transaksi yang dibatalkan **tidak** dihitung sebagai penjualan; bila ada _refund_ parsial, hanya porsi yang tersisa yang dihitung.
+5. **Biaya Pembayaran**: **Xendit Fee** hanya muncul jika kanal pembayaran terkait digunakan dalam periode yang dipilih.
+6. **Perbedaan Keseluruhan vs. Per-Shift**: Laporan **Keseluruhan** merangkum seluruh shift dalam periode tanggal; **Per-Shift** memisahkan per sesi shift.
+
+---
+
+## 13) Praktik Terbaik ✅
+
+- Audit harian: bandingkan **Pemasukan Dompet** vs **Total Penjualan Kotor** untuk deteksi selisih setoran.
+- Evaluasi kanal: pantau **Online Food** untuk mengetahui kontribusi marketplace terhadap omset.
+- Kontrol biaya: periksa **Platform Fee** dan **Xendit Fee** untuk menjaga margin.
+- Optimasi harga: amati **Multiprice Fee**; bila membesar, tinjau kembali konfigurasi harga.
+
+---
+
+## 14) FAQ Singkat ❓
+
+**Q: Angka saya 0 padahal ada transaksi. Kenapa?**
+A: Pastikan filter tanggal benar, status transaksi _selesai/terbaca_, dan outlet/cabang yang aktif sesuai.
+
+**Q: Mengapa total di Excel berbeda dari tampilan?**
+A: Biasanya karena filter tanggal berbeda saat ekspor. Ulangi ekspor setelah memastikan tanggal dan cabang tepat.
+
+**Q: Apakah pajak dihitung sebelum atau sesudah diskon?**
+A: Mengikuti konfigurasi outlet. Secara default, pajak dihitung setelah diskon item/bill diterapkan.
+
+---

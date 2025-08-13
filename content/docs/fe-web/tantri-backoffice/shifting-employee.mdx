@@ -1,0 +1,113 @@
+---
+
+title: "Shifting — Shifting Karyawan"
+description: "Dokumentasi modul penjadwalan shift mingguan per karyawan: daftar jadwal, membuat, mengedit, menghapus, validasi, relasi dengan grup shift, praktik terbaik, dan FAQ."
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Shifting — **Shifting Karyawan**
+
+Modul ini digunakan untuk **mengatur jadwal shift mingguan** untuk setiap karyawan pada cabang aktif. Jadwal yang tersimpan akan menjadi acuan operasional (absensi, laporan per‑shift, dan alokasi kasir/produksi).
+
+> 🔗 **Terkait:** Pastikan **Grup Shifting** sudah dibuat (nama shift, jam mulai/selesai) karena pilihan **Shift 1/Shift 2/Libur** pada modul ini **mengacu** pada grup yang telah didefinisikan.
+
+---
+
+## 1) Akses Menu
+
+`Shifting → Shifting Karyawan`
+
+Elemen utama di halaman daftar:
+
+- **Pencarian**: _Cari jadwal shift karyawan…_ (berdasarkan **Nama Karyawan**).
+- **Tombol** `+ Buat Jadwal Karyawan` untuk menambahkan jadwal baru.
+- **Tabel** kolom:
+
+  - **Nama Karyawan**
+  - **Senin** • **Selasa** • **Rabu** • **Kamis** • **Jumat** • **Sabtu** • **Minggu** (menampilkan nama shift atau **libur**)
+  - **Aksi** (menu tiga titik)
+
+- **Pagination** untuk navigasi halaman.
+
+**Menu Aksi per baris**
+
+- **Edit Jadwal Karyawan** — ubah jadwal mingguan karyawan terpilih.
+- **Hapus Jadwal Karyawan** — hapus mapping jadwal milik karyawan tersebut.
+
+---
+
+## 2) Membuat Jadwal Karyawan ➕
+
+Klik `+ Buat Jadwal Karyawan` untuk membuka formulir **Buat Jadwal Karyawan**.
+
+**Field pada formulir**
+
+1. **Nama Karyawan** _(wajib)_ — pilih dari daftar karyawan cabang aktif.
+2. **Shift Senin** _(wajib)_ — pilih salah satu: nama shift dari **Grup Shifting** atau **libur**.
+3. **Shift Selasa** _(wajib)_
+4. **Shift Rabu** _(wajib)_
+5. **Shift Kamis** _(wajib)_
+6. **Shift Jumat** _(wajib)_
+7. **Shift Sabtu** _(wajib)_
+8. **Shift Minggu** _(wajib)_
+
+**Validasi & Penyimpanan**
+
+- Semua field bertanda bintang **harus diisi**.
+- Pilihan shift **hanya** dari daftar yang tersedia (mengacu ke **Grup Shifting**).
+- Setelah disimpan, jadwal tersimpan sebagai **template mingguan** hingga diubah kembali.
+
+> 💡 **Tips cepat**: Jika pola sama untuk beberapa hari, pilih shift yang sama (mis. _Shift 2_ Senin–Sabtu dan **libur** Minggu).
+
+---
+
+## 3) Mengedit Jadwal ✏️
+
+Pada tabel, buka **Aksi → Edit Jadwal Karyawan**.
+
+- Formulir **Edit Jadwal Karyawan** menampilkan data yang sudah ada.
+- Ubah satu/lebih hari sesuai kebutuhan lalu klik **Edit Shift Karyawan** untuk menyimpan.
+- Perubahan yang tersimpan akan digunakan untuk periode berjalan ke depan (tidak mengubah histori kehadiran yang sudah lewat).
+
+---
+
+## 4) Menghapus Jadwal 🗑️
+
+Pada tabel, pilih **Aksi → Hapus Jadwal Karyawan**.
+
+- Menghapus jadwal **tidak** menghapus data karyawan; hanya mengosongkan pengaturan shift mingguan karyawan tersebut.
+- Setelah dihapus, karyawan tidak mempunyai acuan jadwal sampai dibuat ulang.
+
+---
+
+## 5) Relasi dengan **Grup Shifting** ⏰
+
+- Nama seperti **Shift 1**, **Shift 2**, dll. beserta **jam kerja** didefinisikan di modul **Grup Shifting**.
+- Mengubah jam pada **Grup Shifting** akan **berdampak** pada semua karyawan yang menggunakan nama shift tersebut.
+- Jika ingin hari tertentu **libur**, pilih opsi **libur** pada hari tersebut.
+
+---
+
+## 6) Praktik Terbaik ✅
+
+- **Standarisasi Shift**: definisikan jam kerja dan istirahat yang jelas di **Grup Shifting** sebelum mengisi jadwal.
+- **Rotasi Seimbang**: atur rotasi agar beban kerja merata (terutama shift malam/akhir pekan).
+- **Lock Cut‑off**: hindari mengubah jadwal setelah minggu berjalan dimulai, kecuali darurat—komunikasikan ke tim.
+- **Audit Cepat**: gunakan kolom **Minggu** untuk memastikan jadwal libur terset dengan benar.
+
+---
+
+## 7) FAQ ❓
+
+**Q: Kenapa nama karyawan tidak muncul di pilihan?**
+A: Pastikan karyawan terdaftar aktif di cabang saat ini pada modul **Karyawan**.
+
+**Q: Bisa membuat lebih dari satu jadwal untuk karyawan yang sama?**
+A: Satu karyawan memiliki **satu** template jadwal mingguan. Ubah melalui **Edit** bila diperlukan.
+
+**Q: Bagaimana jika sebuah hari membutuhkan _split shift_?**
+A: Buat konfigurasi khusus di **Grup Shifting** (mis. _Shift Pagi_ dan _Shift Sore_) lalu pilih sesuai hari.
+
+**Q: Apakah perubahan jadwal memengaruhi laporan masa lalu?**
+A: Tidak. Laporan kehadiran/shift yang telah terjadi mengikuti data historis; perubahan berlaku ke periode selanjutnya.
+
+---
