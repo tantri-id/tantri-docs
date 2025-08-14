@@ -1,0 +1,163 @@
+---
+
+title: "Inventori - Produksi"
+description: "Dokumentasi modul pengelolaan produk setengah jadi: daftar produksi, pembuatan resep/batch, pengaturan harga & stok minimal, detail batch (tambah/kurangi stok, kedaluwarsa), ekspor, serta praktik terbaik."
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Inventori - **Produksi**
+
+Modul **Produksi** digunakan untuk mencatat pembuatan **produk setengah jadi** atau bahan olahan internal (mis. *ikan asin*, *kaldu*, *saus*) dari satu atau beberapa bahan baku, sekaligus mengelola **stok jadi, harga produksi, dan masa kedaluwarsa**.
+
+> ℹ️ Data pada modul ini terintegrasi dengan **Daftar Stok**. Pastikan master bahan baku dan satuan telah disiapkan terlebih dahulu.
+
+---
+
+## 1) Daftar Produksi 📋
+
+**Akses:** `Inventori → Produksi`
+
+Elemen halaman:
+
+- **Pencarian**: _Cari sku atau nama bahan_.
+- **Tombol** `+ Tambah Daftar Produksi` — membuat produk setengah jadi baru.
+- **Ekspor**: `Unduh PDF` & `Unduh Excel` (mengunduh daftar yang tampil).
+- **Link**: **Lihat Produksi Terhapus** — menampilkan arsip yang dihapus.
+- **Tabel** kolom:
+
+  - **SKU**
+  - **Nama Bahan** (nama produk setengah jadi)
+  - **Qty Bahan** (stok tersedia saat ini)
+  - **Satuan**
+  - **Aksi** (menu tiga titik)
+
+- **Aksi per baris**:
+
+  - **Lihat Detail** — buka halaman detail/batch (lihat §3).
+  - **Edit Bahan** — ubah resep/atribut produk.
+  - **Hapus Produksi** — hapus data (dapat dilihat kembali di _Produksi Terhapus_).
+
+---
+
+## 2) Tambah/Editar Produk Setengah Jadi ➕✏️
+
+Tampilan formulir **Rincian Bahan Produksi Setengah Jadi** berisi beberapa bagian:
+
+### A. Identitas Produk
+
+- **Nama Bahan Produksi** _(wajib)_ — nama produk setengah jadi (contoh: _Ikan asin_).
+- **Nama SKU** _(opsional)_ — kode unik untuk memudahkan pencarian & integrasi.
+
+### B. Resep / Bahan yang Dipakai
+
+Tambahkan satu atau lebih bahan baku sebagai komponen:
+
+- **Nama Bahan** _(wajib)_ — pilih dari daftar stok.
+- **Jumlah Stok** _(wajib)_ — kuantitas bahan yang dipakai untuk **satu batch**.
+- **Satuan** _(wajib)_ — mengikuti satuan bahan.
+- Gunakan **+ Tambah Bahan** untuk menambah baris komponen.
+
+### C. Output Batch
+
+- **Jumlah Bahan Produk Setengah Jadi** _(wajib)_ — total kuantitas produk jadi yang dihasilkan per batch.
+- **Kelompok Satuan** & **Jenis Satuan** _(wajib)_ — satuan keluaran (mis. _pcs_, _botol_, _bungkus_).
+
+### D. Harga & Peringatan
+
+- **Harga Produksi** _(opsional, toggle)_ — total biaya pembuatan satu batch (bisa ikut menampung biaya tenaga/overhead).
+  _Jika diisi, sistem menurunkan **Harga Satuan per pcs/bungkus** pada detail batch._
+- **Peringatan Stok Menipis** _(opsional, toggle)_ — masukkan angka ambang; sistem akan mengingatkan saat sisa stok **≤** ambang.
+
+### E. Simpan
+
+Klik **Simpan** untuk membuat/menyimpan perubahan. Entri akan muncul di **Daftar Produksi**.
+
+> 💡 **Tips**: Isi **SKU** dan **Harga Produksi** untuk mempermudah analisis biaya dan pelacakan.
+
+---
+
+## 3) Detail Produksi (Batch & Pergerakan) 🔎
+
+> Tampilan ini muncul saat memilih **Aksi → Lihat Detail** pada daftar (gambar ketiga pada contoh).
+
+Elemen utama halaman detail:
+
+- **Sisa Stok** — jumlah stok produk setengah jadi yang tersedia saat ini.
+  Perubahan stok dilakukan melalui aksi **Tambah Stok**/**Kurangi Stok**.
+- **Satuan** — pemilih jenis satuan (mis. _pcs_).
+- **Tombol** `+ Tambah Stok` — menambah kuantitas hasil produksi baru ke stok.
+- **Tabel Batch** (riwayat penambahan):
+
+  - **Tanggal Produksi**
+  - **Tanggal Kedaluwarsa** (bila diset)
+  - **Qty Bahan** (qty output yang ditambahkan)
+  - **Satuan Bahan**
+  - **Harga Satuan per pcs/bungkus** (hasil perhitungan dari harga batch ÷ qty output)
+  - **Aksi** (menu tiga titik): **Atur Kedaluwarsa**, **Kurangi Stok**
+
+### Aksi pada Detail
+
+- **Atur Kedaluwarsa** — membuka dialog untuk memasukkan **Tanggal Kedaluwarsa** dan **pengingat X hari sebelum** tanggal tersebut.
+- **Kurangi Stok** — mengurangi kuantitas (mis. untuk pemakaian internal/penyesuaian). Sistem menolak pengurangan yang membuat stok menjadi negatif.
+
+> 📌 **Catatan:** Harga satuan pada tabel bersifat informatif untuk analisis. Perubahan nominal **Harga Produksi** hanya dapat dilakukan dengan mengedit data produk/batch terkait.
+
+---
+
+## 4) Rumus & Perhitungan 🧮
+
+- **Harga Satuan per pcs/bungkus**
+  `Harga Satuan = Harga Produksi ÷ Jumlah Output Batch`
+
+  _Contoh:_ Harga Produksi `Rp100.000` dan Output `4 pcs`
+  ⇒ **Rp25.000/pcs**.
+
+- **Sisa Stok**
+  `Sisa Stok = (Σ Tambah Stok) − (Σ Kurangi Stok)`
+
+- **Peringatan Stok Menipis**
+  Muncul jika `Sisa Stok ≤ Ambang` yang diatur pada produk.
+
+---
+
+## 5) Ekspor & Arsip ⬇️
+
+- **Unduh PDF / Unduh Excel** pada halaman **Daftar Produksi** untuk laporan dan audit.
+- **Lihat Produksi Terhapus** menampilkan item yang dihapus. Gunakan untuk penelusuran historis atau pemulihan (jika diizinkan kebijakan sistem).
+
+---
+
+## 6) Validasi & Edge Case 🧩
+
+1. **Satuan tidak konsisten** — pastikan satuan komponen & output jelas; gunakan satuan standar agar konversi mudah diaudit.
+2. **Stok negatif** — aksi _Kurangi Stok_ dibatasi agar sisa stok tidak < 0.
+3. **Kedaluwarsa di masa lalu** — sistem menolak/menandai; gunakan tanggal valid dan atur pengingat (Min‑X hari) sesuai kebijakan.
+4. **Perubahan resep** — mengubah komponen tidak mengubah batch yang sudah tercatat; batch lama tetap mengikuti data saat dibuat.
+5. **Harga Produksi kosong** — kolom **Harga Satuan** pada detail dapat tampil `-`/`0` sesuai implementasi; isi harga untuk analisis yang akurat.
+
+---
+
+## 7) Praktik Terbaik ✅
+
+- **Standarisasi resep**: tetapkan komposisi dan output per batch yang konsisten.
+- **Gunakan SKU**: mempermudah pencarian dan integrasi ke sistem lain.
+- **Atur kedaluwarsa** tiap batch untuk FIFO/FEFO dan kontrol kualitas.
+- **Pantau ambang stok** agar produksi ulang dilakukan tepat waktu.
+- **Evaluasi biaya**: isi **Harga Produksi** secara berkala agar _harga satuan_ mencerminkan biaya aktual (termasuk kenaikan harga bahan/overhead).
+
+---
+
+## 8) FAQ ❓
+
+**Q: Mengapa saya tidak bisa mengedit stok langsung di kolom Sisa Stok?**
+A: Perubahan stok dilakukan melalui **Tambah Stok** atau **Kurangi Stok** agar ada jejak audit pergerakan.
+
+**Q: Bagaimana jika ada selisih saat stok fisik dihitung?**
+A: Gunakan **Kurangi Stok**/**Tambah Stok** pada detail atau lakukan penyesuaian melalui modul stok opname sesuai SOP.
+
+**Q: Bisa menambahkan foto/attachment batch?**
+A: Tergantung konfigurasi sistem. Jika tersedia, unggahan dilakukan saat pencatatan batch/tambahan stok.
+
+**Q: Apakah harga satuan memengaruhi harga jual menu?**
+A: Tidak langsung. Harga ini dipakai untuk analisis biaya bahan internal; penerapan ke harga jual mengikuti kebijakan pricing terpisah.
+
+---

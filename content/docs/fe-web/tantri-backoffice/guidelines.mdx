@@ -143,3 +143,49 @@ import { File, Folder, Files } from "fumadocs-ui/components/files";
   </Folder>
   <File name="package.json" />
 </Files>
+
+## Write API request
+
+Example :
+
+```ts
+export const getLocation = async (
+  params: TGetLocation
+): Promise<TResponse<TLocationResponse>> => {
+  const res = await ApiClient.get("/api-endpoint", {
+    params,
+  });
+  return res.data;
+};
+```
+
+## Write Hook react query
+
+Example :
+
+```tsx
+export const useUserQuery = () => {
+  return useQuery({
+    queryKey: ["users"],
+    queryFn: () => getUser(),
+  });
+};
+```
+
+## References
+
+### 1) [React Router](https://reactrouter.com/docs/en/v6/getting-started/overview)
+
+### 2) [Tailwind CSS](https://tailwindcss.com/docs)
+
+### 3) [React Hook Form](https://react-hook-form.com/)
+
+### 4) [React Query](https://react-query.tanstack.com/)
+
+### 5) [Ant Design](https://ant.design/)
+
+### 6) [Zustand](https://github.com/pmndrs/zustand)
+
+### 7) [React Google map](https://www.npmjs.com/package/@react-google-maps/api)
+
+### 8) [Axios](https://axios-http.com/docs/intro)
