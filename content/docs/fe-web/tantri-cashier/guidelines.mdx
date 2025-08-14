@@ -164,18 +164,21 @@ import { File, Folder, Files } from "fumadocs-ui/components/files";
   </Folder>
   <File name="package.json" />
 </Files>
+
 ---
 
 ## Write API request
 
 Example :
 
-```services/api/location/api.ts
-export const getLocation = async (params: TGetLocation): Promise<TResponse<TLocationResponse>> => {
-const res = await ApiClient.get('/api-endpoint', {
-  params,
-});
-return res.data;
+```ts
+export const getLocation = async (
+  params: TGetLocation
+): Promise<TResponse<TLocationResponse>> => {
+  const res = await ApiClient.get("/api-endpoint", {
+    params,
+  });
+  return res.data;
 };
 ```
 
@@ -183,21 +186,21 @@ return res.data;
 
 Example :
 
-```hooks/use-user-query.tsx
+```tsx
 export const useUserQuery = () => {
   return useQuery({
-    queryKey: ['users'],
+    queryKey: ["users"],
     queryFn: () => getUser(),
-  })
-}
+  });
+};
 ```
 
-```hooks/use-user-mutation.tsx
+```tsx
 export const useUserMutation = () => {
   return useMutation({
     mutationFn: (params: TUpdateUser) => updateUser(params),
-  })
-}
+  });
+};
 ```
 
 ---

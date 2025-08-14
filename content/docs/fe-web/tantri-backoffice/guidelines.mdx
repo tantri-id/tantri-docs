@@ -148,12 +148,14 @@ import { File, Folder, Files } from "fumadocs-ui/components/files";
 
 Example :
 
-```services/api/location/api.ts
-export const getLocation = async (params: TGetLocation): Promise<TResponse<TLocationResponse>> => {
-const res = await ApiClient.get('/api-endpoint', {
-  params,
-});
-return res.data;
+```ts
+export const getLocation = async (
+  params: TGetLocation
+): Promise<TResponse<TLocationResponse>> => {
+  const res = await ApiClient.get("/api-endpoint", {
+    params,
+  });
+  return res.data;
 };
 ```
 
@@ -161,13 +163,13 @@ return res.data;
 
 Example :
 
-```hooks/use-user-query.ts
+```tsx
 export const useUserQuery = () => {
   return useQuery({
-    queryKey: ['users'],
+    queryKey: ["users"],
     queryFn: () => getUser(),
-  })
-}
+  });
+};
 ```
 
 ## References
