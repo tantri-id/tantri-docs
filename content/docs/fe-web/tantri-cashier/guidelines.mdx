@@ -164,3 +164,68 @@ import { File, Folder, Files } from "fumadocs-ui/components/files";
   </Folder>
   <File name="package.json" />
 </Files>
+---
+
+## Write API request
+
+Example :
+
+```services/api/location/api.ts
+export const getLocation = async (params: TGetLocation): Promise<TResponse<TLocationResponse>> => {
+const res = await ApiClient.get('/api-endpoint', {
+  params,
+});
+return res.data;
+};
+```
+
+## Write Hook react query
+
+Example :
+
+```hooks/use-user-query.tsx
+export const useUserQuery = () => {
+  return useQuery({
+    queryKey: ['users'],
+    queryFn: () => getUser(),
+  })
+}
+```
+
+```hooks/use-user-mutation.tsx
+export const useUserMutation = () => {
+  return useMutation({
+    mutationFn: (params: TUpdateUser) => updateUser(params),
+  })
+}
+```
+
+---
+
+## References
+
+### 1) [React Router](https://reactrouter.com/docs/en/v6/getting-started/overview)
+
+### 2) [React Query](https://react-query.tanstack.com/)
+
+### 3) [React Hook Form](https://react-hook-form.com/)
+
+### 4) [Vite](https://vitejs.dev/)
+
+### 5) [Typescript](https://www.typescriptlang.org/)
+
+### 6) [Tailwindcss](https://tailwindcss.com/)
+
+### 7) [Shadcn UI](https://shadcn.com/)
+
+### 8) [Zustand](https://github.com/pmndrs/zustand)
+
+### 9) [React Google map ](https://www.npmjs.com/package/@react-google-maps/api)
+
+### 10) [React Thermal Printer](https://www.npmjs.com/package/react-thermal-printer)
+
+### 11) [React Toastify](https://fkhadra.github.io/react-toastify/)
+
+### 12) [Redux](https://redux-toolkit.js.org/)
+
+---

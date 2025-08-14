@@ -1,0 +1,260 @@
+---
+title: Maps Documentation
+description: "Welcome to the Maps documentation."
+---
+
+import { File, Folder, Files } from "fumadocs-ui/components/files";
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+
+# Komponen **MapsLocation**
+
+Dokumentasi ini memberi contoh penggunaan **Google Maps** pada aplikasi web (misalnya menampilkan titik _clock in/out_ pada modul Laporan Kehadiran (Role Cashier), Informasi Toko, Backoffice create Toko, dan Company profile > Food Bazaar). Anda dapat menyalin kode berikut dan menyesuaikan sesuai kebutuhan.
+
+---
+
+Untuk Kode lengkapnya silahkan lihat [disini](https://github.com/tantri-id/tantri-frontend-cashier-ts/blob/develop/src/components/General/Map/GoogleMapLocation.tsx)
+
+MapsLocation adalah komponen React (TypeScript) untuk menampilkan peta Google Maps dengan satu marker, pencarian Places Autocomplete, tombol Geolocate, serta kemampuan memilih lokasi lewat klik pada peta. Komponen ini cocok dipakai pada form alamat/lokasi (mis. input lokasi presensi, alamat pengiriman, titik outlet).
+
+> ⚠️ **Catatan integrasi**
+>
+> - Komponen **memuat script Google Maps secara dinamis** lewat `getRenderMap()` yang mengembalikan **kode JavaScript** dengan _callback_ global `window.initMap`.
+> - Pastikan implementasi `getRenderMap` Anda menyertakan **Maps JavaScript API** (+ **Places Library**) dan memanggil `initMap()` saat selesai memuat.
+
+---
+
+Get response dari API :
+
+```ts
+export const getRenderMap = async () => {
+  const res = await ApiClient.get(
+    "/gateway/google-maps/js-api?libraries=marker,places&callback=initMap&v=weekly",
+    { responseType: "text" }
+  );
+  return res.data;
+};
+```
+
+Pada modul Kasir :
+
+<Files>
+  <Folder name="src" defaultOpen>
+    <Folder name="components" defaultOpen>
+      <Folder name="General" defaultOpen>
+        <Folder name="Map" defaultOpen>
+          <File name="GoogleMapLocation.tsx" />
+        </Folder>
+      </Folder>
+    </Folder>
+  </Folder>
+</Files>
+
+> Komponen berikut digunakan untuk memuat peta tanpa menggunakan library pihak ketiga:
+
+### Type & Props
+
+```tsx
+// Titik koordinat bawaan Google Maps
+type LatLngLiteral = google.maps.LatLngLiteral;
+
+export  SingleMarker {
+  position: LatLngLiteral;
+  title?: string;
+  icon?: string; // URL icon custom
+  draggable?: boolean; // marker dapat di-drag
+}
+
+interface MapsLocationProps {
+  center: LatLngLiteral;
+  zoom?: number;
+  height?: number | string;
+  marker?: SingleMarker | null;
+  selectable?: boolean;
+  onSelect?: (pos: LatLngLiteral) => void;
+  onLocationChange?: (pos: LatLngLiteral) => void;
+  onAddressChange?: (address: string) => void;
+  resolveAddress?: (lat: number, lng: number) => Promise<{ address: string } | string>;
+  showSearch?: boolean;
+  searchPlaceholder?: string;
+  showGeolocateButton?: boolean;
+  autocompleteRestrictions?: google.maps.places.ComponentRestrictions;
+  autocompleteTypes?: string[];
+}
+```
+
+### `MapsLocationProps`
+
+| Prop                       | Tipe                                                  |         Default | Keterangan                                                                                                 |
+| -------------------------- | ----------------------------------------------------- | --------------: | ---------------------------------------------------------------------------------------------------------- |
+| `center`                   | `LatLngLiteral`                                       |               – | Pusat peta saat inisialisasi.                                                                              |
+| `zoom`                     | `number`                                              |            `15` | Level zoom peta.                                                                                           |
+| `height`                   | `number \| string`                                    |           `500` | Tinggi elemen peta.                                                                                        |
+| `marker`                   | `SingleMarker \| null`                                |          `null` | Marker awal yang ditampilkan. Bisa `draggable`.                                                            |
+| `selectable`               | `boolean`                                             |         `false` | Jika `true`, klik di peta akan **memilih titik** dan memindah/menambah marker.                             |
+| `onSelect`                 | `(pos) => void`                                       |               – | Dipanggil saat pemilihan titik (klik/drag/auto/geo).                                                       |
+| `onLocationChange`         | `(pos) => void`                                       |               – | Alias event lokasi (dipanggil bersama `onSelect`).                                                         |
+| `onAddressChange`          | `(address) => void`                                   |               – | Dipanggil setelah alamat berhasil di-_resolve_ (autocomplete/geocoding).                                   |
+| `resolveAddress`           | `(lat,lng) => Promise<{ address: string } \| string>` |               – | _Resolver_ alamat opsional (reverse-geocode). Dipanggil **hanya jika** `formatted_address` tidak tersedia. |
+| `showSearch`               | `boolean`                                             |          `true` | Tampilkan input Autocomplete di atas peta.                                                                 |
+| `searchPlaceholder`        | `string`                                              | `"Cari lokasi"` | Placeholder untuk input.                                                                                   |
+| `showGeolocateButton`      | `boolean`                                             |          `true` | Tampilkan tombol _Lokasi Saya_ (HTML Geolocation).                                                         |
+| `autocompleteRestrictions` | `google.maps.places.ComponentRestrictions`            |               – | Pembatasan negara/area Autocomplete, mis. `{ country: 'ID' }`.                                             |
+| `autocompleteTypes`        | `string[]`                                            |   `["geocode"]` | Jenis pencarian Places (mis. `['geocode','establishment']`).                                               |
+
+---
+
+## Cara Kerja (Arsitektur Singkat)
+
+1. **Load Peta** — Saat mount, komponen memanggil `getRenderMap()` → membuat `Blob` dari teks JS → memasang `<script src=blob://...>` → memanggil `window.initMap()` ketika Maps siap.
+2. **Inisialisasi** — Membuat `google.maps.Map`, menempatkan marker awal (jika ada), memasang _listener_ klik bila `selectable=true`, serta mengaktifkan **Places Autocomplete** jika `showSearch=true`.
+3. **Pemilihan Titik** — Klik peta / geser marker / pilih dari Autocomplete / Geolocate → mengubah posisi marker → memicu `onSelect`/`onLocationChange` dan (bila tersedia) `onAddressChange`.
+4. **Cleanup** — Pada unmount, komponen melepas semua listener, menghapus marker, mencabut script blob, dan menghapus `window.initMap` untuk mencegah kebocoran memori.
+
+> ♻️ **Debounce resolve alamat** — Komponen menyimpan `lastResolvedKeyRef` (membulatkan 5 desimal ≈ 1–3 m) agar reverse‑geocode tidak dipanggil berulang untuk titik yang sama.
+
+---
+
+## Interaksi Utama
+
+### 1) **Klik Peta** (mode `selectable`)
+
+- Menaruh/memindahkan marker ke titik yang diklik.
+- Memanggil `onSelect(pos)` dan `onLocationChange(pos)`.
+- Jika `resolveAddress` disediakan → dipanggil untuk menurunkan alamat dan mengirimkan `onAddressChange`.
+
+### 2) **Drag Marker** (`marker.draggable = true`)
+
+- Setelah `dragend`, memanggil event lokasi + resolve alamat seperti di atas.
+
+### 3) **Places Autocomplete** (`showSearch = true`)
+
+- Menyetel pusat & zoom (17) ke lokasi pilihan pengguna.
+- Mengisi `onAddressChange` dari `place.formatted_address` bila tersedia; jika tidak, memakai `resolveAddress`.
+
+### 4) **Geolocate** (`showGeolocateButton = true`)
+
+- Mengambil koordinat `navigator.geolocation`, memusatkan peta (zoom 17), menaruh marker, dan memicu event lokasi + alamat.
+
+---
+
+## Contoh Pemakaian
+
+### A. Paling Sederhana
+
+```tsx
+<MapsLocation
+  center={{ lat: -6.2, lng: 106.8166 }}
+  onSelect={(pos) => console.log("Dipilih:", pos)}
+/>
+```
+
+### B. Dengan _Reverse Geocoding_ Kustom
+
+```tsx
+async function reverseGeocode(lat: number, lng: number) {
+  const res = await fetch(`/api/geocode?lat=${lat}&lng=${lng}`);
+  const data = await res.json();
+  return data.address as string; // atau { address: string }
+}
+
+<MapsLocation
+  center={{ lat: -6.2, lng: 106.8166 }}
+  selectable
+  resolveAddress={reverseGeocode}
+  onAddressChange={(address) => setValue("alamat", address)}
+/>;
+```
+
+### C. Marker Awal & Bisa Diseret
+
+```tsx
+<MapsLocation
+  center={{ lat: -6.9, lng: 107.6 }}
+  marker={{
+    position: { lat: -6.9, lng: 107.6 },
+    title: "Gudang",
+    draggable: true,
+  }}
+  onLocationChange={(pos) => setValue("koordinat", pos)}
+/>
+```
+
+### D. Membatasi Autocomplete untuk Indonesia & Tempat Bisnis
+
+```tsx
+<MapsLocation
+  center={{ lat: -6.2, lng: 106.8166 }}
+  autocompleteRestrictions={{ country: "ID" }}
+  autocompleteTypes={["geocode", "establishment"]}
+/>
+```
+
+---
+
+## Styling & UI
+
+- **Input Autocomplete** diposisikan absolut di atas peta: `top: 0; left/right: 0;` dengan `shadow` dan `rounded`.
+- **Tombol Geolocate** berada di kanan bawah peta, berbentuk bulat (`rounded-full`) menggunakan ikon `LocateFixed` dari `lucide-react`.
+- Tinggi peta diatur via prop `height` (angka atau string CSS, mis. `"60vh"`).
+
+---
+
+## Siklus Hidup & _Cleanup_
+
+Komponen membersihkan resource pada `useEffect` unmount:
+
+- Melepas listener klik peta & `dragend` marker.
+- Menghapus marker dari peta.
+- Me-_null_‑kan instance Autocomplete & Map.
+- Menghapus `window.initMap`.
+- Menghapus elemen `<script>` (blob) dan `URL.revokeObjectURL`.
+
+---
+
+## Prasyarat `getRenderMap()`
+
+Agar komponen dapat bekerja:
+
+1. Endpoint `getRenderMap` **mengembalikan teks JavaScript** yang saat dieksekusi akan memuat **Google Maps JavaScript API** (termasuk **Places Library**) dengan **API Key** yang valid;
+2. Di akhir pemuatan, **harus** memanggil `window.initMap()`.
+
+> Contoh minimal JS yang dikembalikan (ilustrasi):
+>
+> ```js
+> const script = document.createElement("script");
+> script.src =
+>   "https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&libraries=places&callback=initMap";
+> document.head.appendChild(script);
+> ```
+
+---
+
+## Error Handling & Batasan
+
+- Jika `navigator.geolocation` tidak tersedia → komponen akan menampilkan `alert` standar bahasa browser.
+- Jika **Places** tidak dimuat → input Autocomplete tidak akan diaktifkan (komponen tetap menampilkan peta dasar).
+- Reverse‑geocode **tidak otomatis** jika `resolveAddress` tidak diberikan dan `place.formatted_address` kosong.
+
+---
+
+## Contoh Penggunaan Komponen `MapsLocation`
+
+```tsx
+<MapsLocation
+  center={{ lat: props.lat, lng: props.lng }}
+  zoom={18}
+  height={500}
+  selectable
+  marker={{
+    position: { lat: props.lat, lng: props.lng },
+    title: "Lokasi",
+    draggable: true,
+  }}
+  onLocationChange={(pos) => props.setLocation(pos)}
+  resolveAddress={async (lat, lng) => {
+    const r = await GeoLocationServer({ lat, lng });
+    return r.address;
+  }}
+  onAddressChange={(address) => props.setAddress(address)}
+/>
+```
