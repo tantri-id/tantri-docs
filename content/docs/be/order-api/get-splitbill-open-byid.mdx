@@ -1,0 +1,20 @@
+---
+title: GET Open Bill > Split Bill > Get one
+description: "Get one order Open bill >  Split Bill by id"
+---
+
+```ts
+https://api.tantri.id/order/split-bill/:idOrder
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk mengambil order Open bill berbarengan dengan split bill dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```

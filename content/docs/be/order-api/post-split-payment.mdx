@@ -1,0 +1,74 @@
+---
+title: POST Split Payment
+description: "Create order split Payment"
+---
+
+# 🔗 Endpoint
+
+```ts
+https://api.tantri.id/order/add/order-item/split-bill
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk membuat order baru split Payment.
+
+## Request Body
+
+```json
+{
+  "phoneNumber": "-",
+  "customerName": "Dwiki",
+  "portal": "CASHIER",
+  "address": null,
+  "noTable": null,
+  "isCustomAmount": false,
+  "customAmount": [],
+  "isMultiPrice": false,
+  "productOrder": [
+    {
+      "idProduct": "610eeba8-aada-4e91-a1bb-bc87eab6fb0f",
+      "idProductPrice": null,
+      "name": "Produk2",
+      "price": 25000,
+      "quantity": 1,
+      "note": "",
+      "extraOrder": []
+    },
+    {
+      "idProduct": "3637b8cc-2ede-44f9-baf0-a4f4c0a1f944",
+      "idProductPrice": null,
+      "name": "Produk3",
+      "price": 25000,
+      "quantity": 1,
+      "note": "",
+      "extraOrder": []
+    }
+  ],
+  "idCafe": "CAFE-0000000001LWTQRU",
+  "paymentMethod": "CASH",
+  "totalPrice": 50000,
+  "totalDiscount": 0,
+  "totalDiscountOrder": 0,
+  "totalDiscountProduct": 0,
+  "fixTotalPrice": 52500,
+  "deliveryType": "DINE-IN",
+  "fee": 1000,
+  "serviceFee": 1000,
+  "tax": 500,
+  "createdBy": "Fiki Aprian",
+  "roundedPrice": 0,
+  "orderType": "CLOSE_BILL",
+  "isSplitPayment": true,
+  "splitPayment": [
+    {
+      "paymentMethod": "CASH",
+      "totalPrice": 50000
+    },
+    {
+      "paymentMethod": "DEBIT",
+      "totalPrice": 2500
+    }
+  ]
+}
+```

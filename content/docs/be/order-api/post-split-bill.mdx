@@ -1,0 +1,51 @@
+---
+title: POST Split Bill
+description: "Create order split bill"
+---
+
+# 🔗 Endpoint
+
+```ts
+https://api.tantri.id/v2/order/split-bill/add-one
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk membuat order baru split bill.
+
+## Request Body
+
+```json
+{
+  "idOrder": "TRI-1VTOGWEU91JV",
+  "index": 0,
+  "item": {
+    "portal": "CASHIER",
+    "customAmounts": [],
+    "productOrders": [
+      {
+        "idProduct": "ca7bbed0-c1b2-45f6-96af-493348334fa0",
+        "name": "test12345",
+        "price": 15000,
+        "idProductOrder": "8f78aed1-75b2-4c2f-b34d-4def65bf5225",
+        "idProductOrderFromOrder": "8f78aed1-75b2-4c2f-b34d-4def65bf5225",
+        "quantity": 1,
+        "note": "",
+        "extraOrder": []
+      }
+    ],
+    "idCafe": "CAFE-0000000117BEBGEU",
+    "paymentMethod": "CASH",
+    "totalPrice": 15000,
+    "totalDiscount": 0,
+    "totalDiscountOrder": 0,
+    "totalDiscountProduct": 0,
+    "fixTotalPrice": 17000,
+    "deliveryType": "DINE_IN",
+    "fee": 0,
+    "serviceFee": 1000,
+    "tax": 1000,
+    "roundedPrice": 0
+  }
+}
+```

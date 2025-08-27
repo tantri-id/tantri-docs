@@ -1,0 +1,212 @@
+---
+title: Order Module Documentation
+description: Modul pemesanan menggunakan NestJS, PostgreSQL, Prisma ORM.
+---
+
+# 🛒 Order Module
+
+Modul ini menangani seluruh proses pemesanan (order) dalam sistem backend, termasuk proses pembuatan, pembaruan, pembatalan, dan scheduled task terkait order.
+
+---
+
+## 📁 Struktur Folder
+
+├── dto/ // DTO untuk validasi dan transformasi data
+
+├── interfaces/ // Interface dan type definitions
+
+├── repositories/ // Prisma service & repository abstraction
+
+├── order.controller.ts // Controller utama order
+
+├── order.module.ts // Module deklarasi
+
+├── order.service.ts // Service utama order
+
+├── order.task.service.ts // Task scheduler untuk order
+
+├── order.v2.controller.ts // Versi 2 controller (jika ada perubahan struktural API)
+
+├── order.v2.service.ts // Versi 2 service
+
+## 🧠 Konsep Utama
+
+- **Controller**: Menyediakan endpoint HTTP untuk membuat, mengambil, dan memproses order.
+- **Service**: Berisi seluruh bisnis logic, seperti pengecekan stok, validasi user, dll.
+- **Repository**: Abstraksi layer untuk Prisma ORM.
+- **DTO**: Menggunakan `class-validator` dan `class-transformer` untuk validasi input.
+- **Task Service**: Digunakan untuk cronjob (misal auto-cancel order setelah beberapa waktu jika belum dibayar).
+- **Versioning**: Disediakan `v2` untuk maintain versi berbeda tanpa mengganggu versi lama.
+
+---
+
+## Example DTO :
+
+```ts
+export class AddOrderItemDto {
+  @IsNotEmpty()
+  @IsString()
+  idOrder: string;
+
+  @ValidateIf((body: AddOrderItemDto) => body?.customAmount?.length > 0)
+  @IsNotEmpty()
+  @IsArray()
+  @ArrayMinSize(1)
+  @Type(() => CustomAmount)
+  customAmount: CustomAmount[];
+
+  @IsNotEmpty()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ProductOrderDto)
+  @ArrayMinSize(0)
+  productOrder: ProductOrderDto[];
+
+  @IsNotEmpty()
+  @IsNumber()
+  totalPrice: number;
+
+  @IsNotEmpty()
+  @IsEnum(TypePortal)
+  portal: TypePortal;
+}
+```
+
+## Example Interface :
+
+```ts
+export type ICalcTotalPriceProductOrder = {
+  quantity: number;
+  price: number;
+  note: string | null;
+  noteKitchen: string | null;
+  idProduct: string;
+  idProductOrder: string;
+  idProductOrderFromOrder?: string;
+  idProductPrice: string;
+  idVoucher: string | null;
+  idMerRedeem: string | null;
+  extraOrders?: {
+    name: string;
+    price: number;
+    idExtra: number;
+    idExtraPrice: string;
+  }[];
+};
+```
+
+# OrderProductOrderRepository
+
+`OrderProductOrderRepository` adalah service pada backend NestJS yang bertanggung jawab untuk:
+
+- Menghitung total harga pesanan produk
+- Menyesuaikan harga berdasarkan voucher, extras, multiprice, dan custom amount
+- Menangani pengurangan stok
+
+Modul ini terintegrasi dengan Prisma ORM, dan merupakan bagian dari sistem pemesanan restoran atau kafe.
+
+---
+
+## 🔧 Dependencies
+
+```ts
+import { Injectable } from "@nestjs/common";
+import { TypePortal } from "utils/enum/portal.enum";
+import { Validation } from "src/helper/validation";
+import { VoucherRequirementRepository } from "src/voucher/repositories/voucher-requirement.repository";
+import { OrderCustomAmountRepository } from "./order-custom-amount.repository";
+import { PriceTypeRepository } from "src/product/repositories/price-type.repository";
+import { ProductRepository } from "src/product/repositories/product.repository";
+```
+
+---
+
+## ✅ Fungsi Utama
+
+### 1. `calcTotalPrice(payload)`
+
+Menghitung total harga pesanan dari daftar produk, termasuk:
+
+- Harga produk
+- Harga tambahan (extra)
+- Custom Amount
+- Diskon dari voucher
+- Validasi dan pengurangan stok (jika diaktifkan)
+- Penanganan multiprice
+
+**Parameter:**
+
+- `data`: Daftar produk yang dipesan (`ICalcTotalPriceProductOrder[]`)
+- `customAmounts`: Daftar custom amount
+- `multiPrice`: Objek multiprice (opsional)
+- `indexOrder`: Indeks dari order (opsional)
+- `portal`: Jenis portal (enum `TypePortal`)
+- `mapProducts`, `mapProductPrices`, `mapExtras`, `mapExtraPrices`: Data cache Map untuk lookup cepat
+- `mapVouchers`: Map voucher (opsional)
+- `idVoucherOrder`: ID voucher (opsional)
+- `idCafe`: ID cafe
+- `tx`: Prisma TransactionClient
+- `isCheckStock`: Jika true, stok akan divalidasi dan dikurangi
+
+**Return:**
+
+```ts
+{
+  totalPrice: number,
+  totalPriceProduct: number,
+  totalDiscountProduct: number,
+  totalPriceCustomAmount: number,
+  priceType?: PriceType,
+  productOrders: IProductOrder[],
+  customAmounts: CustomAmountResult[]
+}
+```
+
+### 2. `calcRoundedPrice({ totalPrice, isRounded })`
+
+Membulatkan harga total ke kelipatan 100 (jika `isRounded = true`).
+
+**Contoh:**
+
+- `totalPrice = 2345` ➔ `rounded = 2400`
+
+**Return:**
+
+```ts
+{
+  roundedPrice: number; // selisih pembulatan
+}
+```
+
+---
+
+## 📌 Catatan Teknis
+
+- **Prisma Transaction**: Fungsi `calcTotalPrice` menggunakan transaction Prisma untuk menjaga konsistensi saat mengurangi stok.
+- **Validasi**: Menggunakan helper `Validation` untuk memeriksa field kosong/null.
+- **Stok Terbatas**: Produk bertipe stok `"limited"` akan dikurangi jumlahnya, dan akan error jika tidak cukup.
+- **Voucher**: Diskon dihitung dengan metode `voucherRequirementRepository.calcDiscount()`.
+- **Extra**: Mendukung variant dan harga khusus untuk setiap extra.
+- **MultiPrice**: Hanya diambil jika `multiPrice` tersedia.
+
+---
+
+## 🗂️ Tipe Terkait
+
+- `ICalcTotalPriceProductOrder`: Struktur input produk pesanan
+- `IExtraOrder`: Detail extra pada pesanan
+- `IProductOrder`: Format data pesanan produk untuk disimpan
+
+---
+
+## 🚀 Use Case
+
+- Digunakan saat customer melakukan pemesanan produk dari POS atau mobile app.
+- Mampu menangani berbagai skenario kompleks seperti:
+
+  - Pesanan dengan banyak extra
+  - Diskon dengan voucher
+  - Produk dengan harga multi-tier
+  - Pembulatan harga ke atas
+
+---

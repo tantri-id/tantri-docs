@@ -1,0 +1,25 @@
+{
+  "title": "Order",
+  "pages": [
+    "index",
+    "get-order",
+    "get-detail-order",
+    "get-order-count-unread",
+    "get-order-count-status",
+    "get-splitbill-open-byid",
+    "post-order",
+    "post-open-bill",
+    "post-split-bill",
+    "post-split-payment",
+    "post-open-split-bill",
+    "post-openbill-splitbill-pay",
+    "post-openbill-splittbill-one",
+    "put-status-order",
+    "put-delivery-type-no-table",
+    "patch-payment-method",
+    "patch-status-order",
+    "patch-openbill-split-status",
+    "patch-openbill-splitbill",
+    "patch-change-payment"
+  ]
+}

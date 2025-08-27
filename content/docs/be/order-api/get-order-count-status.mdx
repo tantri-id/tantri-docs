@@ -1,0 +1,28 @@
+---
+title: GET Count Order Status
+description: "Get Order count with status"
+---
+
+# 🔗 Endpoint
+
+```ts
+https://api.tantri.id/order/count/status
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk mengambil jumlah order dari sistem dengan status tertentu.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Params
+
+    - startDate: Date
+    - endDate: Date
+    - payment: E_WALLET | CASH | DEBIT | QRIS | ONLINE_FOOD | TRANSFER_MANUAL

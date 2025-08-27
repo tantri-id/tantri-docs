@@ -1,0 +1,363 @@
+---
+title: POST
+description: "Create order"
+---
+
+# 🔗 Endpoint
+
+## Close Bill
+
+```ts
+https://api.tantri.id/v2/order/create/close-bill/checkout
+```
+
+## Open Bill
+
+```ts
+https://api.tantri.id/v2/order/create/open-bill/checkout
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk membuat order baru.
+
+## Request Body
+
+```json
+{
+  "idOrder": "TRI-ZT2TZAUJAB12",
+  "portal": "CASHIER",
+  "customAmounts": [],
+  "productOrders": [
+    {
+      "idProduct": "f63b334a-97e7-43c1-ba94-0beed21db7f1",
+      "name": "Ayam Geprek",
+      "price": 25000,
+      "idProductPrice": null,
+      "quantity": 1,
+      "note": "",
+      "noteKitchen": "",
+      "extraOrder": []
+    },
+    {
+      "idProduct": "5b393092-4117-4098-94bf-dd80805b7c80",
+      "price": 10000,
+      "idProductPrice": null,
+      "quantity": 5,
+      "note": "",
+      "noteKitchen": "",
+      "extraOrder": []
+    }
+  ],
+  "totalPrice": 35000
+}
+```
+
+## Response Body
+
+```json
+{
+  "isSuccess": true,
+  "message": "CREATED",
+  "data": {
+    "id": "TRI-X5EYS9BFCPJK",
+    "paymentMethod": "CASH",
+    "totalPriceProduct": 100000,
+    "totalPriceCustomAmount": 0,
+    "totalPrice": 102100,
+    "cogs": "0",
+    "multiPriceName": null,
+    "multiPriceFee": 0,
+    "roundedPrice": 90,
+    "fee": 1000,
+    "tax": 1010,
+    "serviceFee": 1000,
+    "xenditFee": 0,
+    "totalDiscountProduct": 0,
+    "totalDiscountOrder": 0,
+    "totalDiscount": 0,
+    "receivedAmount": null,
+    "changeAmount": 0,
+    "countSplitBill": null,
+    "currSplitBill": null,
+    "noOrder": "231",
+    "noTable": null,
+    "nameTable": [],
+    "nameFloor": [],
+    "printed": [],
+    "createdBy": "Jhon doe",
+    "updatedBy": null,
+    "totalMemberTable": null,
+    "deliveryType": "DI",
+    "status": "WAITING",
+    "orderType": "CLOSE_BILL",
+    "typeBillingCafe": "DYNAMIC",
+    "indexOrder": 0,
+    "isValid": true,
+    "isSuccess": true,
+    "isRead": false,
+    "isPlatformFeeByCustomer": false,
+    "isDummy": true,
+    "isCityLedger": false,
+    "isSplitBill": false,
+    "isSplitPayment": false,
+    "isPriority": false,
+    "createdAt": "2025-08-19T03:47:29.000Z",
+    "updatedAt": "2025-08-19T03:47:29.000Z",
+    "paidAt": null,
+    "checkedAt": null,
+    "idCustomer": "3cad0322-ed9d-43df-b042-7269d6e2aebf",
+    "customerName": "Randika -",
+    "address": null,
+    "idUser": null,
+    "idShiftLog": null,
+    "idCafe": "049d47aa-1d40-4ad7-9f35-d833282d9a1d",
+    "idPriceType": null,
+    "idCustomerCityLedger": null,
+    "idMerCoin": null,
+    "idTriCoin": null,
+    "idCafeCustomerReview": null,
+    "cafe": {
+      "id": "049d47aa-1d40-4ad7-9f35-d833282d9a1d",
+      "name": "Seafood Hebat",
+      "slug": "seafood-anugrah",
+      "address": "2VF2+857, Jl. Pelabuhan II, Kertaraharja, Kec. Cikembar, Kabupaten Sukabumi, Jawa Barat 43157, Indonesia",
+      "addressCityProvince": "Kabupaten Sukabumi, Jawa Barat",
+      "optionalAddress": "Depan gedung graha pos indonesia",
+      "phoneNumber": "6281234567890",
+      "email": "seafoodhebatsuper@gmail.com",
+      "credit": 0,
+      "location": {
+        "lat": -6.977484,
+        "lng": 106.849093
+      },
+      "schedule": [
+        {
+          "day": "Senin",
+          "open": "08:30",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Selasa",
+          "open": "09:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Rabu",
+          "open": "09:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Kamis",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Jumat",
+          "open": "08:00",
+          "close": "21:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Sabtu",
+          "open": "10:09",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Minggu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        }
+      ],
+      "description": "-",
+      "sequence": 232,
+      "countUsedPreparationLimitOrder": 30,
+      "xenditAccoutId": null,
+      "tzName": "Asia/Jakarta",
+      "tzTime": "+07:00",
+      "status": "DUMMY",
+      "bannedReason": null,
+      "typeBillingStackLog": [
+        {
+          "type": "DYNAMIC",
+          "start": {
+            "year": 2025,
+            "month": 5
+          },
+          "billingOrFee": null
+        },
+        {
+          "type": "DYNAMIC",
+          "start": {
+            "year": 1970,
+            "month": 0
+          },
+          "billingOrFee": null
+        }
+      ],
+      "createdAt": "2025-04-22T06:36:42.288Z",
+      "updatedAt": "2025-08-19T03:47:29.000Z",
+      "deletedAt": null,
+      "actualDeletedAt": null,
+      "assignmentBy": null,
+      "scheduleStatusActiveAt": null,
+      "avgRating": null,
+      "avgProductPrice": 95000,
+      "setting": {
+        "id": 69,
+        "uuid": "82325df5-2a67-4778-9211-8195e71ccf87",
+        "staticNotes": "{\"headerDescription\":\"KOCAK3\"}",
+        "menuPdf": "https://storage.sasanadigital.com/files/public/surat_lamaran_kerja-yuni-wulandaripdf-1752215719532",
+        "logo": "1752120511703-255220323.png",
+        "logoStruk": "1752036155502-253402760.png",
+        "orderType": "ALL",
+        "printerDataMobile": null,
+        "printerDataWeb": "[{\"data\":{\"state\":{\"printerData\":[{\"printerUuid\":\"1752633081999\",\"printerId\":1803,\"printerVendorId\":1155,\"printerName\":\"USB Printer Port-15FCgQQnbsWyZzCJ\",\"printerType\":\"USB\",\"printStructType\":\"KITCHEN_FOOD\",\"autoPrint\":false,\"autoPrintOnlineFood\":false},{\"printerUuid\":\"1752633220325\",\"printerId\":1803,\"printerVendorId\":1155,\"printerName\":\"USB Printer Port-15FCgQQnbsWyZzCJ\",\"printerType\":\"USB\",\"printStructType\":\"COMPLETED\",\"autoPrint\":false,\"autoPrintOnlineFood\":false,\"autoPrintStatus\":\"SUCCEED\"},{\"printerUuid\":\"1752633237440\",\"printerId\":1803,\"printerVendorId\":1155,\"printerName\":\"USB Printer Port-15FCgQQnbsWyZzCJ\",\"printerType\":\"USB\",\"printStructType\":\"KITCHEN_CUSTOM\",\"autoPrint\":false,\"autoPrintOnlineFood\":false},{\"printerUuid\":\"1752633249201\",\"printerId\":1803,\"printerVendorId\":1155,\"printerName\":\"USB Printer Port-15FCgQQnbsWyZzCJ\",\"printerType\":\"USB\",\"printStructType\":\"KITCHEN_DRINK\",\"autoPrint\":false,\"autoPrintOnlineFood\":false},{\"printerUuid\":\"1752653814647\",\"printerId\":1803,\"printerVendorId\":1155,\"printerName\":\"USB Printer Port-15FCgQQnbsWyZzCJ\",\"printerType\":\"USB\",\"printStructType\":\"CHECKER\",\"autoPrint\":false,\"autoPrintOnlineFood\":false}],\"networkLan\":\"https://botswana-wallet-availability-blocked.trycloudflare.com\"},\"version\":0},\"timeStamp\":\"2025-07-21T02:55:30.454Z\"},{\"data\":{\"state\":{\"printerData\":[{\"printerUuid\":\"1752574622228\",\"printerId\":\"TulJ1awEW6hXHbNJrtIKcw==\",\"printerName\":\"RPP02N\",\"printerType\":\"BLUETOOTH\",\"printStructType\":\"COMPLETED\",\"autoPrint\":false,\"autoPrintOnlineFood\":false,\"autoPrintStatus\":\"SUCCEED\",\"printerServiceUuid\":\"49535343-fe7d-4ae5-8fa9-9fafd205e455\",\"printerCharacteristicUuid\":\"49535343-8841-43f4-a8d4-ecbe34729bb3\"},{\"printerUuid\":\"1752633081999\",\"printerId\":1803,\"printerVendorId\":1155,\"printerName\":\"USB Printer Port-15FCgQQnbsWyZzCJ\",\"printerType\":\"USB\",\"printStructType\":\"KITCHEN_FOOD\",\"autoPrint\":false,\"autoPrintOnlineFood\":false}],\"networkLan\":null},\"version\":0},\"timeStamp\":\"2025-07-16T02:34:17.156Z\"},{\"data\":{\"state\":{\"printerData\":[{\"printerUuid\":\"1752574622228\",\"printerId\":\"TulJ1awEW6hXHbNJrtIKcw==\",\"printerName\":\"RPP02N\",\"printerType\":\"BLUETOOTH\",\"printStructType\":\"COMPLETED\",\"autoPrint\":false,\"autoPrintOnlineFood\":false,\"autoPrintStatus\":\"SUCCEED\",\"printerServiceUuid\":\"49535343-fe7d-4ae5-8fa9-9fafd205e455\",\"printerCharacteristicUuid\":\"49535343-8841-43f4-a8d4-ecbe34729bb3\"},{\"printerUuid\":\"1752574958418\",\"printerId\":\"0gOtNbR7f42GF0yzE05niQ==\",\"printerName\":\"RPP02N\",\"printerType\":\"BLUETOOTH\",\"printStructType\":\"KITCHEN_DRINK\",\"autoPrint\":false,\"autoPrintOnlineFood\":false,\"printerServiceUuid\":\"49535343-fe7d-4ae5-8fa9-9fafd205e455\",\"printerCharacteristicUuid\":\"49535343-8841-43f4-a8d4-ecbe34729bb3\"},{\"printerUuid\":\"1752574993080\",\"printerId\":\"0gOtNbR7f42GF0yzE05niQ==\",\"printerName\":\"RPP02N\",\"printerType\":\"BLUETOOTH\",\"printStructType\":\"KITCHEN_CUSTOM\",\"autoPrint\":false,\"autoPrintOnlineFood\":false,\"printerServiceUuid\":\"49535343-fe7d-4ae5-8fa9-9fafd205e455\",\"printerCharacteristicUuid\":\"49535343-8841-43f4-a8d4-ecbe34729bb3\"},{\"printerUuid\":\"1752575009104\",\"printerId\":\"0gOtNbR7f42GF0yzE05niQ==\",\"printerName\":\"RPP02N\",\"printerType\":\"BLUETOOTH\",\"printStructType\":\"KITCHEN_FOOD\",\"autoPrint\":false,\"autoPrintOnlineFood\":false,\"printerServiceUuid\":\"49535343-fe7d-4ae5-8fa9-9fafd205e455\",\"printerCharacteristicUuid\":\"49535343-8841-43f4-a8d4-ecbe34729bb3\"}],\"networkLan\":null},\"version\":0},\"timeStamp\":\"2025-07-15T10:23:37.901Z\"},{\"data\":{\"state\":{\"printerData\":[{\"printerUuid\":\"1752562877582\",\"printerId\":\"TulJ1awEW6hXHbNJrtIKcw==\",\"printerName\":\"RPP02N\",\"printerType\":\"BLUETOOTH\",\"printStructType\":\"COMPLETED\",\"autoPrint\":false,\"autoPrintOnlineFood\":false,\"autoPrintStatus\":\"SUCCEED\",\"printerServiceUuid\":\"49535343-fe7d-4ae5-8fa9-9fafd205e455\",\"printerCharacteristicUuid\":\"49535343-8841-43f4-a8d4-ecbe34729bb3\"}],\"networkLan\":null},\"version\":0},\"timeStamp\":\"2025-07-15T07:01:36.926Z\"},{\"data\":{\"state\":{\"printerData\":[{\"printerUuid\":\"1752132878497\",\"printerId\":\"TulJ1awEW6hXHbNJrtIKcw==\",\"printerName\":\"RPP02N\",\"printerType\":\"BLUETOOTH\",\"printStructType\":\"COMPLETED\",\"autoPrint\":false,\"autoPrintOnlineFood\":false,\"autoPrintStatus\":\"SUCCEED\",\"printerServiceUuid\":\"49535343-fe7d-4ae5-8fa9-9fafd205e455\",\"printerCharacteristicUuid\":\"49535343-8841-43f4-a8d4-ecbe34729bb3\",\"printerPaperSize\":\"80mm\",\"cashdrawer\":false}],\"networkLan\":\"https://bit-cuts-bell-organic.trycloudflare.com\"},\"version\":0},\"timeStamp\":\"2025-07-11T06:44:10.805Z\"}]",
+        "notes": ["Aduh alah cilaka"],
+        "typeManualTransfer": [
+          {
+            "nameBank": "Bank BCA",
+            "nameOwner": "Someahh",
+            "selectedBank": "Bank BCA",
+            "accountNumber": "32435456562"
+          },
+          {
+            "nameBank": "Bank BNI",
+            "nameOwner": "Junior",
+            "selectedBank": "Bank BNI",
+            "accountNumber": "3243545644"
+          }
+        ],
+        "tax": 1,
+        "serviceFee": 1,
+        "billingDiscount": 0,
+        "isReservationWithTableManagement": false,
+        "isShift": true,
+        "isShowStockMenu": true,
+        "isTableManagementWithMergeBill": false,
+        "isAutoClearTable": false,
+        "isShowBalance": true,
+        "isPinAuth": false,
+        "isCityLedger": false,
+        "isSplitPayment": true,
+        "isRoundedPrice": true,
+        "isCashDrawer": false,
+        "isCompliment": true,
+        "isWaitingList": true,
+        "isMerLoyalty": false,
+        "isTriLoyalty": false,
+        "isInventory": true,
+        "isTableManagement": false,
+        "isReservation": true,
+        "isOpenBillByCustomer": false,
+        "isPlatformFeeByCustomer": false,
+        "createdAt": "2025-04-22T06:36:42.288Z",
+        "updatedAt": "2025-08-19T03:26:41.483Z",
+        "idCafe": "049d47aa-1d40-4ad7-9f35-d833282d9a1d",
+        "idCurrency": 21,
+        "idLanguage": 2,
+        "settingFee": {
+          "id": 49,
+          "tax": "PERCENTAGE",
+          "serviceFee": "PERCENTAGE",
+          "idSetting": 69
+        },
+        "settingDelivery": {
+          "id": 49,
+          "dineIn": true,
+          "takeAway": true,
+          "delivery": true,
+          "onlineFood": true,
+          "compliment": true,
+          "deliveryOnline": false,
+          "minOrder": 200000,
+          "default": "DI",
+          "idSetting": 69
+        },
+        "settingPinAuth": {
+          "id": 49,
+          "cancelOrder": false,
+          "changePaymentOrder": false,
+          "financialReport": false,
+          "toggleSettingPin": true,
+          "reduceProductOrder": false,
+          "withdrawWallets": false,
+          "depositWallets": false,
+          "updateTransactionWallets": false,
+          "deleteTransactionWallets": false,
+          "updateStockCatalog": false,
+          "onOffProduct": false,
+          "hideEstimation": false,
+          "idSetting": 69
+        },
+        "settingOrder": {
+          "id": 49,
+          "closeBill": true,
+          "openBill": false,
+          "default": "CLOSE_BILL",
+          "idSetting": 69
+        }
+      }
+    },
+    "customAmount": [],
+    "productOrder": [
+      {
+        "id": "e6c02977-b648-4c80-92f0-7efb5a173b8c",
+        "name": "Gurita Bakar dengan saus asam manis ditambha sambal terasi",
+        "type": "FOOD",
+        "price": 100000,
+        "quantity": 1,
+        "totalPrice": 100000,
+        "totalDiscount": 0,
+        "note": "",
+        "noteKitchen": "",
+        "indexOrder": 0,
+        "isIntegratedStock": false,
+        "isDone": null,
+        "isPriority": false,
+        "customCategories": ["Udang"],
+        "idProductOrderFromOrder": null,
+        "idProduct": "0dd194d9-ed21-4794-8bb8-adc72ee79de2",
+        "idOrder": "TRI-X5EYS9BFCPJK",
+        "idProductPrice": null,
+        "idSplitBill": null,
+        "productPrice": null,
+        "extraOrder": [
+          {
+            "id": "eb296ab2-a0c4-49d9-b2c6-d8f98a1285b3",
+            "name": "level 2",
+            "variantName": "Tingkat kepedasan",
+            "price": 0,
+            "totalPrice": 0,
+            "isIntegratedStock": false,
+            "idExtra": 371,
+            "idProductOrder": "e6c02977-b648-4c80-92f0-7efb5a173b8c",
+            "idExtraPrice": null,
+            "extraPrice": null
+          }
+        ]
+      }
+    ],
+    "customerCityLedger": null,
+    "eWallet": null,
+    "qrCode": null,
+    "virtualAccount": null,
+    "splitPayment": [],
+    "splitBill": [],
+    "tableOnOrder": []
+  }
+}
+```

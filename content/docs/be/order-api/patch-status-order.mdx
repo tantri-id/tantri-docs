@@ -1,0 +1,32 @@
+---
+title: PATCH Status Order
+description: "Change one status order"
+---
+
+# 🔗 Endpoint
+
+```ts
+ https://api.tantri.id/order/checkout/status/:id
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk memperbarui status order yang sudah ada.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+  "status": "PAYMENT",
+  "orderType": "OPEN_BILL",
+  "receivedAmount": 50000
+}
+```

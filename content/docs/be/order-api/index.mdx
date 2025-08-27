@@ -1,0 +1,26 @@
+---
+title: Description
+description: "Description of Tantri Order API"
+---
+
+# Order API
+
+Selamat datang di dokumentasi **Order API**.  
+API ini digunakan untuk mengelola proses pemesanan (order) pada sistem **Tantri POS**, mulai dari membuat pesanan baru hingga memantau status pemesanan.
+
+## ✨ Fitur Utama
+
+- Membuat order baru (create order)
+- Mengambil daftar order (list orders)
+- Melihat detail order (order details)
+- Memperbarui status order (update status)
+- Membatalkan order (cancel order)
+
+## 🔑 Autentikasi
+
+Semua endpoint dalam **Order API** menggunakan autentikasi berbasis token JWT.  
+Untuk mengakses endpoint, sertakan header berikut di setiap request:
+
+```http
+Authorization: Bearer <your_token>
+```

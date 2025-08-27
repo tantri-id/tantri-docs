@@ -1,0 +1,31 @@
+---
+title: PATCH Change Payment method
+description: "Update Payment Method"
+---
+
+# 🔗 Endpoint
+
+```ts
+https://api.tantri.id/v2/order/change-payment-method
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk update payment method pada orderan
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+    "idOrder": "TRI-5MMB8YQYA64I",
+    "paymentMethod": "CASH" | "DEBIT" | "QRIS" | "ONLINE_FOOD" | "TRANSFER_MANUAL"
+}
+```
