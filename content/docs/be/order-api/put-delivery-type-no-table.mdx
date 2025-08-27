@@ -1,0 +1,31 @@
+---
+title: PUT Delivery Type and No Table
+description: "Change delivery type no table"
+---
+
+# 🔗 Endpoint
+
+```ts
+https://api.tantri.id/order/status-delivery/:id
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk memperbarui order yang sudah ada.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+  "noTable": "string",
+  "deliveryType": "string"
+}
+```

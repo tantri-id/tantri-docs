@@ -1,0 +1,74 @@
+---
+title: POST Open Bill
+description: "Create order Open bill"
+---
+
+# 🔗 Endpoint
+
+```ts
+https://api.tantri.id/v2/order/create/open-bill/checkout
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk membuat order baru Open bill.
+
+## Request Body
+
+```json
+{
+  "phoneNumber": "-",
+  "customerName": "asd ob",
+  "portal": "CASHIER",
+  "address": null,
+  "isSplitPayment": false,
+  "splitPayment": [],
+  "noTable": null,
+  "isCustomAmount": false,
+  "customAmount": [],
+  "isMultiPrice": false,
+  "productOrders": [
+    {
+      "idProduct": "f63b334a-97e7-43c1-ba94-0beed21db7f1",
+      "idProductPrice": null,
+      "name": "Ayam Geprek",
+      "price": 25000,
+      "quantity": 2,
+      "note": "",
+      "noteKitchen": "",
+      "extraOrder": [
+        {
+          "idExtra": 1,
+          "name": "Tidak Pedas",
+          "price": 0,
+          "variantName": "Pilihan Pedas",
+          "isInStock": true,
+          "idExtraPrice": null
+        }
+      ]
+    },
+    {
+      "idProduct": "5b393092-4117-4098-94bf-dd80805b7c80",
+      "idProductPrice": null,
+      "name": "Bala - bala",
+      "price": 2000,
+      "quantity": 10,
+      "note": "",
+      "noteKitchen": "",
+      "extraOrder": []
+    }
+  ],
+  "totalPrice": 70000,
+  "totalDiscount": 0,
+  "totalDiscountOrder": 0,
+  "totalDiscountProduct": 0,
+  "finalTotalPrice": 78055,
+  "deliveryType": "DINE_IN",
+  "fee": 1000,
+  "serviceFee": 50,
+  "tax": 7005,
+  "createdBy": "SA M Rizky STO",
+  "orderType": "OPEN_BILL",
+  "idCafe": "CAFE-0000000001ADJWLQ"
+}
+```

@@ -1,0 +1,62 @@
+---
+title: POST Open Bill > Split Bill > Create one
+description: "Create one order Open bill >  Split Bill"
+---
+
+# 🔗 Endpoint
+
+```ts
+https://api.tantri.id/order/split-bill/add-one
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk membuat order baru Open bill berbarengan dengan split bill.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+  "idOrder": "TRI-Z5SA4XK4IHMP",
+  "portal": "CASHIER",
+  "index": "4",
+  "item": {
+    "portal": "CASHIER",
+    "isSplitPayment": false,
+    "isCustomAmount": false,
+    "customAmount": [],
+    "productOrder": [
+      {
+        "idProduct": "610eeba8-aada-4e91-a1bb-bc87eab6fb0f",
+        "idProductOrderFromOrder": "f9657c9a-594d-4583-a334-2ceea5073a14",
+        "name": "Produk2",
+        "price": 25000,
+        "idProductOrder": "f9657c9a-594d-4583-a334-2ceea5073a14",
+        "quantity": 1,
+        "note": "",
+        "extraOrder": []
+      }
+    ],
+    "idCafe": "CAFE-0000000001LWTQRU",
+    "paymentMethod": "CASH",
+    "totalPrice": 25000,
+    "totalDiscount": 0,
+    "totalDiscountOrder": 0,
+    "totalDiscountProduct": 0,
+    "fixTotalPrice": 27000,
+    "deliveryType": "DINE-IN",
+    "fee": 0,
+    "serviceFee": 750,
+    "tax": 1250,
+    "roundedPrice": 0
+  }
+}
+```

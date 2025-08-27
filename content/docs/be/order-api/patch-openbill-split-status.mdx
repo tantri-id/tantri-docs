@@ -1,0 +1,31 @@
+---
+title: PATCH Open Bill > Split Bill > Status
+description: "Update Status order Open bill >  Split Bill"
+---
+
+# 🔗 Endpoint
+
+```ts
+https://api.tantri.id/order/split-bill/status
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk update status order Open bill berbarengan dengan split bill.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+  "idSplitBill": "1123",
+  "status": "PAID"
+}
+```

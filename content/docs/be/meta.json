@@ -1,6 +1,7 @@
 {
   "title": "Backend",
   "root": true,
-  "icon": "Database",
+  "icon": "Globe",
+  "pages": ["index", "quick-start", "order-api"],
   "defaultOpen": true
 }

@@ -1,0 +1,38 @@
+---
+title: GET Count Order Unread
+description: "Get count order"
+---
+
+# 🔗 Endpoint
+
+```ts
+https://api.tantri.id/order/count/read
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk mengambil jumlah order dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Params
+
+    - status: WAITING
+    - startDate: Date
+    - endDate: Date
+
+## Response
+
+```json
+{
+  "isSuccess": boolean,
+  "message": "string",
+  "data": { "countReservation": 0, "countOrder": 1 }
+}
+```

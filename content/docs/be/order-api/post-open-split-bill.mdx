@@ -1,0 +1,88 @@
+---
+title: POST Open Bill > Split Bill
+description: "Create order Open bill Split Bill"
+---
+
+# 🔗 Endpoint
+
+```ts
+https://api.tantri.id/v2/order/create/open-bill/checkout
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk membuat order baru Open bill berbarengan dengan split bill.
+
+## Request Body
+
+```json
+{
+  "idOrder": "TRI-TXWMUZTIPT7I",
+  "items": [
+    {
+      "productOrder": [
+        {
+          "idProduct": "ebc0f2c3-1dcf-47c9-a4ca-638f2466215c",
+          "idProductPrice": null,
+          "name": "Produk1",
+          "price": 20000,
+          "quantity": 1,
+          "note": "",
+          "extraOrder": []
+        },
+        {
+          "idProduct": "610eeba8-aada-4e91-a1bb-bc87eab6fb0f",
+          "idProductPrice": null,
+          "name": "Produk2",
+          "price": 25000,
+          "quantity": 1,
+          "note": "",
+          "extraOrder": []
+        },
+        {
+          "idProduct": "3637b8cc-2ede-44f9-baf0-a4f4c0a1f944",
+          "idProductPrice": null,
+          "name": "Produk3",
+          "price": 25000,
+          "quantity": 2,
+          "note": "",
+          "extraOrder": [
+            {
+              "idExtra": 1,
+              "name": "Level 1",
+              "price": 1000,
+              "variantName": "Pedas khusus ayam",
+              "isInStock": true,
+              "idExtraPrice": null
+            },
+            {
+              "idExtra": 2,
+              "name": "Level 1",
+              "price": 1000,
+              "variantName": "variant untuk ikan",
+              "isInStock": true,
+              "idExtraPrice": null
+            },
+            {
+              "idExtra": 3,
+              "name": "Level 3",
+              "price": 3000,
+              "variantName": "variant 2",
+              "isInStock": true,
+              "idExtraPrice": null
+            }
+          ]
+        }
+      ],
+      "isCustomAmount": false,
+      "customAmount": [],
+      "fee": 1000,
+      "serviceFee": 0,
+      "tax": 0,
+      "paymentMethod": "CASH",
+      "totalPrice": 105000,
+      "fixTotalPrice": 106000
+    }
+  ]
+}
+```

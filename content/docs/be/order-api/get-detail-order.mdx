@@ -1,0 +1,129 @@
+---
+title: GET Detail order
+description: "Get one order detail by id"
+---
+
+# 🔗 Endpoint
+
+```ts
+https://api.tantri.id/order/checkout/:id
+```
+
+# 📖 Deskripsi
+
+Endpoint ini digunakan untuk mengambil detail order dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Response
+
+```json
+{
+  "isSuccess": true,
+  "message": "OK",
+  "data": {
+    "id": "TRI-5PX1ZFPOR65V",
+    "paymentMethod": "CASH",
+    "totalPriceProduct": 100000,
+    "totalPriceCustomAmount": 0,
+    "totalPrice": 102100,
+    "cogs": "0",
+    "multiPriceName": null,
+    "multiPriceFee": 0,
+    "roundedPrice": 90,
+    "fee": 1000,
+    "tax": 1010,
+    "serviceFee": 1000,
+    "xenditFee": 0,
+    "totalDiscountProduct": 0,
+    "totalDiscountOrder": 0,
+    "totalDiscount": 0,
+    "receivedAmount": null,
+    "changeAmount": 0,
+    "countSplitBill": null,
+    "currSplitBill": null,
+    "noOrder": "230",
+    "noTable": "3",
+    "nameTable": [],
+    "nameFloor": [],
+    "printed": [],
+    "createdBy": "Jhon doe",
+    "updatedBy": null,
+    "totalMemberTable": null,
+    "deliveryType": "DI",
+    "status": "WAITING",
+    "orderType": "CLOSE_BILL",
+    "typeBillingCafe": "DYNAMIC",
+    "indexOrder": 0,
+    "isValid": true,
+    "isSuccess": true,
+    "isRead": true,
+    "isPlatformFeeByCustomer": false,
+    "isDummy": true,
+    "isCityLedger": false,
+    "isSplitBill": false,
+    "isSplitPayment": false,
+    "isPriority": false,
+    "createdAt": "2025-08-19T03:27:04.020Z",
+    "updatedAt": "2025-08-19T03:27:04.657Z",
+    "paidAt": null,
+    "checkedAt": null,
+    "idCustomer": "3cad0322-ed9d-43df-b042-7269d6e2aebf",
+    "customerName": "Jhon",
+    "address": null,
+    "idUser": null,
+    "idShiftLog": null,
+    "idCafe": "049d47aa-1d40-4ad7-9f35-d833282d9a1d",
+    "idPriceType": null,
+    "idCustomerCityLedger": null,
+    "idMerCoin": null,
+    "idTriCoin": null,
+    "idCafeCustomerReview": null,
+    "productOrder": [
+      {
+        "id": "91b85842-ea0c-4c66-b55f-ed98b8ceb2b9",
+        "idProduct": "0dd194d9-ed21-4794-8bb8-adc72ee79de2",
+        "name": "Gurita Bakar dengan saus asam manis ditambha sambal terasi",
+        "type": "FOOD",
+        "price": 100000,
+        "quantity": 1,
+        "note": "",
+        "noteKitchen": "",
+        "isDone": null,
+        "isPriority": false,
+        "extraOrder": [
+          {
+            "idExtra": 370,
+            "name": "level 1",
+            "variantName": "Tingkat kepedasan",
+            "price": 0
+          }
+        ]
+      }
+    ],
+    "eWallet": null,
+    "qrCode": null,
+    "virtualAccount": null,
+    "customerCityLedger": null,
+    "cafe": {
+      "id": "049d47aa-1d40-4ad7-9f35-d833282d9a1d",
+      "name": "Seafood Hebat",
+      "slug": "seafood-anugrah"
+    },
+    "totalProductOrder": 1,
+    "customer": {
+      "id": "3cad0322-ed9d-43df-b042-7269d6e2aebf",
+      "name": "Guest",
+      "phoneNumber": "-",
+      "createdAt": "2023-10-13T03:05:27.000Z",
+      "updatedAt": "2025-02-26T04:42:24.541Z"
+    }
+  }
+}
+```
