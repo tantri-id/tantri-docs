@@ -121,7 +121,7 @@ import { ProductRepository } from "src/product/repositories/product.repository";
 
 ---
 
-## ✅ Fungsi Utama
+## Fungsi Utama
 
 ### 1. `calcTotalPrice(payload)`
 
@@ -180,7 +180,7 @@ Membulatkan harga total ke kelipatan 100 (jika `isRounded = true`).
 
 ---
 
-## 📌 Catatan Teknis
+## Catatan Teknis
 
 - **Prisma Transaction**: Fungsi `calcTotalPrice` menggunakan transaction Prisma untuk menjaga konsistensi saat mengurangi stok.
 - **Validasi**: Menggunakan helper `Validation` untuk memeriksa field kosong/null.
@@ -191,7 +191,7 @@ Membulatkan harga total ke kelipatan 100 (jika `isRounded = true`).
 
 ---
 
-## 🗂️ Tipe Terkait
+## Tipe Terkait
 
 - `ICalcTotalPriceProductOrder`: Struktur input produk pesanan
 - `IExtraOrder`: Detail extra pada pesanan
@@ -199,7 +199,7 @@ Membulatkan harga total ke kelipatan 100 (jika `isRounded = true`).
 
 ---
 
-## 🚀 Use Case
+## Use Case
 
 - Digunakan saat customer melakukan pemesanan produk dari POS atau mobile app.
 - Mampu menangani berbagai skenario kompleks seperti:
