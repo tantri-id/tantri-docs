@@ -8,11 +8,11 @@ description: "Dokumentasi modul pengelolaan produk setengah jadi: daftar produks
 
 Modul **Produksi** digunakan untuk mencatat pembuatan **produk setengah jadi** atau bahan olahan internal (mis. *ikan asin*, *kaldu*, *saus*) dari satu atau beberapa bahan baku, sekaligus mengelola **stok jadi, harga produksi, dan masa kedaluwarsa**.
 
-> ℹ️ Data pada modul ini terintegrasi dengan **Daftar Stok**. Pastikan master bahan baku dan satuan telah disiapkan terlebih dahulu.
+> Data pada modul ini terintegrasi dengan **Daftar Stok**. Pastikan master bahan baku dan satuan telah disiapkan terlebih dahulu.
 
 ---
 
-## 1) Daftar Produksi 📋
+## 1) Daftar Produksi
 
 **Akses:** `Inventori → Produksi`
 
@@ -38,7 +38,7 @@ Elemen halaman:
 
 ---
 
-## 2) Tambah/Editar Produk Setengah Jadi ➕✏️
+## 2) Tambah/Editar Produk Setengah Jadi
 
 Tampilan formulir **Rincian Bahan Produksi Setengah Jadi** berisi beberapa bagian:
 
@@ -75,7 +75,7 @@ Klik **Simpan** untuk membuat/menyimpan perubahan. Entri akan muncul di **Daftar
 
 ---
 
-## 3) Detail Produksi (Batch & Pergerakan) 🔎
+## 3) Detail Produksi (Batch & Pergerakan)
 
 > Tampilan ini muncul saat memilih **Aksi → Lihat Detail** pada daftar (gambar ketiga pada contoh).
 
@@ -99,11 +99,11 @@ Elemen utama halaman detail:
 - **Atur Kedaluwarsa** — membuka dialog untuk memasukkan **Tanggal Kedaluwarsa** dan **pengingat X hari sebelum** tanggal tersebut.
 - **Kurangi Stok** — mengurangi kuantitas (mis. untuk pemakaian internal/penyesuaian). Sistem menolak pengurangan yang membuat stok menjadi negatif.
 
-> 📌 **Catatan:** Harga satuan pada tabel bersifat informatif untuk analisis. Perubahan nominal **Harga Produksi** hanya dapat dilakukan dengan mengedit data produk/batch terkait.
+> **Catatan:** Harga satuan pada tabel bersifat informatif untuk analisis. Perubahan nominal **Harga Produksi** hanya dapat dilakukan dengan mengedit data produk/batch terkait.
 
 ---
 
-## 4) Rumus & Perhitungan 🧮
+## 4) Rumus & Perhitungan
 
 - **Harga Satuan per pcs/bungkus**
   `Harga Satuan = Harga Produksi ÷ Jumlah Output Batch`
@@ -119,14 +119,14 @@ Elemen utama halaman detail:
 
 ---
 
-## 5) Ekspor & Arsip ⬇️
+## 5) Ekspor & Arsip
 
 - **Unduh PDF / Unduh Excel** pada halaman **Daftar Produksi** untuk laporan dan audit.
 - **Lihat Produksi Terhapus** menampilkan item yang dihapus. Gunakan untuk penelusuran historis atau pemulihan (jika diizinkan kebijakan sistem).
 
 ---
 
-## 6) Validasi & Edge Case 🧩
+## 6) Validasi & Edge Case
 
 1. **Satuan tidak konsisten** — pastikan satuan komponen & output jelas; gunakan satuan standar agar konversi mudah diaudit.
 2. **Stok negatif** — aksi _Kurangi Stok_ dibatasi agar sisa stok tidak < 0.
@@ -136,7 +136,7 @@ Elemen utama halaman detail:
 
 ---
 
-## 7) Praktik Terbaik ✅
+## 7) Praktik Terbaik
 
 - **Standarisasi resep**: tetapkan komposisi dan output per batch yang konsisten.
 - **Gunakan SKU**: mempermudah pencarian dan integrasi ke sistem lain.
@@ -146,7 +146,7 @@ Elemen utama halaman detail:
 
 ---
 
-## 8) FAQ ❓
+## 8) FAQ
 
 **Q: Mengapa saya tidak bisa mengedit stok langsung di kolom Sisa Stok?**
 A: Perubahan stok dilakukan melalui **Tambah Stok** atau **Kurangi Stok** agar ada jejak audit pergerakan.

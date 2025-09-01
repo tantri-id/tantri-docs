@@ -8,11 +8,11 @@ description: "Dokumentasi modul approval dokumen kirim stok: daftar persetujuan,
 
 Modul ini digunakan oleh pihak berwenang (gudang/manager) untuk **meninjau dan menyetujui** dokumen **Kirim Stok** sebelum barang diberangkatkan dan diproses pada **Terima Stok**.
 
-> 🔗 **Terkait:** Dokumen dibuat di **Kirim Stok** → ditinjau di **Persetujuan Distribusi** → setelah **Approved**, dipakai pada **Terima Stok** di cabang tujuan.
+>  **Terkait:** Dokumen dibuat di **Kirim Stok** → ditinjau di **Persetujuan Distribusi** → setelah **Approved**, dipakai pada **Terima Stok** di cabang tujuan.
 
 ---
 
-## 1) Daftar Persetujuan 📋
+## 1) Daftar Persetujuan
 
 **Lokasi:** `Inventori → Distribusi Stok → Persetujuan Distribusi`
 
@@ -31,11 +31,11 @@ Elemen pada daftar:
 
 - **Sortir & Pagination**: dukungan pengurutan kolom dan navigasi halaman.
 
-> ℹ️ Hanya dokumen dengan status **Menunggu Persetujuan** yang dapat diproses.
+> Hanya dokumen dengan status **Menunggu Persetujuan** yang dapat diproses.
 
 ---
 
-## 2) Proses Approval ✅
+## 2) Proses Approval
 
 **Langkah-langkah:**
 
@@ -53,7 +53,7 @@ Elemen pada daftar:
 
 ---
 
-## 3) Tampilan Invoice 🧾
+## 3) Tampilan Invoice
 
 Di halaman invoice Anda akan melihat:
 
@@ -71,7 +71,7 @@ Di halaman invoice Anda akan melihat:
 
 ---
 
-## 4) Hak Akses & Audit Trail 🔑
+## 4) Hak Akses & Audit Trail
 
 - Tombol **Approve** hanya tampil untuk role yang berwenang (mis. kepala gudang/manager).
 - Setiap approval mencatat **waktu, user, dan status** sebagai jejak audit.
@@ -79,7 +79,7 @@ Di halaman invoice Anda akan melihat:
 
 ---
 
-## 5) Edge Case & Validasi 🧩
+## 5) Edge Case & Validasi
 
 1. **Ganda/duplikat**: jika ditemukan dokumen ganda, batalkan salah satunya sebelum approve.
 2. **Jumlah 0/negatif**: tidak dapat disetujui; perbaiki di **Kirim Stok**.
@@ -90,7 +90,7 @@ Di halaman invoice Anda akan melihat:
 
 ---
 
-## 6) Praktik Terbaik ✅
+## 6) Praktik Terbaik
 
 - **Dua pasang mata**: minimal 2 orang meninjau (checker & approver) untuk mengurangi kesalahan.
 - **Standar pencatatan**: tulis catatan pengiriman (kondisi, suhu, nomor segel) secara konsisten.
@@ -99,7 +99,7 @@ Di halaman invoice Anda akan melihat:
 
 ---
 
-## 7) FAQ ❓
+## 7) FAQ
 
 **Q: Saya tidak melihat tombol Approve.**
 A: Periksa role Anda dan pastikan status dokumen **Menunggu Persetujuan**.

@@ -8,7 +8,7 @@ description: "Dokumentasi modul laporan kehadiran: daftar presensi per tanggal, 
 
 Modul ini menyajikan rekap **presensi harian** karyawan berdasarkan jadwal pada **Shifting Karyawan/Grup Shifting**. Data yang tampil memudahkan monitoring keterlambatan, kepulangan lebih cepat, serta audit lokasi & foto (bila fitur diaktifkan).
 
-> 🔗 **Terkait:**
+>  **Terkait:**
 >
 > * **Grup Shifting** → mendefinisikan *jam mulai/selesai* setiap nama shift.
 > * **Shifting Karyawan** → menempelkan nama shift ke hari‑hari dalam seminggu untuk tiap karyawan.
@@ -25,7 +25,7 @@ Elemen utama halaman daftar:
 - **Rentang Tanggal**: pilih periode presensi yang ingin ditampilkan.
 - **Tombol** `Unduh Excel` — mengekspor data sesuai rentang tanggal & filter aktif.
 
-> ✅ **Tips:** Setel rentang tanggal terlebih dahulu lalu tekan **Unduh Excel** agar file sesuai tampilan.
+> **Tips:** Setel rentang tanggal terlebih dahulu lalu tekan **Unduh Excel** agar file sesuai tampilan.
 
 ---
 
@@ -46,11 +46,11 @@ Kolom yang ditampilkan:
   - **Lihat Detail** — buka halaman detail presensi.
   - **Tambah Keterangan** — menambahkan/menyunting catatan untuk baris tersebut.
 
-> ℹ️ **Status** ditentukan dengan membandingkan waktu presensi terhadap **jam mulai/selesai** yang didefinisikan pada **Grup Shifting**, memperhitungkan _grace period_ (toleransi) bila diaktifkan. Nilai toleransi mengikuti konfigurasi sistem/outlet.
+> **Status** ditentukan dengan membandingkan waktu presensi terhadap **jam mulai/selesai** yang didefinisikan pada **Grup Shifting**, memperhitungkan _grace period_ (toleransi) bila diaktifkan. Nilai toleransi mengikuti konfigurasi sistem/outlet.
 
 ---
 
-## 3) Lihat Detail Presensi 🔎
+## 3) Lihat Detail Presensi
 
 Halaman detail memperlihatkan informasi lengkap untuk satu presensi:
 
@@ -69,7 +69,7 @@ Halaman detail memperlihatkan informasi lengkap untuk satu presensi:
 
 ---
 
-## 4) Tambah Keterangan 📝
+## 4) Tambah Keterangan
 
 Pilih **Aksi → Tambah Keterangan** untuk membuka dialog catatan.
 
@@ -80,7 +80,7 @@ Pilih **Aksi → Tambah Keterangan** untuk membuka dialog catatan.
 
 ---
 
-## 5) Ekspor Excel ⬇️
+## 5) Ekspor Excel
 
 Klik **Unduh Excel** untuk mengekspor data ke `.xlsx` sesuai **rentang tanggal** & **filter** yang aktif.
 
@@ -95,11 +95,11 @@ Isi file meliputi kolom pada tabel (tanggal, nama, shift, jam masuk/keluar, stat
 - **Sesuai Waktu**: `Clock Out` ≥ `Jam Selesai` (− toleransi bila ada).
 - **Pulang Lebih Cepat**: `Clock Out` < `Jam Selesai` (− toleransi).
 
-> ⚙️ **Toleransi (grace period)** dikonfigurasi di sistem. Jika tidak diatur, perbandingan dilakukan tepat pada jam shift.
+> **Toleransi (grace period)** dikonfigurasi di sistem. Jika tidak diatur, perbandingan dilakukan tepat pada jam shift.
 
 ---
 
-## 7) Edge Case & Validasi 🧩
+## 7) Edge Case & Validasi
 
 1. **Tidak ada Clock Out** — baris tetap tampil; status pulang dapat kosong/khusus sesuai konfigurasi. Lakukan koreksi manual jika diperlukan (hak akses tertentu).
 2. **Shift lintas hari** — pelaporan mengikuti kebijakan sistem: umumnya presensi dihitung pada **tanggal mulai shift**.
@@ -108,7 +108,7 @@ Isi file meliputi kolom pada tabel (tanggal, nama, shift, jam masuk/keluar, stat
 
 ---
 
-## 8) Praktik Terbaik ✅
+## 8) Praktik Terbaik
 
 - **Kunci Grup Shifting** sebelum minggu berjalan untuk menghindari perbedaan status.
 - **Audit mingguan**: ekspor Excel & tinjau baris dengan badge merah (terlambat/pulang cepat).
@@ -117,7 +117,7 @@ Isi file meliputi kolom pada tabel (tanggal, nama, shift, jam masuk/keluar, stat
 
 ---
 
-## 9) FAQ ❓
+## 9) FAQ
 
 **Q: Mengapa status saya Terlambat padahal datang lebih awal?**
 A: Periksa nama **Jadwal Shift** pada **Shifting Karyawan** dan jam pada **Grup Shifting**. Pastikan tidak ada perubahan setelah presensi.
