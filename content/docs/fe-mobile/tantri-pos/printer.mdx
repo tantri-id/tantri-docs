@@ -1,0 +1,138 @@
+---
+title: Pengaturan Printer
+description: "Panduan menghubungkan dan menggunakan printer pada Tantri Cashier Mobile (Android)."
+---
+
+Halaman ini memandu Anda mengatur dan mencetak menggunakan printer dari aplikasi Tantri Cashier di perangkat Android.
+
+---
+
+## Dukungan & Batasan
+
+- Android: mendukung Printer Bluetooth ESC/POS dan Printer Jaringan (LAN/WiFi, RAW 9100)
+- iOS: sementara belum didukung
+- Tidak didukung: Printer USB langsung via OTG dari aplikasi mobile
+
+---
+
+## Library yang Digunakan (Mobile)
+
+- Bluetooth ESC/POS: `@sofyan.rs/react-native-bluetooth-escpos-printer`
+- Thermal/LAN (RAW 9100): `@sofyan.rs/react-native-thermal-printer`
+
+---
+
+## Persiapan Perangkat
+
+### Android
+
+1. Aktifkan Bluetooth
+2. (Direkomendasikan) Pair printer melalui Settings > Bluetooth
+3. Berikan izin aplikasi saat diminta:
+   - Android 12+: Bluetooth Scan & Bluetooth Connect
+   - Android 6–11: Lokasi (untuk pemindaian perangkat Bluetooth)
+
+Catatan: iOS sementara belum didukung untuk pencetakan dari aplikasi mobile
+
+---
+
+## Menambahkan Printer
+
+1. Buka Pengaturan > Printer
+2. Tekan `+` untuk menambah
+3. Pilih salah satu tipe berikut:
+
+### A. Printer Bluetooth
+
+1. Pilih opsi Printer Bluetooth
+2. Android: aplikasi akan menampilkan perangkat yang terpasang (bonded). Pilih printer Anda
+3. Simpan dan lakukan Uji Cetak
+
+Tips jika perangkat tidak muncul:
+
+- Pastikan printer dalam mode discoverable/pairing
+- Pastikan izin Bluetooth telah diberikan (Android)
+- Dekatkan perangkat ke printer dan ulangi pemindaian
+
+### B. Printer Jaringan (LAN/WiFi)
+
+1. Pilih opsi Printer NET (LAN/WiFi)
+2. Masukkan IP printer (contoh: `192.168.0.101`)
+3. Port umum: `9100` (RAW)
+4. Pastikan perangkat dan printer berada di jaringan yang sama
+5. Simpan dan lakukan Uji Cetak
+
+Saran:
+
+- Gunakan IP statis pada printer agar tidak berubah
+
+---
+
+## Upload Logo Struk
+
+- Format: PNG
+- Ukuran: maks. 160 x 90 px
+- Disarankan background transparan
+- Logo akan tampil di preview setelah unggah
+
+---
+
+## Custom Header & Footer Struk
+
+Gunakan tombol "Custom Text Struk" untuk menambahkan/ubah header dan footer, misalnya:
+
+- Nama toko
+- Alamat & No. telepon
+- Catatan layanan (mis. "Terima kasih telah berbelanja")
+
+---
+
+## Kategori Printer yang Dapat Diatur
+
+- Printer Struk Pelanggan: struk transaksi
+- Printer Checker Pesanan: daftar item untuk validasi
+- Printer Dapur (Makanan/Minuman/Custom): cetak item sesuai kategori
+- Printer Laporan: cetak ringkasan/laporan
+- Printer Label Pesanan: label nama/kode pesanan
+
+Tekan `+` pada tiap kategori untuk menambahkan printer baru.
+
+---
+
+## Uji Cetak
+
+1. Masuk Pengaturan > Printer
+2. Pada printer terpilih, tekan tombol Test Print/Cetak Uji
+3. Pastikan hasil cetak jelas dan format sesuai lebar kertas (58mm/80mm)
+
+---
+
+## Troubleshooting
+
+Bluetooth tidak muncul:
+
+- Android: pastikan izin Bluetooth diberikan, Bluetooth aktif, perangkat sudah paired
+- Dekatkan perangkat ke printer dan ulangi scan
+
+Tidak bisa konek Bluetooth:
+
+- Hapus pairing dari sistem, pair ulang, lalu pilih dari aplikasi
+- Matikan/nyalakan Bluetooth perangkat
+- Pastikan hanya satu perangkat yang terhubung ke printer pada satu waktu
+
+Tidak bisa cetak via LAN:
+
+- Pastikan perangkat dan printer satu jaringan, IP benar, port 9100 terbuka
+- Coba ping IP printer dari perangkat lain di jaringan yang sama
+- Gunakan IP statis pada printer
+
+---
+
+## Backup & Restore Pengaturan Printer
+
+- Backup Data: menyimpan konfigurasi printer ke cloud
+- Restore Data: memulihkan konfigurasi dari backup terakhir
+
+Catatan: hanya backup 5 terakhir yang disimpan.
+
+---

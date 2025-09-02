@@ -1,234 +1,336 @@
 ---
 title: Guidelines
-description: This document provides a comprehensive structure for developing tantri cashier with VITE ReactJS. Here is a tidied-up version based on each context
+description: Standards for developing and maintaining the Tantri POS React Native app (RN 0.80, React 19). Covers folder structure, naming, data layer, navigation, styling, theming, and engineering practices.
 ---
 
 import { File, Folder, Files } from "fumadocs-ui/components/files";
 
-## Liblary
+## Core Libraries (in use)
 
-- Use `react-query` for data fetching via `useQuery` and `useMutation`.
-- Use `shadcn/ui` as the primary UI component library.
-- Use `react-hook-form` for form handling.
-- Use `tailwindcss` for styling.
-- Use `zustand` for state management.
-- Use `react-router-dom` for routing.
-- Use `react-geocode` for geocoding.
-- Use `react-thermal-printer` for thermal printing.
+- axios: HTTP client (`src/lib/api/ApiClient.ts`)
+- @tanstack/react-query v5: server-state, with persistence via AsyncStorage
+- redux-toolkit + react-redux: client/UI state (`src/redux/*`)
+- @react-navigation/native + native-stack + bottom-tabs + material-top-tabs
+- @react-native-async-storage/async-storage: storage and query persistence
+- moment (+ locale id): date/time formatting
+- notifee + @react-native-firebase/messaging: notifications
+- react-native-gesture-handler, screens, safe-area-context, reanimated
+- react-native-fast-image: images
 
-## Naming Convention
+## Naming
 
-- Use kebab-case for file naming and context-aware hooks (e.g., use-users-query.ts).
+- Components: PascalCase (e.g. `StoreInformation.tsx`)
+- Hooks, variables, functions, types, enums: camelCase (e.g. `useUserData`, `errorResponse`, `userTokenType`)
+- Slices: `somethingSlice.ts` and exported as `something: somethingReducer` in store
+- Files colocated when used by only one feature; shared code in `src/lib` or `src/types`
 
-## Engineering Principle
+## Folder Structure
 
-1. Start Simple
-
-   Begin with simple, minimal implementations. Avoid breaking components apart unless necessary.
-
-2. Component Simplicity
-
-   Keep components focused and minimal. Prioritize readability and maintainability.
-
-3. Coupling and Cohesion
-
-   - Low Coupling:
-
-     Avoid tangled connections between unrelated modules. <br />❌ Example of bad
-     practice: importing functions from the login page into the users page.
-
-   - High Cohesion:
-
-   Group code logically based on its functionality. <br />
-   ❌ Poor example: inconsistent or unclear folder structures.
-
-   ✅ Good example: if a type, enum, or utility is only used within a single
-   component, colocate it with that component. <br />- Example:
-
-   - `src/app/_components/menu`
-   - `index.tsx`
-   - `type.tsx`
-   - `util.tsx`
-
-   - ref: [Coupling and Cohesion.](https://betterprogramming.pub/coupling-cohesion-552b022492b2)
-
-4. One Hook, One Purpose
-   - Avoid overloading hooks. Each custom hook should serve a single, clear purpose.
-     Keep it clean, readable, and easy to maintain.
-
-## Structure Folder
-
-- `build/:` Docker build artifacts.
-
-- `dev-build/:` Development build artifacts, such as webpack bundles and service worker files.
-
-- `public/:` Static assets, such as images, fonts, and favicon.
-
-- `src/:` Application logic, including components, pages, and API routes.
-
-- `src/components/`: Shared components.
-
-- `src/context`: Shared context.
-
-- `src/hooks`: Shared hooks or declare custom hooks.
-
-- `src/pages/_components/`:Components within the module.
-
-- `src/pages/_hooks`: Hooks within the module.
-
-- `src/routes/private/`: Components and pages requiring authentication. See Modules Structure for more details.
-
-- `src/services/api/`: API and its type definitions.
-
-- `src/common/`: Common utilities, global type, enum, constant e.g `src/common/types/response.ts`
-
-- `src/libs/`: Libraries and utilities.
-
-- `src/types/`: Declared type e.g: `src/types/react-slider.d.ts`
-
-- `src/validations-schema/`: Declared validation schema e.g: `src/validations-schema/index.validation.ts`
+- `src/assets/` images, fonts
+- `src/components/` shared UI and layout components
+- `src/contexts/` app-level contexts (auth, orientation, network, appState, customerDisplay)
+- `src/hooks/` reusable hooks
+- `src/lib/`
+  - `api/ApiClient.ts`
+  - `constants/baseURL.ts`
+  - `theme/` color, font size, font weight
+  - `utils/` error, permissions, listeners, token helpers
+- `src/navigation/` navigators and param types
+- `src/redux/` store, typed hooks, slices
+- `src/screens/` feature screens grouped by domain
+- `src/types/` app-wide TS types and enums
 
 <Files>
-  <Folder name="build">
-    <File name="docker-compose.yml" />
-  </Folder>
-  <Folder name="dev-build">
-    <File name="workbox-sw.js" />
-  </Folder>
-  <Folder name="public">
-    <File name="favicon.ico" />
+  <Folder name="android" />
+  <Folder name="ios" />
+  <Folder name="patches">
+    <File name="react-native-fast-image+8.6.3.patch" />
+    <File name="react-native-google-places-autocomplete+2.5.7.patch" />
+    <File name="rn-fetch-blob+0.12.0.patch" />
   </Folder>
   <Folder name="src" defaultOpen>
+    <Folder name="assets">
+      <Folder name="fonts">
+        <File name="Linotte-Bold.otf" />
+        <File name="Linotte-Medium.otf" />
+      </Folder>
+      <Folder name="img">
+        <Folder name="icons" />
+        <Folder name="logo" />
+      </Folder>
+    </Folder>
     <Folder name="components" defaultOpen>
-      <Folder name="ui">
-        <File name="button.tsx" />
-        <File name="tabs.tsx" />
-        <File name="dialog.tsx" />
+      <Folder name="UI">
+        <Folder name="Modal">
+          <File name="ModalUpdateApp.tsx" />
+          <File name="ModalNotification.tsx" />
+        </Folder>
+        <Folder name="Button" />
+        <Folder name="Input" />
       </Folder>
+      <Folder name="Layout" />
     </Folder>
-    <Folder name="context" defaultOpen>
-      <File name="auth-context.tsx" />
+    <Folder name="contexts">
+      <File name="AuthContext.ts" />
+      <File name="OrientationContext.ts" />
+      <File name="NetworkContext.ts" />
+      <File name="AppStateContext.ts" />
+      <File name="CustomerDisplayContext.ts" />
     </Folder>
-    <Folder name="hooks" defaultOpen>
-      <Folder name="custom-hooks" defaultOpen>
-        <File name="use-auth.ts" />
-        <File name="use-alert-message.ts" />
-      </Folder>
+    <Folder name="hooks">
+      <File name="useAuth.ts" />
+      <File name="useOrientation.ts" />
+      <File name="useAppState.ts" />
+      <File name="useHint.ts" />
     </Folder>
     <Folder name="lib" defaultOpen>
-      <Folder name="api"></Folder>
-      <Folder name="constants"></Folder>
-      <Folder name="utils"></Folder>
-    </Folder>
-    <Folder name="pages" defaultOpen>
-      <Folder name="cashier" defaultOpen>
-        <Folder name="auth" defaultOpen>
-          <Folder name="_components" defaultOpen>
-            <File name="index.tsx" />
-          </Folder>
-          <Folder name="_hooks">
-            <File name="use-auth-mutation.tsx" />
-            <File name="use-user-query.tsx" />
-          </Folder>
-          <File name="page.tsx" />
+      <Folder name="api">
+        <File name="ApiClient.ts" />
+      </Folder>
+      <Folder name="constants">
+        <File name="baseURL.ts" />
+      </Folder>
+      <Folder name="theme">
+        <File name="index.ts" />
+      </Folder>
+      <Folder name="utils" defaultOpen>
+        <Folder name="error">
+          <File name="errorResponse.ts" />
+        </Folder>
+        <Folder name="listeners">
+          <File name="notificationListener.ts" />
+          <File name="websocketListener.tsx" />
+        </Folder>
+        <Folder name="permissions">
+          <File name="notificationPermission.ts" />
+        </Folder>
+        <Folder name="token">
+          <File name="refreshToken.ts" />
         </Folder>
       </Folder>
-      <Folder name="general"></Folder>
+      <Folder name="printer" />
+    </Folder>
+    <Folder name="navigation" defaultOpen>
+      <File name="appNavigation.tsx" />
+      <File name="navigation.type.ts" />
     </Folder>
     <Folder name="redux" defaultOpen>
-      <Folder name="slices">
-        <File name="payment-slice.ts" />
+      <Folder name="slice" defaultOpen>
+        <File name="cartSlice.ts" />
+        <File name="paymentSlice.ts" />
+        <File name="settingSlice.ts" />
       </Folder>
       <File name="store.ts" />
       <File name="hooks.ts" />
     </Folder>
-    <Folder name="routes" defaultOpen>
-      <File name="index.tsx" />
-      <File name="public.tsx" />
-      <File name="private.tsx" />
-    </Folder>
-    <Folder name="services" defaultOpen>
-      <Folder name="api" defaultOpen>
-        <Folder name="setting-cafe" defaultOpen>
-          <File name="auth.ts" />
-          <File name="type.ts" />
+    <Folder name="screens" defaultOpen>
+      <Folder name="auth">
+        <Folder name="Login">
+          <File name="Login.tsx" />
+        </Folder>
+      </Folder>
+      <Folder name="main">
+        <Folder name="Settings">
+          <File name="Settings.tsx" />
+        </Folder>
+      </Folder>
+      <Folder name="sub">
+        <Folder name="Settings">
+          <Folder name="StoreInformation" defaultOpen>
+            <Folder name="fetch">
+              <File name="getDataStore.ts" />
+            </Folder>
+            <File name="StoreInformation.tsx" />
+          </Folder>
         </Folder>
       </Folder>
     </Folder>
     <Folder name="types">
-      <File name="index.ts" />
-    </Folder>
-    <Folder name="validations-schema">
-      <File name="index.validation.ts" />
+      <Folder name="order" />
+      <Folder name="user" />
     </Folder>
   </Folder>
+  <Folder name="tests">
+    <File name="main-test.yaml" />
+  </Folder>
   <File name="package.json" />
+  <File name="app.json" />
+  <File name="babel.config.js" />
 </Files>
 
----
+```ts
+// Providers wiring (Redux + React Query + Contexts)
+<Provider store={store}>
+  <PersistQueryClientProvider
+    client={queryClient}
+    persistOptions={{ persister: asyncStoragePersister }}
+  >
+    <AuthContext.Provider value={{ token, setToken, removeToken }}>
+      <OrientationContext.Provider value={{ isLandscape, screenOrientation }}>
+        <NetworkContext.Provider value={{ isConnected, isInternetReachable }}>
+          <AppStateContext.Provider value={{ appStateVisible }}>
+            <CustomerDisplayContext.Provider
+              value={{ showCustomerDisplay, setShowCustomerDisplay }}
+            >
+              <AppNavigation />
+            </CustomerDisplayContext.Provider>
+          </AppStateContext.Provider>
+        </NetworkContext.Provider>
+      </OrientationContext.Provider>
+    </AuthContext.Provider>
+  </PersistQueryClientProvider>
+</Provider>
+```
 
-## Write API request
+## Engineering Principles
 
-Example :
+1. Start simple: minimal, readable components; split only when necessary
+2. One hook, one purpose: focused, reusable, typed
+3. Low coupling, high cohesion: colocate feature-only code under the feature; share via `src/lib/*` when broadly used
+4. Explicit data boundaries: React Query for server-state; Redux for UI/flow/cross-screen ephemeral state
+5. Typed APIs and params: type inputs/outputs for queries, mutations, and navigation params
+
+## API Layer
+
+- Base URL from `src/lib/constants/baseURL.ts` (staging/prod toggled in file)
+- Shared axios instance in `src/lib/api/ApiClient.ts`
+- Use `errorResponse(error)` to normalize thrown errors
 
 ```ts
-export const getLocation = async (
-  params: TGetLocation
-): Promise<TResponse<TLocationResponse>> => {
-  const res = await ApiClient.get("/api-endpoint", {
-    params,
-  });
-  return res.data;
+const ApiClient = axios.create({ baseURL: apiUrl });
+export default ApiClient;
+```
+
+Example request with auth header and error handling:
+
+```ts
+const getDataStore = async ({
+  token,
+  idCafe,
+}: {
+  token: string | null;
+  idCafe: string | null;
+}) => {
+  try {
+    const res = await ApiClient.get(`/cafe/${idCafe}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return res.data.data;
+  } catch (error: any) {
+    errorResponse(error);
+  }
 };
 ```
 
-## Write Hook react query
+## React Query
 
-Example :
+- QueryClient created in `App.tsx` with AsyncStorage persister
+- Use v5 APIs (`useQuery`, `useMutation`, `useQueryClient`)
+- Key rules: stable `queryKey`, avoid mixing server-state into Redux
 
-```tsx
-export const useUserQuery = () => {
-  return useQuery({
-    queryKey: ["users"],
-    queryFn: () => getUser(),
+```ts
+export const useGetDataStore = ({
+  token,
+  idCafe,
+}: {
+  token: string | null;
+  idCafe: string | null;
+}) =>
+  useQuery({
+    queryKey: ["getDataStore"],
+    queryFn: () => getDataStore({ token, idCafe }),
   });
+```
+
+## Redux
+
+- Store in `src/redux/store.ts`, typed hooks in `src/redux/hooks.ts`
+- Use for cart, payment, printer, shifting, setting, unread, splitBill, currency, etc.
+
+```ts
+export const store = configureStore({
+  reducer: {
+    buyer: buyerReducer,
+    cart: cartReducer,
+    payment: paymentReducer,
+    unread: unreadReducer,
+    printer: printerReducer,
+    viewMode: viewModeReducer,
+    shifting: shiftingSlice,
+    setting: settingSlice,
+    splitBill: splitBillSlice,
+    currency: currencySlice,
+  },
+  middleware: (g) => g({ serializableCheck: false }),
+});
+```
+
+## Navigation
+
+- `@react-navigation/native-stack` for stacks; bottom tabs + material top tabs
+- Types centralized in `src/navigation/navigation.type.ts`; import types for `useNavigation` and `NativeStackScreenProps`
+
+```ts
+<NavigationContainer>
+  <Stack.Navigator
+    initialRouteName={initialRoute}
+    screenOptions={{ headerShown: false }}
+  >
+    {token === null ? (
+      <>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="OTPVerification" component={OTPVerification} />
+        ...
+      </>
+    ) : (
+      <>
+        <Stack.Screen name="Dashboard" children={() => <DashboardTabs />} />
+        ...
+      </>
+    )}
+  </Stack.Navigator>
+</NavigationContainer>
+```
+
+## Styling & Theme
+
+- Colors and typography in `src/lib/theme/index.ts` (use `color.*`, `fontSize`, `fontWeight`)
+- Prefer inline styles or StyleSheet with theme tokens; nativewind present but not widely used here
+
+## Error Handling
+
+- Use `errorResponse` to throw normalized `Error(message)`
+
+```ts
+export const errorResponse = (error: any) => {
+  if (error?.response?.data?.message)
+    throw new Error(error.response.data.message);
+  if (error?.message) throw new Error(error.message);
+  if (error) throw new Error(error.toString());
+  throw new Error("Terjadi kesalahan");
 };
 ```
 
-```tsx
-export const useUserMutation = () => {
-  return useMutation({
-    mutationFn: (params: TUpdateUser) => updateUser(params),
-  });
-};
-```
+## Auth Token
 
----
+- Store token in `AuthContext`; pass Bearer in per-request headers
+- Token refresh helper: `src/lib/utils/token/refreshToken.ts`
+
+## Notifications & Realtime
+
+- FCM + notifee for push; websocket listener component when authenticated
+
+## Do/Don't
+
+- Do: colocate feature-only fetchers/hooks under the feature folder
+- Do: keep server-state in React Query; UI/flow in Redux
+- Do: type navigation params and API responses
+- Don't: call APIs directly from components without a fetch helper and error handling
 
 ## References
 
-### 1) [React Router](https://reactrouter.com/docs/en/v6/getting-started/overview)
-
-### 2) [React Query](https://react-query.tanstack.com/)
-
-### 3) [React Hook Form](https://react-hook-form.com/)
-
-### 4) [Vite](https://vitejs.dev/)
-
-### 5) [Typescript](https://www.typescriptlang.org/)
-
-### 6) [Tailwindcss](https://tailwindcss.com/)
-
-### 7) [Shadcn UI](https://shadcn.com/)
-
-### 8) [Zustand](https://github.com/pmndrs/zustand)
-
-### 9) [React Google map ](https://www.npmjs.com/package/@react-google-maps/api)
-
-### 10) [React Thermal Printer](https://www.npmjs.com/package/react-thermal-printer)
-
-### 11) [React Toastify](https://fkhadra.github.io/react-toastify/)
-
-### 12) [Redux](https://redux-toolkit.js.org/)
-
----
+- React Navigation: https://reactnavigation.org/docs/getting-started
+- TanStack Query v5: https://tanstack.com/query/latest
+- Redux Toolkit: https://redux-toolkit.js.org/
+- React Native Firebase Messaging: https://rnfirebase.io/messaging/usage
+- Notifee: https://notifee.app/react-native/docs/overview
