@@ -1,0 +1,33 @@
+---
+title: PATCH - Setting
+description: "Update data settings merchant"
+---
+
+# Endpoint
+
+`PATCH/setting`
+
+```ts
+https://api.tantri.id/v2/setting
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk memperbarui data settings merchant dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+    "typeSetting": "GENERAL" | "PIN_AUTH" | "FEE" | "DELIVERY" | "ORDER" | "PAYMENT_METHOD",
+    "data": {}
+}
+```

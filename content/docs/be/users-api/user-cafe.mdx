@@ -1,0 +1,54 @@
+---
+title: GET - User Cafe
+description: "Get user cafe"
+---
+
+# Endpoint
+
+`GET/user/cafe`
+
+```ts
+https://api.tantri.id/bo/user
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mengambil semua data User Cafe dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Params
+
+```ts
+{
+  dashboardType: string;
+  idCafe: string;
+  idOffice: string;
+}
+```
+
+## Response
+
+```json
+{
+  "isSuccess": true,
+  "message": "success",
+  "data": [
+    {
+      "id": "string",
+      "name": "string",
+      "email": "string",
+      "phoneNumber": "string",
+      "password": "string",
+      "role": "string",
+      "idCafe": "string"
+    }
+  ]
+}
+```

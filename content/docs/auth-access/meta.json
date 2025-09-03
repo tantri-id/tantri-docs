@@ -1,0 +1,7 @@
+{
+  "title": "Authorizations",
+  "icon": "Web",
+  "root": true,
+  "pages": ["index"],
+  "defaultOpen": true
+}

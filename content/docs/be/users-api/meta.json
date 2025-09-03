@@ -1,0 +1,4 @@
+{
+  "title": "Users",
+  "pages": ["index", "user-cafe", "post-user", "patch-user", "get-log-pin"]
+}

@@ -1,0 +1,167 @@
+---
+title: GET - Settings
+description: "Get all data settings merchant"
+---
+
+# Endpoint
+
+`GET/setting`
+
+```ts
+https://api.tantri.id//setting/cafe
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mengambil semua data settings merchant dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Response
+
+```ts
+{
+    isSuccess:boolean,
+    message:string,
+    data: {
+        id: number;
+        uuid: string;
+        staticNotes: string | null;
+        menuPdf: string | null;
+        typeManualTransfer: {
+            nameBank: string;
+            nameOwner: string;
+            accountNumber: string;
+            selectedBank: string;
+        }[];
+        billingDiscount: number;
+        isReservationWithTableManagement: boolean;
+         isShift: boolean;
+        printerDataWeb: string | null;
+        isShowStockMenu: boolean;
+        isTableManagementWithMergeBill: boolean;
+        isAutoClearTable: boolean;
+        isShowBalance: boolean;
+        isPinAuth: boolean;
+        isCityLedger: boolean;
+        isSplitPayment: boolean;
+        isRoundedPrice: boolean;
+        isCashDrawer: boolean;
+        isCompliment: boolean;
+        isWaitingList: boolean;
+        isMerLoyalty: boolean;
+        isTriLoyalty: boolean;
+        isInventory: boolean;
+        isTableManagement: boolean;
+        isReservation: boolean;
+        isOpenBillByCustomer: boolean;
+        isPlatformFeeByCustomer: boolean;
+        tax: number;
+        serviceFee: number;
+        logo: string;
+        logoStruk: string;
+        notes: string[];
+        currency: {
+            id: number;
+            uuid: string;
+            currency: string;
+            symbol: string;
+            code: string;
+        };
+        language: {
+            id: number;
+            uuid: string;
+            country: string;
+            code: string;
+        };
+        settingFee: {
+            id: number;
+            tax: {
+                FIX = 'FIX',
+                PERCENTAGE = 'PERCENTAGE',
+            };
+            serviceFee: {
+                FIX = 'FIX',
+                PERCENTAGE = 'PERCENTAGE',
+            };
+        };
+        settingDelivery: {
+            id: number;
+            dineIn: boolean;
+            takeAway: boolean;
+            delivery: boolean;
+            onlineFood: boolean;
+            compliment: boolean;
+            deliveryOnline: boolean;
+            minOrder: number;
+            default: DeliveryType.TA | DeliveryType.DI | DeliveryType.DL;
+        };
+        settingPinAuth: {
+            id?: number;
+            cancelOrder: boolean;
+            changePaymentOrder: boolean;
+            financialReport: boolean;
+            toggleSettingPin: boolean;
+            reduceProductOrder: boolean;
+            withdrawWallets: boolean;
+            depositWallets: boolean;
+            updateTransactionWallets: boolean;
+            deleteTransactionWallets: boolean;
+            updateStockCatalog: boolean;
+            onOffProduct: boolean;
+            hideEstimation: boolean;
+        };
+        settingOrder: {
+            id?: number;
+            closeBill: boolean;
+            openBill: boolean;
+            default: 'OPEN_BILL' | 'CLOSE_BILL';
+        };
+        settingPaymentMethod: {
+                id: number;
+                BCA: boolean;
+                BJB: boolean;
+                BNI: boolean;
+                BRI: boolean;
+                BSI: boolean;
+                GPN: boolean;
+                JCB: boolean;
+                OVO: boolean;
+                CASH: boolean;
+                DANA: boolean;
+                VISA: boolean;
+                DEBIT: boolean;
+                QRCODE: boolean;
+                MANDIRI: boolean;
+                LINK_AJA: boolean;
+                QRSTATIC: boolean;
+                CIMB_NIAGA: boolean;
+                SHOPEE_PAY: boolean;
+                MASTER_CARD: boolean;
+                MANUAL_TRANSFER: boolean;
+                createdAt: string;
+                updatedAt: string;
+                idSetting: number;
+            };
+        cafeStatusClose: {
+                id: string;
+                startDate: string;
+                endDate: string;
+                storeClosedDescription: string;
+                idCafe: string;
+                idSetting: number;
+            }[];
+        orderType: {
+            ALL = 'ALL',
+            OPEN_BILL = 'OPEN_BILL',
+            CLOSE_BILL = 'CLOSE_BILL',
+        };
+    }
+}
+```

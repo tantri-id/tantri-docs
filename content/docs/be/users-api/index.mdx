@@ -1,0 +1,56 @@
+---
+title: GET - User
+description: "Get all data User "
+---
+
+# Endpoint
+
+`GET/user`
+
+```ts
+https://api.tantri.id/user
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mengambil semua data User dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Params
+
+```ts
+{
+  id: string;
+  email: string;
+  isActvated: boolean;
+  idCafe: string;
+  idOffice: string;
+}
+```
+
+## Response
+
+```json
+{
+  "status": 200,
+  "message": "success",
+  "data": [
+    {
+      "id": "string",
+      "name": "string",
+      "email": "string",
+      "phoneNumber": "string",
+      "role": "string",
+      "createdAt": "string",
+      "updatedAt": "string"
+    }
+  ]
+}
+```

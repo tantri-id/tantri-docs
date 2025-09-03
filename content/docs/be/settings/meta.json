@@ -1,0 +1,4 @@
+{
+  "title": "Settings",
+  "pages": ["index", "patch-setting", "put-setting-file", "delete-setting"]
+}

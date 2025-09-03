@@ -1,0 +1,37 @@
+---
+title: POST - User
+description: "Cretate new user"
+---
+
+# Endpoint
+
+`POST/user`
+
+```ts
+https://api.tantri.id/user
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk membuat user baru.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+  "phoneNumber": "string",
+  "fullName": "string",
+  "email": "string",
+  "password": "string",
+  "role": "string",
+  "pin": "string"
+}
+```

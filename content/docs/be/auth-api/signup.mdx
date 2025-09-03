@@ -1,0 +1,40 @@
+---
+title: POST - Sign up
+description: "Sign up"
+---
+
+# Endpoint
+
+`POST/auth/signup`
+
+```ts
+// General
+https://api.tantri.id/auth/signup
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk daftar ke sistem sebagai user.
+
+# Request Body
+
+```json
+{
+  "phoneNumber": "6289513190051",
+  "fullName": "Sofyan",
+  "email": "sofyan1@gmail.com",
+  "password": "test123456"
+}
+```
+
+# Response Body
+
+```ts
+{
+  "isSuccess": boolean,
+  "message": "string",
+  "data": {
+    "otp": number,
+  }
+}
+```

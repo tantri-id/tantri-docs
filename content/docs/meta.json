@@ -2,6 +2,13 @@
   "title": "Docs",
   "root": true,
   "icon": "Layers",
-  "pages": ["fe-mobile", "fe-web", "be", "ui-design", "commit-guide"],
+  "pages": [
+    "fe-mobile",
+    "fe-web",
+    "be",
+    "ui-design",
+    "commit-guide",
+    "auth-access"
+  ],
   "defaultOpen": true
 }
