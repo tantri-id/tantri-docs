@@ -1,19 +1,35 @@
 ---
-title: POST
+title: POST - Signin
 description: "Signin"
 ---
 
 # Endpoint
 
-`POST/auth/signin`
+`POST/auth`
 
 ```ts
+// General
 https://api.tantri.id/auth/signin
+```
+
+```ts
+// Admin
+https://api.tantri.id/auth/admin/signin
 ```
 
 # Deskripsi
 
 Endpoint ini digunakan untuk login ke sistem.
+
+### Tipe portal
+
+- CASHIER
+- BACKOFFICE
+- SUPER_ADMIN
+
+## Role Permission
+
+Bisa dilihat di [Role Permission](../../docs/auth-access)
 
 # Request Body
 
@@ -22,5 +38,18 @@ Endpoint ini digunakan untuk login ke sistem.
   "phoneNumber": "6281381590692",
   "password": "tantri1234",
   "portalType": "CASHIER"
+}
+```
+
+# Response Body
+
+```json
+{
+  "isSuccess": boolean,
+  "message": "string",
+  "data": {
+    "access_token": "string",
+    "role": "string"
+  }
 }
 ```

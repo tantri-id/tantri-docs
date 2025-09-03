@@ -1,4 +1,10 @@
 {
   "title": "Authentications",
-  "pages": ["index"]
+  "pages": [
+    "index",
+    "signup",
+    "forgot-password",
+    "cafe-branch",
+    "reset-password"
+  ]
 }

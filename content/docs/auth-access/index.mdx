@@ -1,0 +1,145 @@
+---
+title: Autherization and Access
+description: "Dokumentasi Hak Akses Berdasarkan Peran"
+---
+
+Dokumentasi ini merangkum hak akses (permissions) untuk berbagai peran dalam sistem manajemen cafe berdasarkan dokumen role-based authorization. Hak akses ditandai dengan ✅ (diizinkan) atau ❌ (tidak diizinkan). Peran-peran yang tercakup adalah:
+
+- Super Admin
+- Cafe Owner
+- Manager
+- Purchasing
+- Warehouse
+- Staff
+- Supervisor
+- Kasir
+- Waiters
+
+Hak akses dikelompokkan berdasarkan modul utama: Back Office dan Kasir.
+
+## Back Office
+
+### Dashboard
+
+| Feature     | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| ----------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Main Office | ✅          | ✅         | ❌      | ❌         | ❌        | ❌    | ❌         | ❌    | ❌      |
+| Branch      | ✅          | ✅         | ❌      | ❌         | ❌        | ❌    | ❌         | ❌    | ❌      |
+
+### Branch
+
+| Feature       | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| ------------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Tambah Cabang | ✅          | ✅         | ❌      | ❌         | ❌        | ❌    | ❌         | ❌    | ❌      |
+| Edit Cabang   | ✅          | ✅         | ❌      | ❌         | ❌        | ❌    | ❌         | ❌    | ❌      |
+| Delete Cabang | ✅          | ✅         | ❌      | ❌         | ❌        | ❌    | ❌         | ❌    | ❌      |
+
+### Karyawan
+
+| Feature         | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| --------------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Tambah Karyawan | ✅          | ✅         | ❌      | ❌         | ❌        | ❌    | ❌         | ❌    | ❌      |
+| Edit Karyawan   | ✅          | ✅         | ❌      | ❌         | ❌        | ❌    | ❌         | ❌    | ❌      |
+| Delete Karyawan | ✅          | ✅         | ❌      | ❌         | ❌        | ❌    | ❌         | ❌    | ❌      |
+
+### Inventory
+
+#### Daftar Pemasok
+
+| Feature        | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| -------------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Tambah Pemasok | ✅          | ✅         | ❌      | ✅         | ❌        | ❌    | ✅         | ❌    | ❌      |
+| Edit Pemasok   | ✅          | ✅         | ❌      | ✅         | ❌        | ❌    | ✅         | ❌    | ❌      |
+
+#### Pembelian Stok
+
+| Feature                           | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| --------------------------------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Pemesanan Stok - Tambah Pembelian | ✅          | ✅         | ❌      | ✅         | ❌        | ❌    | ✅         | ❌    | ❌      |
+| Pemesanan Stok - Lihat Detail     | ✅          | ✅         | ❌      | ✅         | ❌        | ❌    | ✅         | ❌    | ❌      |
+| Pemesanan Stok - Cetak Invoice    | ✅          | ✅         | ❌      | ✅         | ❌        | ❌    | ✅         | ❌    | ❌      |
+| Assesment Pembelian               | ✅          | ✅         | ❌      | ✅         | ❌        | ❌    | ✅         | ❌    | ❌      |
+| Retur Stok Barang                 | ✅          | ✅         | ❌      | ✅         | ❌        | ❌    | ✅         | ❌    | ❌      |
+
+#### Kelola Stok
+
+| Feature       | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| ------------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Daftar Stok   | ✅          | ✅         | ❌      | ✅         | ✅        | ❌    | ✅         | ❌    | ❌      |
+| Stok Opname   | ✅          | ✅         | ❌      | ❌         | ✅        | ❌    | ✅         | ❌    | ❌      |
+| Stok Terbuang | ✅          | ✅         | ❌      | ❌         | ✅        | ❌    | ✅         | ❌    | ❌      |
+
+#### Produksi
+
+| Feature  | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| -------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Produksi | ✅          | ✅         | ❌      | ❌         | ✅        | ❌    | ✅         | ❌    | ❌      |
+
+#### Distribution
+
+| Feature                | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| ---------------------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Kirim Stok             | ✅          | ✅         | ❌      | ❌         | ✅        | ❌    | ✅         | ❌    | ❌      |
+| Terima Stok            | ✅          | ✅         | ❌      | ❌         | ✅        | ❌    | ❌         | ❌    | ❌      |
+| Persetujuan Distribusi | ✅          | ✅         | ❌      | ❌         | ✅        | ❌    | ✅         | ❌    | ❌      |
+
+## Kasir
+
+### Home
+
+| Feature        | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| -------------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Summary Report | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Dompet         | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ❌      |
+| Generate QR    | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |
+| Reservation    | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |
+
+### Produk
+
+| Feature            | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| ------------------ | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Tambah Produk      | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Edit Produk        | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| On/Off Stok Produk | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Tambah Variant     | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Edit Variant       | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+
+### Pesanan
+
+| Feature             | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| ------------------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Tambah Pesanan      | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |
+| Detail Pesanan      | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |
+| Ubah Status Pesanan | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |
+| Batalkan Pesanan    | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |
+| Reset No Order      | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |
+
+### Pelanggan
+
+| Feature          | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| ---------------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Daftar Pelanggan | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ❌      |
+| Detail Pelanggan | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ❌      |
+
+### Pengaturan
+
+| Feature                    | Super Admin | Cafe Owner | Manager | Purchasing | Warehouse | Staff | Supervisor | Kasir | Waiters |
+| -------------------------- | ----------- | ---------- | ------- | ---------- | --------- | ----- | ---------- | ----- | ------- |
+| Profile                    | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |
+| Setel Kata Sandi           | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |
+| Pengaturan Tim             | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Laporan Penjualan          | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Metode Pembayaran          | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Pajak dan Service Fee      | ✅          | ✅         | ✅      | ❌         | ❌        | ❌    | ❌         | ❌    | ❌      |
+| Informasi Toko             | ✅          | ✅         | ✅      | ❌         | ❌        | ❌    | ❌         | ❌    | ❌      |
+| Status Toko                | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Reservation                | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Diskon                     | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Desain Tampilan Outlet     | ✅          | ✅         | ✅      | ❌         | ❌        | ❌    | ❌         | ❌    | ✅      |
+| Custom Text Struk          | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ❌      |
+| Open Bill Customer         | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Notifikasi                 | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ❌    | ❌      |
+| Integrasi dengan Inventory | ✅          | ✅         | ✅      | ❌         | ❌        | ❌    | ❌         | ❌    | ❌      |
+| Kebijakan Privasi          | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |
+| Ketentuan Layanan          | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |
+| Kontak                     | ✅          | ✅         | ✅      | ❌         | ❌        | ✅    | ❌         | ✅    | ✅      |

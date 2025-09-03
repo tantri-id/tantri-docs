@@ -1,0 +1,33 @@
+---
+title: GET - Log Pin
+description: "Get all data Log Pin"
+---
+
+# Endpoint
+
+`GET/log-pin`
+
+```ts
+https://api.tantri.id/log-pin
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mengambil semua data Log Pin dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Params
+
+```ts
+{
+  startDate: Date;
+  endDate: Date;
+}
+```

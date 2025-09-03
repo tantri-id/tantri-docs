@@ -1,0 +1,34 @@
+---
+title: DELETE - Settings FILE
+description: "Delete file dan gambar untuk keperluan settings merchant"
+---
+
+# Endpoint
+
+`DELETE/setting/file`
+
+```ts
+https://api.tantri.id/v2/setting/file
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk menghapus file dan gambar untuk keperluan settings merchant.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+  "isRemoveLogo": boolean,
+  "isRemoveLogoStruk": boolean,
+  "isRemoveMenuPdf": boolean
+}
+```

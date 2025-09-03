@@ -1,0 +1,49 @@
+---
+title: PUT - Settings FILE
+description: "Upload file dan gambar untuk keperluan settings merchant"
+---
+
+# Endpoint
+
+`POST/setting/file`
+
+```ts
+https://api.tantri.id/v2/setting/file
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk upload file dan gambar untuk keperluan settings merchant.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```ts
+{
+    storeLogo : File,
+    storeLogoStruk : File,
+    storeMenuPdf : File,
+}
+
+```
+
+## Response
+
+```json
+{
+  "message": "success",
+  "isSuccess": true,
+  "data": {
+    "storeLogo": "string",
+    "storeLogoStruk": "string",
+    "storeMenuPdf": "string"
+  }
+}
+```

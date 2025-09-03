@@ -1,0 +1,46 @@
+---
+title: PATCH - User
+description: "Update some field data User "
+---
+
+# Endpoint
+
+`PATCH/user`
+
+```ts
+https://api.tantri.id/user
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk memperbarui beberapa field data User dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+  "fullName": "string",
+  "email": "string",
+  "password": "string",
+  "role": "string",
+  "pin": "string"
+}
+```
+
+# Response Body
+
+```json
+{
+  "isSuccess": true,
+  "message": "Berhasil memperbarui data user",
+  "data": null
+}
+```
