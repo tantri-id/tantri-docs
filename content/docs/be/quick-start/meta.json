@@ -1,4 +1,5 @@
 {
   "title": "Quick Start",
-  "pages": ["index", "installation", "guidelines", "order"]
+  "pages": ["index", "installation", "guidelines", "order"],
+  "defaultOpen": true
 }

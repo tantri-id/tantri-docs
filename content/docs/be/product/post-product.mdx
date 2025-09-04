@@ -1,0 +1,52 @@
+---
+title: POST - Product
+description: "Create data product"
+---
+
+# Endpoint
+
+`POST/product`
+
+```ts
+https://api.tantri.id/product
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk membuat data product baru.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+  "productName": "string",
+  "productPrice": 0,
+  "productCal": 0,
+  "productDescription": "string",
+  "productImage": ["string"],
+  "productVariant": [],
+  "category": "string",
+  "periode": "string",
+  "quantity": 0,
+  "totalStock": 0,
+  "type": "FOOD" | "DRINK" | "OTHER",
+  "isIntegratedStock": boolean,
+  "recipes": [],
+  "isMultiPrice": boolean,
+  "customCategory":["string"],
+  "availableStartClock": "string",
+  "availableEndClock": "string",
+  "strikePrice": 0,
+  "minUnit": 0,
+  "unit": "pcs" | "gram" | "kg" | "liter" | "ml",
+  "isUnitPrice":boolean
+}
+```

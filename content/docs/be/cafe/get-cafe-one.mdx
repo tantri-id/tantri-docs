@@ -1,0 +1,141 @@
+---
+title: GET - Cafe by Id
+description: "Get data one cafe by id"
+---
+
+# Endpoint
+
+`GET/cafe/:id`
+
+```ts
+https://api.tantri.id/v2/cafe/:id
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mengambil data Cafe dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Response
+
+```json
+{
+  "isSuccess": true,
+  "message": "OK",
+  "data": {
+    "id": "CAFE-0000000001ADJWLQ",
+    "name": "Cafeer Cafe",
+    "slug": "cafeer-cafe",
+    "address": "86Q2+PX8, Gg. 5A, Tegal Kertha, Kec. Denpasar Bar., Kota Denpasar, Bali 80112, Indonesia",
+    "addressCityProvince": "Kota Denpasar, Bali",
+    "optionalAddress": null,
+    "phoneNumber": "6285239807970",
+    "email": "mriski889@gmail.com",
+    "credit": 0,
+    "location": {
+      "lat": -8.6605824,
+      "lng": 115.2024576
+    },
+    "schedule": [
+      {
+        "day": "Senin",
+        "open": "07:00",
+        "close": "22:00",
+        "status": true,
+        "hours24": false
+      },
+      {
+        "day": "Selasa",
+        "open": "07:00",
+        "close": "22:00",
+        "status": true,
+        "hours24": false
+      },
+      {
+        "day": "Rabu",
+        "open": "07:00",
+        "close": "22:00",
+        "status": true,
+        "hours24": false
+      },
+      {
+        "day": "Kamis",
+        "open": "07:00",
+        "close": "22:00",
+        "status": true,
+        "hours24": false
+      },
+      {
+        "day": "Jumat",
+        "open": "07:00",
+        "close": "22:00",
+        "status": true,
+        "hours24": false
+      },
+      {
+        "day": "Sabtu",
+        "open": "07:00",
+        "close": "22:00",
+        "status": true,
+        "hours24": false
+      },
+      {
+        "day": "Minggu",
+        "open": "07:00",
+        "close": "22:00",
+        "status": true,
+        "hours24": false
+      }
+    ],
+    "description": "-",
+    "sequence": 148,
+    "countUsedPreparationLimitOrder": 0,
+    "xenditAccoutId": "67773e3cee9545ba4162bf66",
+    "tzName": "Asia/Makassar",
+    "tzTime": "+08:00",
+    "status": "ACTIVE",
+    "bannedReason": "ANOMALY_AUDIT",
+    "typeBillingStackLog": [
+      {
+        "type": "DYNAMIC",
+        "start": {
+          "year": 2024,
+          "month": 10
+        },
+        "billingOrFee": null
+      },
+      {
+        "type": "DYNAMIC_FLAT",
+        "start": {
+          "year": 2024,
+          "month": 7
+        },
+        "billingOrFee": 1000
+      },
+      {
+        "type": "DYNAMIC",
+        "start": {
+          "year": 1970,
+          "month": 0
+        },
+        "billingOrFee": null
+      }
+    ],
+    "createdAt": "2024-06-11T09:30:30.000Z",
+    "updatedAt": "2025-05-19T19:54:46.402Z",
+    "deletedAt": null,
+    "actualDeletedAt": null,
+    "assignmentBy": null,
+    "scheduleStatusActiveAt": null,
+    "avgRating": null,
+    "avgProductPrice": 13500
+  }
+}
+```

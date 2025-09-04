@@ -1,0 +1,4 @@
+{
+  "title": "Product",
+  "pages": ["index", "get-one", "post-product", "patch-product"]
+}
