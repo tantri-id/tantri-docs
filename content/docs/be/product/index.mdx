@@ -1,0 +1,116 @@
+---
+title: GET - Product
+description: "Get all data product"
+---
+
+# Endpoint
+
+`GET/product`
+
+```ts
+https://api.tantri.id/product
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mengambil semua data product dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Response
+
+```json
+{
+  "isSuccess": true,
+  "message": "OK",
+  "data": {
+    "customCategories": [
+      {
+        "id": 1184,
+        "name": "Udang",
+        "idx": 1,
+        "createdAt": "2025-05-02T06:56:28.281Z",
+        "idCafe": "049d47aa-1d40-4ad7-9f35-d833282d9a1d"
+      }
+    ],
+    "products": [
+      {
+        "id": "02d25ce1-1bc6-4322-8780-6ad8624dc22d",
+        "name": "Lele bakar",
+        "calorie": "200",
+        "price": 15000,
+        "strikePrice": 20000,
+        "stock": "unlimited",
+        "quantity": 0,
+        "description": "lele hitam",
+        "type": "FOOD",
+        "isInStock": true,
+        "isHaveVariant": true,
+        "isActivated": true,
+        "isIntegratedStock": false,
+        "isMultiPrice": true,
+        "availableStartClock": null,
+        "availableEndClock": null,
+        "createdAt": "2025-08-20T03:58:15.000Z",
+        "updatedAt": "2025-08-20T03:58:36.000Z",
+        "idCafe": "049d47aa-1d40-4ad7-9f35-d833282d9a1d",
+        "category": [],
+        "variant": [
+          {
+            "idVariant": "55bdcce3-32a5-4b49-850b-1bfdf8d4c734",
+            "variant": {
+              "id": "55bdcce3-32a5-4b49-850b-1bfdf8d4c734",
+              "name": "Tingkat kepedasan",
+              "isLimited": true,
+              "isMandatory": true,
+              "option": "RADIO",
+              "maxSelection": "1",
+              "position": 1,
+              "idx": 1,
+              "createdAt": "2025-05-07T08:34:15.000Z",
+              "updatedAt": "2025-05-07T09:44:58.000Z",
+              "idCafe": "049d47aa-1d40-4ad7-9f35-d833282d9a1d"
+            }
+          },
+          {
+            "idVariant": "3f1dc191-a16a-4787-92ac-3d868c451d15",
+            "variant": {
+              "id": "3f1dc191-a16a-4787-92ac-3d868c451d15",
+              "name": "Tambahan",
+              "isLimited": false,
+              "isMandatory": false,
+              "option": "CHECKBOX",
+              "maxSelection": "1",
+              "position": 1,
+              "idx": 4,
+              "createdAt": "2025-08-15T07:24:47.000Z",
+              "updatedAt": "2025-08-15T07:24:47.000Z",
+              "idCafe": "049d47aa-1d40-4ad7-9f35-d833282d9a1d"
+            }
+          }
+        ],
+        "productPrice": [
+          {
+            "id": "PDP-20250820035836256",
+            "price": 2000,
+            "priceType": {
+              "id": "PRT-20250815063427717",
+              "name": "Grab foods",
+              "fee": 1000,
+              "isActivated": true
+            }
+          }
+        ],
+        "productImage": [],
+        "customCategories": []
+      }
+    ]
+  }
+}
+```

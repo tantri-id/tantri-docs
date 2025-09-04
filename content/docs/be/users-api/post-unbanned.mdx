@@ -1,0 +1,46 @@
+---
+title: POST - UNBANNED
+description: "Unbanned user"
+---
+
+# Endpoint
+
+`POST/user/unbanned`
+
+```ts
+https://api.tantri.id/user/pin/unbanned/:id
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mengunbanned user.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+ "pin": "string",
+ "module": "CANCEL_ORDER" | "FINANCIAL_REPORT" |"CHANGE_PAYMENT_ORDER",
+ "idOrder": "string",
+ "startDate": "string",
+ "endDate": "string"
+}
+```
+
+## Response Body
+
+```json
+{
+  "message": "string",
+  "isSuccess": true,
+  "data": null
+}
+```

@@ -1,0 +1,34 @@
+---
+title: GET - Log PIN by Id
+description: "Get one data Log Pin by id"
+---
+
+# Endpoint
+
+`GET/user/pin/log/:id`
+
+```ts
+https://api.tantri.id/user/pin/log
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mengambil data Log Pin dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Params
+
+    - id: string
+
+## Response
+
+```json
+{}
+```

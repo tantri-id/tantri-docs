@@ -1,4 +1,13 @@
 {
   "title": "Users",
-  "pages": ["index", "user-cafe", "post-user", "patch-user", "get-log-pin"]
+  "pages": [
+    "index",
+    "user-cafe",
+    "post-user",
+    "patch-user",
+    "get-log-pin",
+    "reset-pin",
+    "post-unbanned",
+    "get-log-one"
+  ]
 }

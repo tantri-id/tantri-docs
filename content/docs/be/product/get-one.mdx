@@ -1,0 +1,109 @@
+---
+title: GET - Product by Id
+description: "Get one data product"
+---
+
+# Endpoint
+
+`GET/product/catalog/:id`
+
+```ts
+https://api.tantri.id/product/catalog/:id
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mengambil data product dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Response
+
+```json
+{
+  "isSuccess": true,
+  "message": "OK",
+  "data": {
+    "product": {
+      "id": "0dd194d9-ed21-4794-8bb8-adc72ee79de2",
+      "name": "Gurita Bakar dengan saus asam manis ditambha sambal terasi",
+      "calorie": "100",
+      "price": 100000,
+      "stock": "limited",
+      "quantity": 45,
+      "description": "test info",
+      "type": "FOOD",
+      "availableStartClock": null,
+      "availableEndClock": null,
+      "isInStock": true,
+      "isHaveVariant": true,
+      "isActivated": true,
+      "isIntegratedStock": false,
+      "isMultiPrice": false,
+      "createdAt": "2025-05-02T08:15:58.000Z",
+      "updatedAt": "2025-09-02T02:24:18.895Z",
+      "idCafe": "049d47aa-1d40-4ad7-9f35-d833282d9a1d",
+      "category": [],
+      "variant": [
+        {
+          "createdAt": "2025-08-22T06:23:54.000Z",
+          "idx": 1,
+          "idProduct": "0dd194d9-ed21-4794-8bb8-adc72ee79de2",
+          "idVariant": "55bdcce3-32a5-4b49-850b-1bfdf8d4c734",
+          "variant": {
+            "id": "55bdcce3-32a5-4b49-850b-1bfdf8d4c734",
+            "name": "Tingkat kepedasan",
+            "isLimited": true,
+            "isMandatory": true,
+            "option": "RADIO",
+            "maxSelection": "1",
+            "position": 1,
+            "idx": 1,
+            "createdAt": "2025-05-07T08:34:15.000Z",
+            "updatedAt": "2025-05-07T09:44:58.000Z",
+            "idCafe": "049d47aa-1d40-4ad7-9f35-d833282d9a1d"
+          }
+        }
+      ],
+      "productPrice": [],
+      "customCategories": [
+        {
+          "idx": 1,
+          "idProduct": "0dd194d9-ed21-4794-8bb8-adc72ee79de2",
+          "idCustomCategory": 1184
+        }
+      ],
+      "productImage": [
+        {
+          "id": "046fefd1-e3cd-4b17-873d-5c3d550c4d1e",
+          "name": "1746173758398-608767342.jpg",
+          "path": "1746173758398-608767342.jpg",
+          "idProduct": "0dd194d9-ed21-4794-8bb8-adc72ee79de2"
+        },
+        {
+          "id": "d66fc7b0-c120-41ef-8367-2f526ae30dc7",
+          "name": "1746173758398-558876691.jpg",
+          "path": "1746173758398-558876691.jpg",
+          "idProduct": "0dd194d9-ed21-4794-8bb8-adc72ee79de2"
+        }
+      ],
+      "productRecipe": []
+    },
+    "customCategories": [
+      {
+        "id": 1184,
+        "name": "Udang",
+        "idx": 1,
+        "createdAt": "2025-05-02T06:56:28.281Z",
+        "idCafe": "049d47aa-1d40-4ad7-9f35-d833282d9a1d"
+      }
+    ]
+  }
+}
+```

@@ -1,0 +1,80 @@
+---
+title: GET - Variant
+description: "Get all data Variant"
+---
+
+# Endpoint
+
+`GET/product/variant/data`
+
+```ts
+https://api.tantri.id/product/variant/data
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mengambil semua data variant dari sistem.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Params
+
+```ts
+{
+  page: number;
+}
+```
+
+## Response
+
+```json
+{
+  "isSuccess": boolean,
+  "message": "OK",
+  "data": [
+    {
+      "id": "string5",
+      "name": "string",
+      "isLimited": boolean,
+      "isMandatory": boolean,
+      "option": "CHECKBOX",
+      "maxSelection": "1",
+      "position": number,
+      "idx": number,
+      "createdAt": "string",
+      "updatedAt": "string",
+      "idCafe": "string",
+      "product": [
+        {
+          "createdAt": "string",
+          "idx": number,
+          "idProduct": "string",
+          "idVariant": "string"
+        }
+      ],
+      "extra": [
+        {
+          "id": number,
+          "name": "string",
+          "price": number,
+          "isInStock": boolean,
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "total": number,
+    "lastPage": number,
+    "currentPage": number,
+    "perPage": number,
+    "prev": null,
+    "next": null
+  }
+}
+```

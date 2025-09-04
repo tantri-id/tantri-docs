@@ -1,0 +1,817 @@
+---
+title: GET - list cafe
+description: "Get all data cafe"
+---
+
+# Endpoint
+
+`GET/cafe`
+
+```ts
+https://api.tantri.id/v2/cafe
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mengambil semua data Cafe dari sistem.
+
+## Request Params
+
+```ts
+{
+  id: string;
+  search: string;
+  sort: string;
+  limit: number;
+  page: number;
+  isDelete: boolean;
+  isDiscount: boolean;
+}
+```
+
+## Response
+
+```json
+{
+  "isSuccess": true,
+  "message": "OK",
+  "data": [
+    {
+      "id": "CAFE-0000000003ITXDNI",
+      "name": "Static Cafe",
+      "slug": "static-cafe",
+      "address": "Jl. Cibogo Atas No.114, Sukawarna, Kec. Sukajadi, Kota Bandung, Jawa Barat 40164, Indonesia",
+      "addressCityProvince": "Kota Bandung, Jawa Barat",
+      "optionalAddress": null,
+      "phoneNumber": "6285239807972",
+      "email": "mriski8898@gmail.com",
+      "credit": 0,
+      "location": {
+        "lat": -6.884294499999999,
+        "lng": 107.5781589
+      },
+      "schedule": [
+        {
+          "day": "Senin",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Selasa",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Rabu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Kamis",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Jumat",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Sabtu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Minggu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        }
+      ],
+      "description": "-",
+      "sequence": 5,
+      "countUsedPreparationLimitOrder": 0,
+      "xenditAccoutId": null,
+      "tzName": "Asia/Jakarta",
+      "tzTime": "+07:00",
+      "status": "ACTIVE",
+      "bannedReason": null,
+      "typeBillingStackLog": [
+        {
+          "type": "STATIC",
+          "start": {
+            "year": 2024,
+            "month": 4
+          },
+          "billingOrFee": 150000
+        },
+        {
+          "type": "DYNAMIC",
+          "start": {
+            "year": 1970,
+            "month": 0
+          },
+          "billingOrFee": null
+        }
+      ],
+      "createdAt": "2024-06-20T02:41:59.000Z",
+      "updatedAt": "2025-05-19T19:54:46.428Z",
+      "deletedAt": null,
+      "actualDeletedAt": null,
+      "assignmentBy": null,
+      "scheduleStatusActiveAt": null,
+      "avgRating": null,
+      "avgProductPrice": 18000
+    },
+    {
+      "id": "CAFE-0000000006SZJITF",
+      "name": "Suki Cafe 1",
+      "slug": "suki-cafe-1",
+      "address": "Jl. Cibogo Atas No.65, Sukawarna, Kec. Sukajadi, Kota Bandung, Jawa Barat 40164, Indonesia",
+      "addressCityProvince": "Kota Bandung, Jawa Barat",
+      "optionalAddress": null,
+      "phoneNumber": "6285239807975",
+      "email": "cafesuki1@gmail.com",
+      "credit": 0,
+      "location": {
+        "lat": -6.885880600000001,
+        "lng": 107.5791093
+      },
+      "schedule": [
+        {
+          "day": "Senin",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Selasa",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Rabu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Kamis",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Jumat",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Sabtu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Minggu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        }
+      ],
+      "description": "-",
+      "sequence": 1,
+      "countUsedPreparationLimitOrder": 0,
+      "xenditAccoutId": null,
+      "tzName": "Asia/Jakarta",
+      "tzTime": "+07:00",
+      "status": "PREPARATION",
+      "bannedReason": null,
+      "typeBillingStackLog": [
+        {
+          "type": "DYNAMIC",
+          "start": {
+            "year": 1970,
+            "month": 0
+          },
+          "billingOrFee": null
+        }
+      ],
+      "createdAt": "2024-08-15T09:45:09.097Z",
+      "updatedAt": "2025-05-19T19:54:46.458Z",
+      "deletedAt": null,
+      "actualDeletedAt": null,
+      "assignmentBy": null,
+      "scheduleStatusActiveAt": null,
+      "avgRating": null,
+      "avgProductPrice": 0
+    },
+    {
+      "id": "CAFE-0000000005YZXTJI",
+      "name": "satanic-cafe",
+      "slug": "satanic-cafe",
+      "address": "Jl. Cibogo Atas No.65, Sukawarna, Kec. Sukajadi, Kota Bandung, Jawa Barat 40164, Indonesia",
+      "addressCityProvince": "Kota Bandung, Jawa Barat",
+      "optionalAddress": null,
+      "phoneNumber": "6285239807974",
+      "email": "mriski8898@gmail.com",
+      "credit": 0,
+      "location": {
+        "lat": -6.885880600000001,
+        "lng": 107.5791093
+      },
+      "schedule": [
+        {
+          "day": "Senin",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Selasa",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Rabu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Kamis",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Jumat",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Sabtu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Minggu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        }
+      ],
+      "description": "-",
+      "sequence": 1,
+      "countUsedPreparationLimitOrder": 0,
+      "xenditAccoutId": null,
+      "tzName": "Asia/Jakarta",
+      "tzTime": "+07:00",
+      "status": "PREPARATION",
+      "bannedReason": null,
+      "typeBillingStackLog": [
+        {
+          "type": "DYNAMIC",
+          "start": {
+            "year": 1970,
+            "month": 0
+          },
+          "billingOrFee": null
+        }
+      ],
+      "createdAt": "2024-08-15T09:37:48.085Z",
+      "updatedAt": "2025-05-19T19:54:46.449Z",
+      "deletedAt": null,
+      "actualDeletedAt": null,
+      "assignmentBy": null,
+      "scheduleStatusActiveAt": null,
+      "avgRating": null,
+      "avgProductPrice": 0
+    },
+    {
+      "id": "CAFE-0000000001ADJWLQ",
+      "name": "Cafeer Cafe",
+      "slug": "cafeer-cafe",
+      "address": "86Q2+PX8, Gg. 5A, Tegal Kertha, Kec. Denpasar Bar., Kota Denpasar, Bali 80112, Indonesia",
+      "addressCityProvince": "Kota Denpasar, Bali",
+      "optionalAddress": null,
+      "phoneNumber": "6285239807970",
+      "email": "mriski889@gmail.com",
+      "credit": 0,
+      "location": {
+        "lat": -8.6605824,
+        "lng": 115.2024576
+      },
+      "schedule": [
+        {
+          "day": "Senin",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Selasa",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Rabu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Kamis",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Jumat",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Sabtu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Minggu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        }
+      ],
+      "description": "-",
+      "sequence": 148,
+      "countUsedPreparationLimitOrder": 0,
+      "xenditAccoutId": "67773e3cee9545ba4162bf66",
+      "tzName": "Asia/Makassar",
+      "tzTime": "+08:00",
+      "status": "ACTIVE",
+      "bannedReason": "ANOMALY_AUDIT",
+      "typeBillingStackLog": [
+        {
+          "type": "DYNAMIC",
+          "start": {
+            "year": 2024,
+            "month": 10
+          },
+          "billingOrFee": null
+        },
+        {
+          "type": "DYNAMIC_FLAT",
+          "start": {
+            "year": 2024,
+            "month": 7
+          },
+          "billingOrFee": 1000
+        },
+        {
+          "type": "DYNAMIC",
+          "start": {
+            "year": 1970,
+            "month": 0
+          },
+          "billingOrFee": null
+        }
+      ],
+      "createdAt": "2024-06-11T09:30:30.000Z",
+      "updatedAt": "2025-05-19T19:54:46.402Z",
+      "deletedAt": null,
+      "actualDeletedAt": null,
+      "assignmentBy": null,
+      "scheduleStatusActiveAt": null,
+      "avgRating": null,
+      "avgProductPrice": 13500
+    },
+    {
+      "id": "4c8549a7-b429-4c94-8099-47e99294ca6f",
+      "name": "Suki Cafe 2",
+      "slug": "suki-cafe-2",
+      "address": "Jl. Cibogo Atas No.65, Sukawarna, Kec. Sukajadi, Kota Bandung, Jawa Barat 40164, Indonesia",
+      "addressCityProvince": "Kota Bandung, Jawa Barat",
+      "optionalAddress": null,
+      "phoneNumber": "6285239807977",
+      "email": "sukicafe2@gmail.com",
+      "credit": 0,
+      "location": {
+        "lat": -6.885880600000001,
+        "lng": 107.5791093
+      },
+      "schedule": [
+        {
+          "day": "Senin",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Selasa",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Rabu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Kamis",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Jumat",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Sabtu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Minggu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        }
+      ],
+      "description": "-",
+      "sequence": 1,
+      "countUsedPreparationLimitOrder": 0,
+      "xenditAccoutId": null,
+      "tzName": "Asia/Jakarta",
+      "tzTime": "+07:00",
+      "status": "PREPARATION",
+      "bannedReason": null,
+      "typeBillingStackLog": [
+        {
+          "type": "DYNAMIC",
+          "start": {
+            "year": 1970,
+            "month": 0
+          },
+          "billingOrFee": null
+        }
+      ],
+      "createdAt": "2024-10-25T07:45:04.007Z",
+      "updatedAt": "2025-05-19T19:54:46.386Z",
+      "deletedAt": null,
+      "actualDeletedAt": null,
+      "assignmentBy": null,
+      "scheduleStatusActiveAt": null,
+      "avgRating": null,
+      "avgProductPrice": 0
+    },
+    {
+      "id": "CAFE-0000000004KLGGSV",
+      "name": "Ramayana Cafe 1",
+      "slug": "ramayana-cafe-1",
+      "address": "Jl. Cibogo No.32, Sukawarna, Kec. Sukajadi, Kota Bandung, Jawa Barat 40164, Indonesia",
+      "addressCityProvince": "Kota Bandung, Jawa Barat",
+      "optionalAddress": null,
+      "phoneNumber": "6285239807973",
+      "email": "ramayana@gmail.com",
+      "credit": 0,
+      "location": {
+        "lat": -6.8885242,
+        "lng": 107.5793879
+      },
+      "schedule": [
+        {
+          "day": "Senin",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Selasa",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Rabu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Kamis",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Jumat",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Sabtu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Minggu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        }
+      ],
+      "description": "-",
+      "sequence": 1,
+      "countUsedPreparationLimitOrder": 0,
+      "xenditAccoutId": null,
+      "tzName": "Asia/Jakarta",
+      "tzTime": "+07:00",
+      "status": "PREPARATION",
+      "bannedReason": null,
+      "typeBillingStackLog": [
+        {
+          "type": "STATIC",
+          "start": {
+            "year": 2024,
+            "month": 8
+          },
+          "billingOrFee": 100000
+        },
+        {
+          "type": "DYNAMIC",
+          "start": {
+            "year": 1970,
+            "month": 0
+          },
+          "billingOrFee": null
+        }
+      ],
+      "createdAt": "2024-08-15T02:25:35.000Z",
+      "updatedAt": "2025-05-19T19:54:46.438Z",
+      "deletedAt": null,
+      "actualDeletedAt": null,
+      "assignmentBy": null,
+      "scheduleStatusActiveAt": null,
+      "avgRating": null,
+      "avgProductPrice": 0
+    },
+    {
+      "id": "CAFE-0000000002FGKRMK",
+      "name": "Baphomet Cafe",
+      "slug": "baphomet-cafe",
+      "address": "JL Prof. DR. Soetami, Komplek Setrasari Mall Blok B1 Kav. 10 - 11, 40164, Sukawarna, Kec. Sukajadi, Kota Bandung, Jawa Barat 40164, Indonesia",
+      "addressCityProvince": "Kota Bandung, Jawa Barat",
+      "optionalAddress": null,
+      "phoneNumber": "6285239807971",
+      "email": "mriski8898@gmail.com",
+      "credit": 0,
+      "location": {
+        "lat": -6.8869243,
+        "lng": 107.5786238
+      },
+      "schedule": [
+        {
+          "day": "Senin",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Selasa",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Rabu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Kamis",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Jumat",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Sabtu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Minggu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        }
+      ],
+      "description": "-",
+      "sequence": 2,
+      "countUsedPreparationLimitOrder": 0,
+      "xenditAccoutId": null,
+      "tzName": "Asia/Jakarta",
+      "tzTime": "+07:00",
+      "status": "ACTIVE",
+      "bannedReason": null,
+      "typeBillingStackLog": [
+        {
+          "type": "DYNAMIC",
+          "start": {
+            "year": 1970,
+            "month": 0
+          },
+          "billingOrFee": null
+        }
+      ],
+      "createdAt": "2024-06-11T10:03:18.000Z",
+      "updatedAt": "2025-05-19T19:54:46.415Z",
+      "deletedAt": null,
+      "actualDeletedAt": null,
+      "assignmentBy": null,
+      "scheduleStatusActiveAt": null,
+      "avgRating": null,
+      "avgProductPrice": 20000
+    },
+    {
+      "id": "dd7514b7-07a1-4258-b26f-b44c20a31142",
+      "name": "Static 2 Cafe",
+      "slug": "static-2-cafe",
+      "address": "Jl. Cibogo No.63, Sukawarna, Kec. Sukajadi, Kota Bandung, Jawa Barat 40164, Indonesia",
+      "addressCityProvince": "Kota Bandung, Jawa Barat",
+      "optionalAddress": null,
+      "phoneNumber": "6285239807976",
+      "email": "mriski8898@gmail.com",
+      "credit": 0,
+      "location": {
+        "lat": -6.8862498,
+        "lng": 107.5791713
+      },
+      "schedule": [
+        {
+          "day": "Senin",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Selasa",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Rabu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Kamis",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Jumat",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Sabtu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        },
+        {
+          "day": "Minggu",
+          "open": "07:00",
+          "close": "22:00",
+          "status": true,
+          "hours24": false
+        }
+      ],
+      "description": "-",
+      "sequence": 1,
+      "countUsedPreparationLimitOrder": 0,
+      "xenditAccoutId": null,
+      "tzName": "Asia/Jakarta",
+      "tzTime": "+07:00",
+      "status": "ACTIVE",
+      "bannedReason": null,
+      "typeBillingStackLog": [
+        {
+          "type": "STATIC",
+          "start": {
+            "year": 2024,
+            "month": 10
+          },
+          "billingOrFee": 200000
+        },
+        {
+          "type": "DYNAMIC",
+          "start": {
+            "year": 1970,
+            "month": 0
+          },
+          "billingOrFee": null
+        }
+      ],
+      "createdAt": "2024-11-07T08:21:23.003Z",
+      "updatedAt": "2025-05-19T19:54:46.467Z",
+      "deletedAt": null,
+      "actualDeletedAt": null,
+      "assignmentBy": null,
+      "scheduleStatusActiveAt": null,
+      "avgRating": null,
+      "avgProductPrice": 0
+    }
+  ]
+}
+```

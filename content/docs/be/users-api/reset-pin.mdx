@@ -1,0 +1,47 @@
+---
+title: DELETE - PIN
+description: "Reset PIN karyawan"
+---
+
+# Endpoint
+
+`DELETE/pin`
+
+```ts
+https://api.tantri.id/user/pin/reset/:id
+```
+
+# Deskripsi
+
+Endpoint ini digunakan untuk mereset PIN karyawan.
+
+## 🔑 Autentikasi
+
+Endpoint ini memerlukan autentikasi menggunakan token JWT. Jika pengguna belum login, maka pengguna akan diarahkan ke halaman login.
+
+```http
+Authorization: Bearer <your_token>
+```
+
+## Request Body
+
+```json
+{
+  "phoneNumber": "string",
+  "fullName": "string",
+  "email": "string",
+  "password": "string",
+  "role": "string",
+  "pin": "string"
+}
+```
+
+## Response Body
+
+```json
+{
+  "message": "string",
+  "isSuccess": true,
+  "data": null
+}
+```
