@@ -9,7 +9,8 @@
     "tantri-menu",
     "tantri-backoffice",
     "google-map",
-    "company-profile"
+    "company-profile",
+    "tantri-super-admin"
   ],
   "defaultOpen": true
 }

@@ -1,0 +1,21 @@
+{
+  "title": "Tantri Super Admin",
+  "pages": [
+    "index",
+    "installation",
+    "guidelines",
+    "dashboard",
+    "merchant-list",
+    "merchant-credit",
+    "mechant-audit-active",
+    "merchant-audit-non-active",
+    "auditor",
+    "pengajuan-xendit",
+    "pengajuan-cabang",
+    "satuan-and-converter",
+    "penagihan",
+    "invoice",
+    "panduan",
+    "user-token"
+  ]
+}

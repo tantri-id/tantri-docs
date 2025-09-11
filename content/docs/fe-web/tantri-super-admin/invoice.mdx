@@ -1,0 +1,72 @@
+---
+title: Invoice - List Invoice & Log Invoice
+description: Panduan penggunaan halaman List Invoice dan Log Invoice pada modul Invoice
+---
+
+# Modul Invoice
+
+Modul **Invoice** digunakan untuk mengelola pembuatan, pengiriman, dan pencatatan pembayaran invoice merchant. Terdapat dua halaman utama:
+
+- **List Invoice** → Menampilkan daftar semua invoice yang dibuat beserta statusnya.
+- **Log Invoice** → Menampilkan catatan perubahan status dan riwayat pembayaran invoice.
+
+---
+
+## Halaman List Invoice
+
+Halaman ini menampilkan daftar semua invoice yang telah dibuat pada periode tertentu.
+
+### Fitur Utama
+
+- **Cari nama cafe/merchant** → Memudahkan pencarian invoice.
+- **Download Invoice** → Mengunduh invoice yang dipilih.
+- **Buat Invoice** → Membuat invoice baru secara manual.
+- **Filter Bulan** → Menampilkan invoice sesuai bulan tertentu.
+
+### Kolom Data
+
+1. **Nomor Invoice** → Nomor unik identifikasi invoice.
+2. **Nama Merchant** → Merchant yang menerima invoice.
+3. **Status Dokumen** → Status pengiriman invoice (`Sudah Dikirim`, `Belum Dikirim`).
+4. **Status Pembayaran** → Status pembayaran invoice (`Paid`, `Unpaid`).
+5. **Biaya Platform Fee** → Jumlah biaya platform yang dikenakan.
+6. **Compliment Platform Fee** → Potongan/hadiah biaya platform (jika ada).
+7. **Diskon** → Persentase atau nominal potongan harga.
+8. **Nominal Credit Terpakai** → Kredit yang digunakan untuk membayar invoice.
+9. **Total Platform Fee** → Total biaya platform setelah perhitungan.
+10. **Jumlah Penjualan** → Total nilai penjualan yang menjadi dasar tagihan.
+11. **Jumlah Transaksi** → Total transaksi pada periode tersebut.
+12. **Tanggal Invoice** → Tanggal invoice dibuat.
+13. **Tanggal Jatuh Tempo** → Batas waktu pembayaran.
+14. **Lampiran** → Dokumen atau bukti pembayaran terkait.
+15. **Aksi** → Menu tindakan seperti:
+    - **Kirim Invoice**
+    - **Lihat Invoice**
+    - **Ubah Nominal Penagihan**
+    - **Ubah Status Pembayaran**
+
+---
+
+## Halaman Log Invoice
+
+Halaman ini menampilkan riwayat perubahan status pembayaran invoice dan catatan detail transaksi.
+
+### Fitur Utama
+
+- **Cari nama cafe/merchant** → Mencari log invoice tertentu.
+- **Download Excel** → Mengunduh riwayat log dalam format Excel.
+- **Filter Bulan** → Menampilkan log sesuai periode tertentu.
+
+### Kolom Data
+
+1. **Tanggal Transaksi** → Waktu terjadinya perubahan status.
+2. **Nama Merchant** → Nama merchant yang terlibat.
+3. **Nama Office** → Kantor atau cabang merchant terkait.
+4. **Bulan Invoice** → Periode invoice terkait.
+5. **Ubah Status Ke** → Status pembayaran baru (`Paid`, `Unpaid`).
+6. **Assign By** → User/admin yang melakukan perubahan.
+7. **Metode Pembayaran** → Metode pembayaran yang digunakan (`Xendit`, `Non Xendit`).
+8. **Lampiran** → Bukti pembayaran atau dokumen pendukung.
+9. **Action** → Ikon 👁 untuk melihat detail log.
+
+---

@@ -1,0 +1,34 @@
+---
+title: User Token
+description: Panduan penggunaan fitur User Token untuk menghasilkan token akses khusus user merchant.
+---
+
+# User Token
+
+Fitur **User Token** digunakan untuk membuat token akses khusus bagi user/merchant tertentu. Token ini bisa digunakan untuk kebutuhan autentikasi API atau integrasi sistem.
+
+---
+
+## Input Field
+
+1. **Nomor Telepon**
+
+   - Masukkan nomor telepon yang terdaftar pada akun merchant.
+   - Format penulisan: bisa dimulai dengan `+62` atau `08`.
+   - Pastikan nomor telepon sudah sesuai dengan data di sistem agar token dapat dibuat.
+
+2. **Slug Cafe**
+   - Masukkan _slug_ dari nama cafe/merchant.
+   - _Slug_ biasanya adalah versi nama merchant yang telah diformat menjadi huruf kecil dan tanda hubung (`-`) sebagai pemisah kata.  
+     Contoh: `kopi-santai-bandung`.
+
+---
+
+## Tombol Aksi
+
+- **Generate Token** (tombol merah di bagian bawah)
+  - Klik tombol ini untuk membuat token baru berdasarkan nomor telepon dan slug cafe yang dimasukkan.
+  - Sistem akan memproses dan menghasilkan token unik.
+  - Token tersebut dapat digunakan untuk autentikasi atau integrasi aplikasi pihak ketiga.
+
+---
