@@ -1,0 +1,177 @@
+---
+title: Guidelines
+description: This document provides a comprehensive structure for developing tantri Company Profile with NextJs. Here is a tidied-up version based on each context
+---
+
+import { File, Folder, Files } from "fumadocs-ui/components/files";
+
+## Liblary
+
+- Use `react-query` for data fetching via `useQuery` and `useMutation`.
+- Use `shadcn/ui` as the primary UI component library.
+- Use `react-hook-form` for form handling.
+- Use `tailwindcss` for styling.
+- Use `react-google-maps` for map.
+
+## Naming Convention
+
+- Use kebab-case for file naming and context-aware hooks (e.g., use-users-query.ts).
+
+## Engineering Principle
+
+1. Start Simple
+
+   Begin with simple, minimal implementations. Avoid breaking components apart unless necessary.
+
+2. Component Simplicity
+
+   Keep components focused and minimal. Prioritize readability and maintainability.
+
+3. Coupling and Cohesion
+
+   - Low Coupling:
+
+     Avoid tangled connections between unrelated modules. <br />❌ Example of bad
+     practice: importing functions from the login page into the users page.
+
+   - High Cohesion:
+
+   Group code logically based on its functionality. <br />
+   ❌ Poor example: inconsistent or unclear folder structures.
+
+   ✅ Good example: if a type, enum, or utility is only used within a single
+   component, colocate it with that component. <br />- Example:
+
+   - `src/app/_components/menu`
+   - `index.tsx`
+   - `type.tsx`
+   - `util.tsx`
+
+   - ref: [Coupling and Cohesion.](https://betterprogramming.pub/coupling-cohesion-552b022492b2)
+
+4. One Hook, One Purpose
+   - Avoid overloading hooks. Each custom hook should serve a single, clear purpose.
+     Keep it clean, readable, and easy to maintain.
+
+## Structure Folder
+
+- `public/:` Static assets, such as images, fonts, and favicon.
+
+- `src/:` Application logic, including components, pages, and API routes.
+
+- `src/components/`: Shared components.
+
+- `src/app/_components/`: Components within the module.
+
+- `src/app/_hooks`: Hooks within the module.
+
+- `src/constant/`: Declared constants.
+
+- `src/data`: Declared dummy data.
+
+- `src/hook`: Shared hooks or declare custom hooks.
+
+- `src/lib/`: Libraries and utilities.
+
+- `src/store/`: Store and state management or provider.
+
+- `src/types/`: Declared type e.g: `src/types/react-slider.d.ts`
+
+- `src/utils`: Declared utilities.
+
+<Files>
+  <Folder name="public">
+    <File name="favicon.ico" />
+  </Folder>
+  <Folder name="src" defaultOpen>
+    <Folder name="api" defaultOpen>
+      <File name="ApiClient.ts" />
+    </Folder>
+    <Folder name="app" defaultOpen>
+      <Folder name="_components" defaultOpen>
+        <File name="index.tsx" />
+      </Folder>
+      <Folder name="home" defaultOpen>
+        <Folder name="_components">
+          <File name="index.tsx" />
+        </Folder>
+        <Folder name="_hooks">
+          <File name="use-auth-mutation.tsx" />
+        </Folder>
+      </Folder>
+      <Folder name="_hooks">
+        <File name="use-auth-mutation.tsx" />
+      </Folder>
+    </Folder>
+    <Folder name="components" defaultOpen>
+      <Folder name="ui">
+        <File name="button.tsx" />
+        <File name="tabs.tsx" />
+        <File name="dialog.tsx" />
+      </Folder>
+    </Folder>
+    <Folder name="constants">
+      <File name="constants.ts" />
+    </Folder>
+    <Folder name="data">
+      <File name="faq-data.ts" />
+    </Folder>
+    <Folder name="hooks" defaultOpen>
+      <Folder name="custom-hooks" defaultOpen>
+        <File name="use-auth.ts" />
+        <File name="use-alert-message.ts" />
+      </Folder>
+    </Folder>
+    <Folder name="lib" defaultOpen>
+      <Folder name="api"></Folder>
+      <Folder name="utils"></Folder>
+    </Folder>
+    <Folder name="store" defaultOpen>
+      <File name="sidebar-provider.tsx" />
+    </Folder>
+    <Folder name="types">
+      <File name="index.ts" />
+    </Folder>
+  </Folder>
+  <File name="package.json" />
+</Files>
+
+---
+
+## Write API request
+
+Example :
+
+```ts
+export const getLocation = async (
+  params: TGetLocation
+): Promise<TResponse<TLocationResponse>> => {
+  const res = await ApiClient.get("/api-endpoint", {
+    params,
+  });
+  return res.data;
+};
+```
+
+## Write Hook react query
+
+Example :
+
+```tsx
+export const useUserQuery = () => {
+  return useQuery({
+    queryKey: ["users"],
+    queryFn: () => getUser(),
+  });
+};
+```
+
+```tsx
+export const useUserMutation = () => {
+  return useMutation({
+    mutationFn: (params: TUpdateUser) => updateUser(params),
+  });
+};
+```
+
+---
