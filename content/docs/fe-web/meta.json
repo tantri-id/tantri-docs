@@ -8,7 +8,8 @@
     "tantri-cashier",
     "tantri-menu",
     "tantri-backoffice",
-    "google-map"
+    "google-map",
+    "company-profile"
   ],
   "defaultOpen": true
 }
