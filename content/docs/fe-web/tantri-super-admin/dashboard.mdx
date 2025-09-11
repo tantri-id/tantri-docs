@@ -1,0 +1,134 @@
+---
+title: Dashboard
+description: Panduan penggunaan halaman Dashboard Admin pada sistem Tantri
+---
+
+# Dashboard Admin Tantri
+
+Dashboard ini menampilkan ringkasan data dan statistik terkini dari seluruh aktivitas merchant, toko, transaksi, serta status pembayaran di platform Tantri. Halaman ini menjadi pusat monitoring bagi **Super Admin**.
+
+---
+
+## Ringkasan Atas (Header Summary)
+
+Di bagian atas dashboard terdapat enam kartu informasi utama:
+
+1. **Total Toko**  
+   Menampilkan jumlah total toko yang terdaftar di platform.
+2. **Total Pengajuan Xendit**  
+   Menampilkan jumlah pengajuan akun pembayaran Xendit yang masih dalam proses.
+
+3. **Total Pengajuan Cabang**  
+   Menampilkan jumlah pengajuan pembuatan cabang baru dari merchant.
+
+4. **Total Merchant Registered**  
+   Jumlah merchant yang sudah mendaftar di platform.
+
+5. **Total Merchant Preparation**  
+   Merchant yang masih dalam tahap persiapan (belum aktif).
+
+6. **Total Merchant Aktif / Non Aktif**  
+   Jumlah merchant yang aktif dan yang non-aktif.
+
+---
+
+## Pendapatan (Revenue Overview)
+
+Bagian ini menampilkan ringkasan pendapatan platform:
+
+- **Total Platform Fee** → Pendapatan bersih platform dari biaya layanan.
+- **GMV (Gross Merchandise Value)** → Nilai total penjualan sebelum biaya dipotong.
+- **Total Transaksi** → Jumlah transaksi yang terjadi dalam periode yang dipilih.
+
+> Periode data dapat diatur melalui dropdown **filter waktu** (default: This Month).
+
+---
+
+## Credit & Compliment
+
+- **Total Credit** → Jumlah total saldo kredit yang dimiliki merchant (jika ada).
+- **Total Compliment** → Jumlah voucher atau hadiah yang diberikan (jika ada).
+
+---
+
+## Grafik Pendapatan (Pemasukan)
+
+Menampilkan **grafik batang (bar chart)** yang merepresentasikan pemasukan harian dalam periode tertentu.
+
+- Sumbu X: Tanggal
+- Sumbu Y: Jumlah pemasukan (Rp)
+
+---
+
+## Grafik Credit
+
+Menampilkan total **credit** per bulan.
+
+- Sumbu X: Bulan
+- Sumbu Y: Nominal credit
+
+---
+
+## Status Pembayaran
+
+Grafik yang memisahkan status pembayaran berdasarkan:
+
+- **Paid (Hijau)**
+- **Unpaid (Merah)**
+- **Done**
+
+Data ditampilkan per bulan untuk memudahkan evaluasi arus kas.
+
+---
+
+## Status Merchant
+
+**Pie Chart**:
+
+- Hijau → Merchant aktif
+- Oranye → Merchant dalam tahap preparation
+- Merah → Merchant non-aktif
+
+  **Line Chart**:
+
+- Perubahan jumlah merchant per bulan/tahun.
+
+---
+
+## List Toko Baru
+
+Menampilkan daftar toko terbaru yang mendaftar di platform, beserta:
+
+- Nama Toko
+- Email merchant
+- Waktu pendaftaran (relative time)
+
+---
+
+## Ranking Toko
+
+Menampilkan **Top Merchant** berdasarkan nilai transaksi tertinggi, termasuk:
+
+- Nama Toko
+- Email
+- Nominal pendapatan
+
+---
+
+## Pengajuan Xendit & Cabang
+
+- **Pengajuan Xendit** → Daftar merchant yang mengajukan akun pembayaran Xendit, beserta status verifikasi.
+- **Pengajuan Cabang** → Daftar cabang baru yang diajukan merchant, beserta status verifikasi.
+
+---
+
+## Marketing Deals
+
+📌 Terbagi menjadi 2 tab:
+
+- **By Merchant** → Menampilkan campaign promosi yang sedang berjalan.
+- **By Platform Fee** → Grafik perbandingan pendapatan berdasarkan biaya platform.
+
+> Jika tidak ada campaign, akan muncul pesan **"Tidak ada deal marketing"**.
+
+---
