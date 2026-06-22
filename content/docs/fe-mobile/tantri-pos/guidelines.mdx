@@ -1,153 +1,169 @@
 ---
 title: Guidelines
-description: Standards for developing and maintaining the Tantri POS React Native app (RN 0.80, React 19). Covers folder structure, naming, data layer, navigation, styling, theming, and engineering practices.
+description: Standards for developing and maintaining the Tantri POS React Native app (RN 0.83, New Architecture, React 19). Covers folder structure, naming, data layer, navigation, styling, theming, and engineering practices.
 ---
 
 import { File, Folder, Files } from "fumadocs-ui/components/files";
 
 ## Core Libraries (in use)
 
-- axios: HTTP client (`src/lib/api/ApiClient.ts`)
-- @tanstack/react-query v5: server-state, with persistence via AsyncStorage
-- redux-toolkit + react-redux: client/UI state (`src/redux/*`)
-- @react-navigation/native + native-stack + bottom-tabs + material-top-tabs
+- axios: HTTP client (`src/core/api/client.ts`)
+- @tanstack/react-query v5: server-state, with persistence via AsyncStorage (selected keys only)
+- redux-toolkit + react-redux: client/session state (`src/app/store/*`)
+- @react-navigation/native + native-stack + bottom-tabs + material-top-tabs + drawer
 - @react-native-async-storage/async-storage: storage and query persistence
-- moment (+ locale id): date/time formatting
+- nativewind (Tailwind): styling via `className`
+- moment (+ locale id): date/time formatting, globally set to Indonesian
 - notifee + @react-native-firebase/messaging: notifications
-- react-native-gesture-handler, screens, safe-area-context, reanimated
-- react-native-fast-image: images
+- react-native-gesture-handler, screens, safe-area-context, reanimated, worklets
+- @d11/react-native-fast-image: images
+- @haroldtran/react-native-thermal-printer + react-native-bluetooth-classic: thermal printing (BLE/network)
+- socket.io-client: realtime/websocket
+- jwt-decode: token expiry checks
 
 ## Naming
 
 - Components: PascalCase (e.g. `StoreInformation.tsx`)
-- Hooks, variables, functions, types, enums: camelCase (e.g. `useUserData`, `errorResponse`, `userTokenType`)
-- Slices: `somethingSlice.ts` and exported as `something: somethingReducer` in store
-- Files colocated when used by only one feature; shared code in `src/lib` or `src/types`
+- Hooks, variables, functions, types, enums: camelCase (e.g. `useGetDataStore`, `errorResponse`, `userTokenType`)
+- Slices: `somethingSlice.ts`, exported as `something: somethingReducer` in `app/store`
+- Type files: kebab-case with dot-separated kind suffix — `order.types.ts`, `order.enum.ts`
+- Files colocated when used by only one feature; shared code lives in `core/` or `shared/`
 
 ## Folder Structure
 
-- `src/assets/` images, fonts
-- `src/components/` shared UI and layout components
-- `src/contexts/` app-level contexts (auth, orientation, network, appState, customerDisplay)
-- `src/hooks/` reusable hooks
-- `src/lib/`
-  - `api/ApiClient.ts`
-  - `constants/baseURL.ts`
-  - `theme/` color, font size, font weight
-  - `utils/` error, permissions, listeners, token helpers
-- `src/navigation/` navigators and param types
-- `src/redux/` store, typed hooks, slices
-- `src/screens/` feature screens grouped by domain
-- `src/types/` app-wide TS types and enums
+Layered, feature-based layout under `src/`:
+
+- `src/app/` — wiring: `navigation/` (React Navigation), `store/` (Redux Toolkit), `providers/` (React Context)
+- `src/core/` — cross-cutting infrastructure: `api/client.ts`, `auth/`, `config/baseURL.ts`, `constants/`, `errors/`, `fs/`, `listeners/` (FCM + websocket), `media/`, `notifications/`, `permissions/`, `printing/`, `theme/`
+- `src/features/<name>/` — self-contained domains (auth, orders, products, customers, reservations, shift, report, wallet, table-management, voucher, staff, credit, city-ledger, multiprice, waiting-list, inbox, qr-gen, display, settings, etc.)
+- `src/shared/` — `components/` (`ui/`, `icons/`, `layout/`), generic `hooks/`/`utils/` (`calculation/`, `delay/`, `formatter/`, `generator/`), cross-feature `types/`
+
+No `src/screens/` folder — screen composition lives inside each `features/<name>/screens/`. No global `src/types/` folder — types live with their domain.
+
+### Feature internal structure
+
+Every feature under `features/<name>/` follows the same split — don't deviate:
+
+```
+features/<name>/
+├── api/          # Thin axios call, unwraps res.data.data → errorResponse
+├── hooks/        # TanStack Query (useQuery/useMutation) + UI state + navigation
+├── components/   # Presentational components
+├── screens/      # Connects hook output to components
+└── types/        # Feature-owned TypeScript types
+```
+
+Large features sub-divide by entity, e.g. `products/{category,menu,variant}/`, `orders/{list,detail,new,split-bill}/`, `settings/{root,printer,payment,pin,shifting,store-information,tax-service,type-delivery,type-order,outlet-design,inventory,reservation}/`.
+
+### Type placement
+
+| Scope | Location | Examples |
+|---|---|---|
+| Feature-owned | `features/<name>/types/` | `orders/types/order.types.ts` |
+| Cross-feature / generic | `shared/types/` | `pagination.types.ts`, `cafe.enum.ts`, `select.type.ts` |
+| Auth infrastructure | `core/auth/types/` | `user-token.types.ts`, `user.enum.ts` |
 
 <Files>
   <Folder name="android" />
   <Folder name="ios" />
-  <Folder name="patches">
-    <File name="react-native-fast-image+8.6.3.patch" />
-    <File name="react-native-google-places-autocomplete+2.5.7.patch" />
-    <File name="rn-fetch-blob+0.12.0.patch" />
-  </Folder>
+  <Folder name="patches" />
   <Folder name="src" defaultOpen>
-    <Folder name="assets">
-      <Folder name="fonts">
-        <File name="Linotte-Bold.otf" />
-        <File name="Linotte-Medium.otf" />
+    <Folder name="app" defaultOpen>
+      <Folder name="navigation">
+        <File name="appNavigation.tsx" />
+        <File name="navigation.type.ts" />
       </Folder>
-      <Folder name="img">
-        <Folder name="icons" />
-        <Folder name="logo" />
-      </Folder>
-    </Folder>
-    <Folder name="components" defaultOpen>
-      <Folder name="UI">
-        <Folder name="Modal">
-          <File name="ModalUpdateApp.tsx" />
-          <File name="ModalNotification.tsx" />
+      <Folder name="store" defaultOpen>
+        <Folder name="slice" defaultOpen>
+          <File name="cartSlice.ts" />
+          <File name="paymentSlice.ts" />
+          <File name="settingSlice.ts" />
+          <File name="splitBillSlice.ts" />
+          <File name="printerSlice.ts" />
+          <File name="..." />
         </Folder>
-        <Folder name="Button" />
-        <Folder name="Input" />
+        <File name="index.ts" />
+        <File name="hooks.ts" />
       </Folder>
-      <Folder name="Layout" />
+      <Folder name="providers">
+        <File name="AuthContext.ts" />
+        <File name="NetworkContext.ts" />
+        <File name="AppStateContext.ts" />
+        <File name="CustomerDisplayContext.ts" />
+        <File name="OrientationContext.ts" />
+      </Folder>
     </Folder>
-    <Folder name="contexts">
-      <File name="AuthContext.ts" />
-      <File name="OrientationContext.ts" />
-      <File name="NetworkContext.ts" />
-      <File name="AppStateContext.ts" />
-      <File name="CustomerDisplayContext.ts" />
-    </Folder>
-    <Folder name="hooks">
-      <File name="useAuth.ts" />
-      <File name="useOrientation.ts" />
-      <File name="useAppState.ts" />
-      <File name="useHint.ts" />
-    </Folder>
-    <Folder name="lib" defaultOpen>
+    <Folder name="core" defaultOpen>
       <Folder name="api">
-        <File name="ApiClient.ts" />
+        <File name="client.ts" />
       </Folder>
-      <Folder name="constants">
+      <Folder name="auth">
+        <Folder name="types" />
+      </Folder>
+      <Folder name="config">
         <File name="baseURL.ts" />
       </Folder>
-      <Folder name="theme">
-        <File name="index.ts" />
+      <Folder name="errors">
+        <File name="errorResponse.ts" />
       </Folder>
-      <Folder name="utils" defaultOpen>
-        <Folder name="error">
-          <File name="errorResponse.ts" />
-        </Folder>
-        <Folder name="listeners">
-          <File name="notificationListener.ts" />
-          <File name="websocketListener.tsx" />
-        </Folder>
-        <Folder name="permissions">
-          <File name="notificationPermission.ts" />
-        </Folder>
-        <Folder name="token">
-          <File name="refreshToken.ts" />
+      <Folder name="listeners">
+        <File name="notificationListener.ts" />
+        <File name="websocketListener.tsx" />
+      </Folder>
+      <Folder name="printing" defaultOpen>
+        <Folder name="commands" />
+        <Folder name="format" />
+        <Folder name="helpers">
+          <File name="printQueue.ts" />
         </Folder>
       </Folder>
-      <Folder name="printer" />
+      <Folder name="theme" />
     </Folder>
-    <Folder name="navigation" defaultOpen>
-      <File name="appNavigation.tsx" />
-      <File name="navigation.type.ts" />
-    </Folder>
-    <Folder name="redux" defaultOpen>
-      <Folder name="slice" defaultOpen>
-        <File name="cartSlice.ts" />
-        <File name="paymentSlice.ts" />
-        <File name="settingSlice.ts" />
-      </Folder>
-      <File name="store.ts" />
-      <File name="hooks.ts" />
-    </Folder>
-    <Folder name="screens" defaultOpen>
-      <Folder name="auth">
-        <Folder name="Login">
-          <File name="Login.tsx" />
+    <Folder name="features" defaultOpen>
+      <Folder name="orders">
+        <Folder name="list" />
+        <Folder name="detail" />
+        <Folder name="new">
+          <Folder name="add" />
+          <Folder name="cart" />
+          <Folder name="checkout" />
+          <Folder name="confirm" />
         </Folder>
+        <Folder name="split-bill" />
       </Folder>
-      <Folder name="main">
-        <Folder name="Settings">
-          <File name="Settings.tsx" />
-        </Folder>
+      <Folder name="products">
+        <Folder name="category" />
+        <Folder name="menu" />
+        <Folder name="variant" />
       </Folder>
-      <Folder name="sub">
-        <Folder name="Settings">
-          <Folder name="StoreInformation" defaultOpen>
-            <Folder name="fetch">
-              <File name="getDataStore.ts" />
-            </Folder>
-            <File name="StoreInformation.tsx" />
-          </Folder>
-        </Folder>
+      <Folder name="settings">
+        <Folder name="printer" />
+        <Folder name="payment" />
+        <Folder name="store-information" />
+        <File name="..." />
       </Folder>
+      <File name="auth/" />
+      <File name="customers/" />
+      <File name="reservations/" />
+      <File name="shift/" />
+      <File name="report/" />
+      <File name="wallet/" />
+      <File name="..." />
     </Folder>
-    <Folder name="types">
-      <Folder name="order" />
-      <Folder name="user" />
+    <Folder name="shared" defaultOpen>
+      <Folder name="components">
+        <Folder name="ui" />
+        <Folder name="icons" />
+        <Folder name="layout" />
+      </Folder>
+      <Folder name="hooks" />
+      <Folder name="types" />
+      <Folder name="utils">
+        <Folder name="calculation" />
+        <Folder name="delay" />
+        <Folder name="formatter" />
+        <Folder name="generator" />
+      </Folder>
     </Folder>
   </Folder>
   <Folder name="tests">
@@ -159,93 +175,102 @@ import { File, Folder, Files } from "fumadocs-ui/components/files";
 </Files>
 
 ```ts
-// Providers wiring (Redux + React Query + Contexts)
-<Provider store={store}>
-  <PersistQueryClientProvider
-    client={queryClient}
-    persistOptions={{ persister: asyncStoragePersister }}
-  >
-    <AuthContext.Provider value={{ token, setToken, removeToken }}>
-      <OrientationContext.Provider value={{ isLandscape, screenOrientation }}>
-        <NetworkContext.Provider value={{ isConnected, isInternetReachable }}>
-          <AppStateContext.Provider value={{ appStateVisible }}>
-            <CustomerDisplayContext.Provider
-              value={{ showCustomerDisplay, setShowCustomerDisplay }}
-            >
-              <AppNavigation />
-            </CustomerDisplayContext.Provider>
-          </AppStateContext.Provider>
-        </NetworkContext.Provider>
-      </OrientationContext.Provider>
-    </AuthContext.Provider>
-  </PersistQueryClientProvider>
-</Provider>
+// Providers wiring (App.tsx)
+<GestureHandlerRootView>
+  <SafeAreaProvider>
+    <Provider store={store}>
+      <PersistQueryClientProvider
+        client={queryClient}
+        persistOptions={{ persister: asyncStoragePersister }}
+      >
+        <AuthContext.Provider value={{ token, setToken, removeToken }}>
+          <OrientationContext.Provider value={{ isLandscape, screenOrientation }}>
+            <NetworkContext.Provider value={{ isConnected, isInternetReachable }}>
+              <AppStateContext.Provider value={{ appStateVisible }}>
+                <CustomerDisplayContext.Provider
+                  value={{ showCustomerDisplay, setShowCustomerDisplay }}
+                >
+                  <NotifBillingContext.Provider value={{ ...billingNotif }}>
+                    <AppNavigation />
+                  </NotifBillingContext.Provider>
+                </CustomerDisplayContext.Provider>
+              </AppStateContext.Provider>
+            </NetworkContext.Provider>
+          </OrientationContext.Provider>
+        </AuthContext.Provider>
+      </PersistQueryClientProvider>
+    </Provider>
+  </SafeAreaProvider>
+</GestureHandlerRootView>
 ```
 
 ## Engineering Principles
 
 1. Start simple: minimal, readable components; split only when necessary
 2. One hook, one purpose: focused, reusable, typed
-3. Low coupling, high cohesion: colocate feature-only code under the feature; share via `src/lib/*` when broadly used
-4. Explicit data boundaries: React Query for server-state; Redux for UI/flow/cross-screen ephemeral state
+3. Low coupling, high cohesion: colocate feature-only code under the feature; share via `core/` or `shared/` when broadly used
+4. Explicit data boundaries: React Query for server-state; Redux for client/session state; Context for app-wide singleton concerns
 5. Typed APIs and params: type inputs/outputs for queries, mutations, and navigation params
+6. When adding to a feature, mirror its existing `api → hooks → components/screens` structure rather than introducing a new pattern
+
+## Data Flow: api → hook → screen
+
+This is the dominant pattern — follow it for new endpoints:
+
+```
+Screen
+  └── useXxx() hook          (features/<name>/hooks/)
+        └── getXxx() / postXxx()  (features/<name>/api/)
+              └── api client       (core/api/client.ts → axios)
+```
+
+1. **API fn** — thin function calling the shared axios instance, unwraps `res.data.data`, routes errors through `errorResponse`
+2. **Hook** — wraps the api fn in `useQuery`/`useMutation`, owns local UI state (error/success messages), drives navigation
+3. **Screen** — consumes the hook, renders components
 
 ## API Layer
 
-- Base URL from `src/lib/constants/baseURL.ts` (staging/prod toggled in file)
-- Shared axios instance in `src/lib/api/ApiClient.ts`
+- Base URL from `src/core/config/baseURL.ts` (staging/pre-prod/prod blocks, switched by commenting/uncommenting — currently **production**)
+- Shared axios instance in `src/core/api/client.ts`
 - Use `errorResponse(error)` to normalize thrown errors
 
 ```ts
-const ApiClient = axios.create({ baseURL: apiUrl });
-export default ApiClient;
+const api = axios.create({ baseURL: apiUrl });
+export default api;
 ```
 
-Example request with auth header and error handling:
-
 ```ts
-const getDataStore = async ({
-  token,
-  idCafe,
-}: {
-  token: string | null;
-  idCafe: string | null;
-}) => {
+// features/<name>/api/getFoo.ts
+import api from '../../../core/api/client';
+import { errorResponse } from '../../../core/errors/errorResponse';
+
+export const getFoo = async (id: string) => {
   try {
-    const res = await ApiClient.get(`/cafe/${idCafe}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await api.get(`/foo/${id}`);
     return res.data.data;
-  } catch (error: any) {
-    errorResponse(error);
+  } catch (e) {
+    throw errorResponse(e);
   }
 };
 ```
 
 ## React Query
 
-- QueryClient created in `App.tsx` with AsyncStorage persister
-- Use v5 APIs (`useQuery`, `useMutation`, `useQueryClient`)
-- Key rules: stable `queryKey`, avoid mixing server-state into Redux
+- `QueryClient` created in `App.tsx` with AsyncStorage persister, `gcTime` 10 min by default
+- **Only the query keys in `PERSIST_QUERY_KEYS`** (profile/store/settings/currency/tax-service/language/etc.) persist to AsyncStorage; everything else (product lists, reports, images) refetches on launch by design, to avoid OOM on cache restore — don't add large/volatile data to that allowlist
+- Use v5 APIs (`useQuery`, `useMutation`, `useQueryClient`); stable `queryKey`; don't mix server-state into Redux
 
 ```ts
-export const useGetDataStore = ({
-  token,
-  idCafe,
-}: {
-  token: string | null;
-  idCafe: string | null;
-}) =>
-  useQuery({
-    queryKey: ["getDataStore"],
-    queryFn: () => getDataStore({ token, idCafe }),
-  });
+// features/<name>/hooks/useGetFoo.ts
+export const useGetFoo = (id: string) =>
+  useQuery({ queryKey: ['foo', id], queryFn: () => getFoo(id) });
 ```
 
 ## Redux
 
-- Store in `src/redux/store.ts`, typed hooks in `src/redux/hooks.ts`
-- Use for cart, payment, printer, shifting, setting, unread, splitBill, currency, etc.
+- Store in `src/app/store/index.ts`, typed hooks in `src/app/store/hooks.ts`
+- Slices: `cart`, `payment`, `buyer`, `printer`, `setting`, `shifting`, `splitBill`, `currency`, `unread`, `viewMode`, `receipt`
+- `serializableCheck` disabled — always use typed hooks, never raw `useDispatch`/`useSelector`
 
 ```ts
 export const store = configureStore({
@@ -267,35 +292,21 @@ export const store = configureStore({
 
 ## Navigation
 
-- `@react-navigation/native-stack` for stacks; bottom tabs + material top tabs
-- Types centralized in `src/navigation/navigation.type.ts`; import types for `useNavigation` and `NativeStackScreenProps`
-
-```ts
-<NavigationContainer>
-  <Stack.Navigator
-    initialRouteName={initialRoute}
-    screenOptions={{ headerShown: false }}
-  >
-    {token === null ? (
-      <>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="OTPVerification" component={OTPVerification} />
-        ...
-      </>
-    ) : (
-      <>
-        <Stack.Screen name="Dashboard" children={() => <DashboardTabs />} />
-        ...
-      </>
-    )}
-  </Stack.Navigator>
-</NavigationContainer>
-```
+- `@react-navigation/native-stack` for stacks; bottom tabs, material top tabs, drawer for sub-navigation
+- Types centralized in `src/app/navigation/navigation.type.ts`; import types for `useNavigation` and `NativeStackScreenProps`
+- Screens are imported into `appNavigation.tsx` from their feature folder (e.g. `features/orders/list/screens/Orders`)
 
 ## Styling & Theme
 
-- Colors and typography in `src/lib/theme/index.ts` (use `color.*`, `fontSize`, `fontWeight`)
-- Prefer inline styles or StyleSheet with theme tokens; nativewind present but not widely used here
+- NativeWind (Tailwind) via `className` props; global stylesheet `src/global.css`, config in `tailwind.config.js`
+- `prettier-plugin-tailwindcss` auto-sorts classes on format
+- Theme tokens (font sizes/weights) in `src/core/theme/`
+
+```tsx
+<View className="flex-1 bg-white px-4">
+  <Text className="text-base font-semibold text-gray-900">...</Text>
+</View>
+```
 
 ## Error Handling
 
@@ -303,34 +314,65 @@ export const store = configureStore({
 
 ```ts
 export const errorResponse = (error: any) => {
-  if (error?.response?.data?.message)
-    throw new Error(error.response.data.message);
+  if (error?.response?.data?.message) throw new Error(error.response.data.message);
   if (error?.message) throw new Error(error.message);
   if (error) throw new Error(error.toString());
-  throw new Error("Terjadi kesalahan");
+  throw new Error('Terjadi kesalahan');
 };
 ```
 
 ## Auth Token
 
-- Store token in `AuthContext`; pass Bearer in per-request headers
-- Token refresh helper: `src/lib/utils/token/refreshToken.ts`
+- Auth injected via `setupApiAuth(callbacks)` from `App.tsx` (avoids circular dep between `core/api/client.ts` and the store); store token in `AuthContext`
+- Token refresh is both **proactive** (request interceptor refreshes when within `EXPIRY_BUFFER_MS` of `exp`) and **reactive** (response interceptor retries once on 401)
+- A single shared `refreshPromise` deduplicates concurrent refreshes; the refresh call uses plain `axios` (not the `api` instance) to avoid interceptor recursion
+
+## Printing (`core/printing/`)
+
+- Thermal printers over BLE (`react-native-bluetooth-classic`) and network (`@haroldtran/react-native-thermal-printer`)
+- `commands/` — one builder per receipt type (customer receipt, kitchen food/drink, checker, report summary, label, cashdrawer)
+- `format/` — byte/layout helpers (`tspl.ts` for TSPL label printers, `tags.ts` for ESC/POS, `columns`, `lines`)
+- `helpers/printQueue.ts` — serializes print jobs to reduce BLE connection drops
+- Supports both ESC/POS and TSPL command sets, selectable per printer
+
+Adding a new receipt type: create `core/printing/commands/printXxx.ts`, use `format/` helpers, and queue via `printQueue.ts`.
 
 ## Notifications & Realtime
 
-- FCM + notifee for push; websocket listener component when authenticated
+- FCM (`@react-native-firebase/messaging`) + notifee for push notifications
+- Websocket listener (`core/listeners/websocketListener.tsx`) mounted when authenticated; `socket.io-client` underneath
+
+## Environments
+
+- API/websocket/menu URLs hardcoded in `core/config/baseURL.ts` with staging/pre-prod/prod blocks — switch by commenting/uncommenting (currently **production**). Never commit with a non-production block active.
+- `.env` (via `react-native-dotenv`, imported as `@env`) holds only `GOOGLE_MAPS_API_KEY` and Android signing identifiers (`ANDROID_PACKAGE_NAME`, `ANDROID_SHA1_FINGERPRINT`)
+
+## Branch & Commit Convention
+
+```
+main          # Production-ready
+feature/<name>
+fix/<name>
+refactor/<name>
+```
+
+Conventional Commits — `type(scope): subject` (`feat`, `fix`, `refactor`, `chore`, `docs`). Example: `feat(orders): add split bill per item`.
 
 ## Do/Don't
 
 - Do: colocate feature-only fetchers/hooks under the feature folder
-- Do: keep server-state in React Query; UI/flow in Redux
+- Do: keep server-state in React Query; client/session state in Redux; app-wide singletons in Context
 - Do: type navigation params and API responses
+- Do: run `yarn lint` and `yarn tsc --noEmit` before pushing
 - Don't: call APIs directly from components without a fetch helper and error handling
+- Don't: add large/volatile query data to `PERSIST_QUERY_KEYS`
+- Don't: hand-edit `node_modules` — use `patch-package` (patches live in `patches/`)
 
 ## References
 
 - React Navigation: https://reactnavigation.org/docs/getting-started
 - TanStack Query v5: https://tanstack.com/query/latest
 - Redux Toolkit: https://redux-toolkit.js.org/
+- NativeWind: https://www.nativewind.dev/
 - React Native Firebase Messaging: https://rnfirebase.io/messaging/usage
 - Notifee: https://notifee.app/react-native/docs/overview

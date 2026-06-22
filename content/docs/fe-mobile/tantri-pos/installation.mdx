@@ -8,8 +8,8 @@ import { Step, Steps } from "fumadocs-ui/components/steps";
 ## Development
 
 <Callout title="Prerequisite">
-  Please install <b>Yarn</b>
-  before proceeding with the installation.
+  Please install <b>Yarn</b> and <b>Node.js 18+</b> before proceeding with the
+  installation.
 </Callout>
 
 Follow these steps to run this project locally.
@@ -41,10 +41,22 @@ yarn install
 </Step>
 
 <Step>
-Install patch for dependencies
+Setup environment variables
+
+Copy `.env.example` to `.env` and fill `GOOGLE_MAPS_API_KEY`, `ANDROID_PACKAGE_NAME`, `ANDROID_SHA1_FINGERPRINT`.
 
 ```bash
-yarn postinstall
+cp .env.example .env
+```
+
+</Step>
+
+<Step>
+(iOS only) Install Ruby gems and CocoaPods
+
+```bash
+bundle install
+bundle exec pod install
 ```
 
 </Step>
@@ -56,6 +68,8 @@ Start the Metro bundler
 yarn start
 ```
 
+Use `yarn start --reset-cache` after dependency or native changes.
+
 </Step>
 
 <Step>Open your Android Emulator or iOS Simulator</Step>
@@ -64,8 +78,9 @@ yarn start
 Start on Android Emulator or iOS Simulator
 
 ```bash
-yarn android    # for android
-yarn ios        # for ios
+yarn android              # for android
+yarn android:optimized    # android in debugOptimized mode
+yarn ios                  # for ios
 ```
 
 </Step>
@@ -73,6 +88,26 @@ yarn ios        # for ios
 <Step>Open your IDE and Start Development!</Step>
 
 </Steps>
+
+<Callout title="Note">
+  Native dependency changes require a full rebuild (`yarn android` /
+  `yarn ios`), not just a Metro reload. `postinstall` runs `patch-package` —
+  patches live in `patches/`, never hand-edit `node_modules`.
+</Callout>
+
+---
+
+## Linting, Type Check & Testing
+
+```bash
+yarn lint              # ESLint
+yarn tsc --noEmit       # TypeScript check
+yarn test               # Jest unit tests
+yarn test path/to/file  # Single test file
+maestro test tests/main-test.yaml  # E2E (requires maestro CLI)
+```
+
+Run lint and type check before pushing.
 
 ---
 
