@@ -1,26 +1,35 @@
 # Tantri Docs
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+Internal documentation site for the Tantri product suite (POS app, web apps, backend APIs, UI design, auth/access, commit conventions). Built with Next.js 15 + [Fumadocs](https://fumadocs.vercel.app). Package manager: **Bun**.
 
-Run development server:
+## Setup
 
 ```bash
-npm run dev
-# or
-pnpm dev
-# or
-yarn dev
+bun install
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+## Development
+
+```bash
+bun run dev
+```
+
+Binds to `0.0.0.0` (LAN-accessible). Open http://localhost:3000 to see the result.
+
+## Build & Production
+
+```bash
+bun run build
+bun run start
+```
+
+## Adding/Editing Docs
+
+Content lives under `content/docs/**/*.mdx`. Each section folder has its own `meta.json` (page order/titles) plus `index.mdx` and topic pages. Edit `.mdx` directly; update `meta.json` when adding/removing/reordering pages — no extra registration step needed.
+
+See [CLAUDE.md](CLAUDE.md) for architecture details.
 
 ## Learn More
 
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Fumadocs](https://fumadocs.vercel.app) - learn about Fumadocs
